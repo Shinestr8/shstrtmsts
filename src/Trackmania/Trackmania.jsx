@@ -1,28 +1,28 @@
 import { useState } from "react"
 
 export function Trackmania(props){
-    let [player, setPlayer] = useState("");
-    let [submitted, setSubmitted] = useState(""); 
+    let [textInput, setTextInput] = useState("");
+    let [player, setPlayer] = useState(""); 
 
 
-    function changePlayer(e){
-        setPlayer(e.target.value);
+    function updateTextInput(e){
+        setTextInput(e.target.value);
     }
 
     function fetchPlayerInfo(e){
         e.preventDefault();
-        setSubmitted(player);
+        setPlayer(textInput);
     }
 
     return(
         <div>
             <form>
-                <input type="text" placeholder="Player" value={player} onChange={changePlayer}/>
+                <input type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
                 <button type="submit" onClick={fetchPlayerInfo}>
                     Submit
                 </button>
             </form>
-            Looking at info from player: {submitted}
+            Looking at info from player: {player}
         </div>
     )
 }
