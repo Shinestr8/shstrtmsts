@@ -1,3 +1,5 @@
+import { TrophyPieChart } from "./TrophyPieChart";
+
 export function TrophyDistribution(props){
     
     const data = props.data;
@@ -40,6 +42,7 @@ export function TrophyDistribution(props){
                     </tr>
                 </tbody>
             </table>
+            <TrophyPieChart/>
         </div>
     )
 }
