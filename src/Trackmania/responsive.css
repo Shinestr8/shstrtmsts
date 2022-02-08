@@ -12,4 +12,8 @@
     .trophy-distribution-img{
         width: 2rem;
     }
+
+    .echelon-type{
+        display: none;
+    }
 }
