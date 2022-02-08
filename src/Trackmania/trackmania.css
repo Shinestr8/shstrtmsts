@@ -49,6 +49,10 @@
     margin: 1rem 0rem 1rem 1rem;
 }
 
-.section:last-of-type {
+.section{
+    padding-bottom: 3rem;
+}
+
+.section:not(last-of-type) {
     border-bottom: 1px solid lightgray;
 }
