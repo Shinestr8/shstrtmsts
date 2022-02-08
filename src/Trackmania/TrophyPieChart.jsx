@@ -6,7 +6,7 @@ export function TrophyPieChart(props){
     const data = props.data;
     const [array, setArray] = useState(null);
     const prevArrayRef = useRef();
-    const { height, width } = useWindowDimensions();
+    const {width } = useWindowDimensions();
 
     useEffect(() => {
         if(prevArrayRef.current !== props.data){
