@@ -28,6 +28,8 @@ export function Trackmania(props){
     function fetchPlayerInfo(e){
         e.preventDefault();
         setPlayer(textInput);
+        setData(null);
+        setRegions(null);
         fetch('https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=' + textInput)
         .then(function(result){
             return result.json();
