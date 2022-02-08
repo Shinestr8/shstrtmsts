@@ -1,3 +1,12 @@
+.trophy-distribution-table{
+    width: 50%;
+}
+
+.trophy-distribution{
+    display: flex;
+    justify-content: space-around;
+}
+
 .player-rank{
     display: flex;
     justify-content: space-around;
@@ -23,8 +32,8 @@
 }
 
 .general-flag-picture{
-    max-width: 9rem;
-    max-height: 5rem;
+    width: 9rem;
+    height: 5rem;
 }
 
 .general-country-name{
