@@ -5,7 +5,8 @@ import { TrophyDistribution } from "./TrophyDistribution";
 import "./trackmania.css";
 import "./responsive.css";
 
-export function Trackmania(props){
+export function Trackmania(){
+
     let [textInput, setTextInput] = useState("");
     let [player, setPlayer] = useState(""); 
     let [data, setData] = useState(null);
@@ -29,20 +30,38 @@ export function Trackmania(props){
 
     function fetchPlayerInfo(e){
         e.preventDefault();
+        const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
         setPlayer(textInput);
         setData(null);
         setRegions(null);
-        fetch('https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=' + textInput)
-        .then(function(result){
-            return result.json();
-        })
-        .then(function(result){
-            setData(result)
-            findPlayerRegions(result.trophies.zone)
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+
+        if(localStorage.getItem(url) !== null){
+            let cached = JSON.parse(localStorage.getItem(url));
+            let timestamp = new Date(cached.trophies.timestamp).getTime();
+            let now = new Date().getTime();
+            if(timestamp + 24*60*60*1000 < now){
+                localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+            } else {
+                setData(cached);
+                findPlayerRegions(cached.trophies.zone)
+            }
+        } else {
+            fetch('https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=' + textInput)
+            .then(function(result){
+                return result.json();
+            })
+            .then(function(result){
+                setData(result);
+                findPlayerRegions(result.trophies.zone);
+                localStorage.setItem(url, JSON.stringify(result));
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+
+        
+        
     }
 
     return(
