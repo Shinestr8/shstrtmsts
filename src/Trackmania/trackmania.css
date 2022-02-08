@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+.trophy-distribution-table td{
+    padding-right: 1rem;
+}
+
+
 .trophy-distribution{
     display: flex;
     justify-content: space-around;
