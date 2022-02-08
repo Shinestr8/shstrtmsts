@@ -8,6 +8,10 @@
     height: 1rem;
 }
 
+.player-rank-echelon{
+    max-width: 4em;
+}
+
 .general-player-info{
     display: flex;
     justify-content: space-around;

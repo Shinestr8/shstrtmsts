@@ -43,7 +43,12 @@ export function PlayerRank(props){
                 </table>
             </div>
             <div className="echelon-type">
-                Echelon {data.trophies.echelon}
+                <img 
+                    className="player-rank-echelon"
+                    title={"echelon-" + data.trophies.echelon}
+                    alt={"echelon-" + data.trophies.echelon}
+                    src={process.env.PUBLIC_URL + '/img/echelon/' + data.trophies.echelon + '.png'}
+                />
             </div>
         </div>
     )
