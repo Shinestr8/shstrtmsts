@@ -23,9 +23,10 @@ body, html, #root{
 .wrapper{
   background-color: #161d31;
   flex:1;
+  background-attachment: fixed;
 }
 
 .content{
   background-color: white;
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
 }
