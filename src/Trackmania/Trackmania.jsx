@@ -3,6 +3,7 @@ import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
 import "./trackmania.css";
+import "./responsive.css";
 
 export function Trackmania(props){
     let [textInput, setTextInput] = useState("");
