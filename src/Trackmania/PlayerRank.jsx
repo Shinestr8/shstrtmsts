@@ -26,6 +26,7 @@ export function PlayerRank(props){
                                     <td>
                                         <img 
                                             className="rank-flag" 
+                                            title={region.name}
                                             alt={"flag-" + region.flag} 
                                             src={"https://trackmania.io/img/flags/" + region.flag + ".jpg"}
                                         />
