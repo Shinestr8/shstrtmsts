@@ -42,7 +42,7 @@ export function TrophyDistribution(props){
                     </tr>
                 </tbody>
             </table>
-            <TrophyPieChart/>
+            <TrophyPieChart data={data.trophies.counts}/>
         </div>
     )
 }
