@@ -34,9 +34,10 @@ export function Trackmania(props){
                     Submit
                 </button>
             </form>
-            Looking at info from player: {player}
+            fetch info for {player}
             {data !== null && (
                 <div>
+                    <h1 className="player-name">{data.displayname}</h1>
                     <div className="section">
                         <h2 className="section-title">General</h2>
                         <GeneralPlayerInfo data={data}/>

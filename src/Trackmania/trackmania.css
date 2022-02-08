@@ -26,6 +26,11 @@
     font-weight: 600;
 }
 
+.player-name{
+    display: flex;
+    justify-content: center;
+}
+
 .section-title{
     margin: 1rem 0rem 1rem 1rem;
 }
