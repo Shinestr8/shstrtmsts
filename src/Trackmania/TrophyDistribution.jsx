@@ -23,7 +23,12 @@ export function TrophyDistribution(props){
                         return(
                             <tr>
                                 <td>
-                                    <img className="trophy-distribution-img" src={process.env.PUBLIC_URL + '/img/trophies/' + index + '.png'}/>
+                                    <img 
+                                        title={"T" + index+1}
+                                        alt={"Trophy" + index+1}
+                                        className="trophy-distribution-img" 
+                                        src={process.env.PUBLIC_URL + '/img/trophies/' + index + '.png'}
+                                    />
                                 </td>
                                 <td>Tier {index+1}:</td>
                                 <td>{count}</td>
