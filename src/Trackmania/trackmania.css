@@ -1,3 +1,9 @@
+.player-rank{
+    display: flex;
+    justify-content: space-around;
+}
+
+
 .general-player-info{
     display: flex;
     justify-content: space-around;
