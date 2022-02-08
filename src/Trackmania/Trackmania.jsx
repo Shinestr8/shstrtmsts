@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
+import "./trackmania.css";
 
 export function Trackmania(props){
     let [textInput, setTextInput] = useState("");
@@ -36,8 +37,10 @@ export function Trackmania(props){
             Looking at info from player: {player}
             {data !== null && (
                 <div>
-                    {/* <div>{JSON.stringify(data)}</div> */}
-                    <GeneralPlayerInfo data={data}/>
+                    <div className="section">
+                        <h2 className="section-title">General</h2>
+                        <GeneralPlayerInfo data={data}/>
+                    </div>
                 </div>
             )}
         </div>
