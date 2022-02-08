@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
+import { TrophyDistribution } from "./TrophyDistribution";
 import "./trackmania.css";
 
 export function Trackmania(props){
@@ -65,6 +66,11 @@ export function Trackmania(props){
                         <PlayerRank data={data} regions={regions}/>
                     </div>
 
+                    <div className="section">
+                        <h2 className="section-title">Trophy Distribution</h2>
+                        <TrophyDistribution data={data}/>
+                    </div>
+                    
                 </div>
             )}
         </div>
