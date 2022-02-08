@@ -1,10 +1,12 @@
 import {useState, useEffect, useRef} from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, LabelList, Line} from 'recharts';
+import useWindowDimensions from '../WindowDimensions';
 
 export function TrophyPieChart(props){
     const data = props.data;
     const [array, setArray] = useState(null);
     const prevArrayRef = useRef();
+    const { height, width } = useWindowDimensions();
 
     useEffect(() => {
         if(prevArrayRef.current !== props.data){
@@ -70,7 +72,7 @@ export function TrophyPieChart(props){
 
 
     return (
-        <ResponsiveContainer height={400}>
+        <ResponsiveContainer height={width > 1024 ? 400 : 300}>
               <PieChart>
                 <Pie 
                   data={array} 
