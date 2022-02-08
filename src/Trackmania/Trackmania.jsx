@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 
 export function Trackmania(props){
     let [textInput, setTextInput] = useState("");
@@ -34,7 +35,10 @@ export function Trackmania(props){
             </form>
             Looking at info from player: {player}
             {data !== null && (
-                <div>{JSON.stringify(data)}</div>
+                <div>
+                    {/* <div>{JSON.stringify(data)}</div> */}
+                    <GeneralPlayerInfo data={data}/>
+                </div>
             )}
         </div>
     )
