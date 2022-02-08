@@ -23,8 +23,17 @@ export function PlayerRank(props){
                         {regions.map(function(region, index){
                             return(
                                 <tr key={"rank-" + region.name}>
+                                    <td>
+                                        <img 
+                                            className="rank-flag" 
+                                            alt={"flag-" + region.flag} 
+                                            src={"https://trackmania.io/img/flags/" + region.flag + ".jpg"}
+                                        />
+                                    </td>
                                     <td>{region.name}</td>
-                                    <td style={{paddingLeft: '1rem'}}>{formatRank(data.trophies.zonepositions[index])}</td>
+                                    <td style={{paddingLeft: '1rem'}}>
+                                        {formatRank(data.trophies.zonepositions[index])}
+                                    </td>
                                 </tr>
 
                             );

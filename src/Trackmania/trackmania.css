@@ -3,6 +3,10 @@
     justify-content: space-around;
 }
 
+.rank-flag{
+    width: 2rem;
+    height: 1rem;
+}
 
 .general-player-info{
     display: flex;
@@ -15,8 +19,8 @@
 }
 
 .general-flag-picture{
-    width: 9rem;
-    height: 5rem;
+    max-width: 9rem;
+    max-height: 5rem;
 }
 
 .general-country-name{
