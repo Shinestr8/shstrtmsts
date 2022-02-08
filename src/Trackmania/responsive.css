@@ -1,0 +1,11 @@
+@media screen and (max-width: 1024px){
+    .trophy-distribution{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .content{
+        margin: 0;
+    }
+}
