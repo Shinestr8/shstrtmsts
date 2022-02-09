@@ -78,10 +78,13 @@ export function Trackmania(){
                     Submit
                 </button>
             </form>
+            {data && data.message &&(
+                <span>{data.message}</span>
+            )}
             {loading &&(
                 <div className="loading"><FontAwesomeIcon icon={faSpinner} size="2x"spin/></div>
             )}
-            {data !== null && !loading && regions !== null && (
+            {data && !loading && regions && (
                 <div>
                     
                     <h1 className="player-name">{data.displayname}</h1>
