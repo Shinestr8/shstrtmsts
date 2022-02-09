@@ -11,6 +11,7 @@ export function Trackmania(){
     let [player, setPlayer] = useState(""); 
     let [data, setData] = useState(null);
     let [regions, setRegions] = useState(null);
+    let [loading, setLoading] = useState(false);
 
     function updateTextInput(e){
         setTextInput(e.target.value);
@@ -32,6 +33,7 @@ export function Trackmania(){
         e.preventDefault();
         const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
         setPlayer(textInput);
+        setLoading(true);
         setData(null);
         setRegions(null);
 
@@ -43,6 +45,7 @@ export function Trackmania(){
                 localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
             } else {
                 setData(cached);
+                setLoading(false);
                 findPlayerRegions(cached.trophies.zone)
             }
         } else {
@@ -52,6 +55,7 @@ export function Trackmania(){
             })
             .then(function(result){
                 setData(result);
+                setLoading(false);
                 findPlayerRegions(result.trophies.zone);
                 localStorage.setItem(url, JSON.stringify(result));
             })
@@ -73,7 +77,10 @@ export function Trackmania(){
                 </button>
             </form>
             fetch info for {player}
-            {data !== null && regions !== null && (
+            {loading &&(
+                <div>Loading...</div>
+            )}
+            {data !== null && !loading && regions !== null && (
                 <div>
                     <h1 className="player-name">{data.displayname}</h1>
                     <div className="section">
