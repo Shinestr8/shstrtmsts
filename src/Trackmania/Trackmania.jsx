@@ -80,7 +80,6 @@ export function Trackmania(){
                     Submit
                 </button>
             </form>
-            fetch info for {player}
             {loading &&(
                 <div className="loading"><FontAwesomeIcon icon={faSpinner} size="2x"spin/></div>
             )}
