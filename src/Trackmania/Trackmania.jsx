@@ -12,7 +12,6 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 export function Trackmania(){
 
     let [textInput, setTextInput] = useState("");
-    let [player, setPlayer] = useState(""); 
     let [data, setData] = useState(null);
     let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
@@ -36,7 +35,6 @@ export function Trackmania(){
     function fetchPlayerInfo(e){
         e.preventDefault();
         const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
-        setPlayer(textInput);
         setLoading(true);
         setData(null);
         setRegions(null);
