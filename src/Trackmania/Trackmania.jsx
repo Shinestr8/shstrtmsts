@@ -5,6 +5,10 @@ import { TrophyDistribution } from "./TrophyDistribution";
 import "./trackmania.css";
 import "./responsive.css";
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
 export function Trackmania(){
 
     let [textInput, setTextInput] = useState("");
@@ -78,10 +82,11 @@ export function Trackmania(){
             </form>
             fetch info for {player}
             {loading &&(
-                <div>Loading...</div>
+                <div className="loading"><FontAwesomeIcon icon={faSpinner} size="2x"spin/></div>
             )}
             {data !== null && !loading && regions !== null && (
                 <div>
+                    
                     <h1 className="player-name">{data.displayname}</h1>
                     <div className="section">
                         <h2 className="section-title">General</h2>
