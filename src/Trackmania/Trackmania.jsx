@@ -5,7 +5,7 @@ import { TrophyDistribution } from "./TrophyDistribution";
 import "./trackmania.css";
 import "./responsive.css";
 
-
+import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
@@ -83,7 +83,11 @@ export function Trackmania(){
                 <button type="submit" onClick={fetchPlayerInfo}>
                     Submit
                 </button>
+                {data && !data.message && !loading &&(
+                    <UpdateButton/>
+                )}
             </form>
+            
             {data && data.message &&(
                 <span>{data.message}</span>
             )}
