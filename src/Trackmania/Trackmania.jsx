@@ -8,7 +8,7 @@ import "./responsive.css";
 
 import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export function Trackmania(){
 
@@ -112,7 +112,10 @@ export function Trackmania(){
             </form>
             
             {data && data.message &&(
-                <span>{data.message}</span>
+                <div>
+                    <div>{data.message}</div>
+                    <img src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} style={{"width": "20em"}}/>
+                </div>
             )}
             {loading &&(
                 <div className="loading"><FontAwesomeIcon icon={faSpinner} size="2x"spin/></div>
