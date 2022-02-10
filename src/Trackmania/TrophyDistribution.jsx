@@ -21,10 +21,10 @@ export function TrophyDistribution(props){
                 <tbody>
                     {data.trophies.counts.map(function(count, index){
                         return(
-                            <tr>
+                            <tr key={`trophy-${index+1}`}>
                                 <td>
                                     <img 
-                                        title={"T" + index+1}
+                                        title={"T" + (index+1)}
                                         alt={"Trophy" + index+1}
                                         className="trophy-distribution-img" 
                                         src={process.env.PUBLIC_URL + '/img/trophies/' + index + '.png'}
