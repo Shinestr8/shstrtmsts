@@ -119,9 +119,9 @@ export function Trackmania(){
 
     return(
         <div>
-            <form>
-                <input type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
-                <button type="submit" onClick={fetchPlayerInfo}>
+            <form className="input-group">
+                <input className="text-input" type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
+                <button className="submit-button" type="submit" onClick={fetchPlayerInfo}>
                     Submit
                 </button>
                 {data && !data.message && !loading &&(
