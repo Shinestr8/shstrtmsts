@@ -19,6 +19,11 @@ export function Trackmania(){
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
 
+
+    function playerSelect(player){
+        console.log(player);
+    }
+
     function updateTextInput(e){
         setTextInput(e.target.value);
     }
@@ -121,7 +126,7 @@ export function Trackmania(){
             {playerList && (
                 <div>
                     <div>Several players found for your search, is it one of the following ?</div>
-                    <PlayerList data={playerList}/>
+                    <PlayerList data={playerList} onClick={playerSelect}/>
                 </div>
             )}
 
