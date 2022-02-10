@@ -15,6 +15,7 @@ export function UpdateButton(props){
             spin={spin}
             onMouseEnter={() => setSpin(true)} 
             onMouseLeave= {() => setSpin(false)}
+            onClick={props.onClick}
         />
     )
 }

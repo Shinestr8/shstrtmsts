@@ -32,6 +32,28 @@ export function Trackmania(){
     }
 
 
+    function forceUpdate(){
+        const url = ("https://tm-stats-bknd.herokuapp.com/forceUpdate?player=" + textInput).toLowerCase();
+        //reset previous search: data = null, loading = true
+        setLoading(true); 
+        setData(null);
+        setRegions(null);
+        //if there is a localstorage if that url
+        //if nothing in the localstorage, request the data to the server and cache it for 12 hours
+        fetch(url)
+        .then(function(result){
+            return result.json();
+        })
+        .then(function(result){
+            setData(result);
+            setLoading(false);
+            findPlayerRegions(result.trophies.zone);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+
     function fetchPlayerInfo(e){
         e.preventDefault();
         const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
@@ -57,7 +79,7 @@ export function Trackmania(){
             }
         } else {
             //if nothing in the localstorage, request the data to the server and cache it for 12 hours
-            fetch('https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=' + textInput)
+            fetch(url)
             .then(function(result){
                 return result.json();
             })
@@ -84,7 +106,7 @@ export function Trackmania(){
                     Submit
                 </button>
                 {data && !data.message && !loading &&(
-                    <UpdateButton/>
+                    <UpdateButton onClick={forceUpdate}/>
                 )}
             </form>
             
