@@ -2,6 +2,7 @@ import { useState } from "react"
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
+import { PlayerList } from "./PlayerList";
 import { remoteServer } from "../config";
 import "./trackmania.css";
 import "./responsive.css";
@@ -107,9 +108,6 @@ export function Trackmania(){
 
     return(
         <div>
-            {playerList && (
-                <div>Several players</div>
-            )}
             <form>
                 <input type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
                 <button type="submit" onClick={fetchPlayerInfo}>
@@ -120,6 +118,13 @@ export function Trackmania(){
                 )}
             </form>
             
+            {playerList && (
+                <div>
+                    <div>Several players found for your search, is it one of the following ?</div>
+                    <PlayerList data={playerList}/>
+                </div>
+            )}
+
             {data && data.message &&(
                 <div>
                     <div>{data.message}</div>
