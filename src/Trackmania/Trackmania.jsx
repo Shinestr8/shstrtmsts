@@ -131,7 +131,7 @@ export function Trackmania(){
             
             {playerList && (
                 <div>
-                    <div>Several players found for your search, is it one of the following ?</div>
+                    <div>No exact match for your search, is it one of the following ?</div>
                     <PlayerList data={playerList} onClick={playerSelect}/>
                 </div>
             )}
