@@ -43,7 +43,7 @@ export function Trackmania(){
             let cached = JSON.parse(localStorage.getItem(url));
             let timestamp = new Date(cached.timestamp).getTime();
             let now = new Date().getTime();
-            if(timestamp + 24*60*60*1000 < now){
+            if(timestamp + 12*60*60*1000 < now){
                 localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
             } else {
                 console.log(`${textInput} found in the local storage`);
