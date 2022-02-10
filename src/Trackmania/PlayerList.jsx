@@ -23,7 +23,7 @@ export function PlayerList(props){
 
     return(
         <React.Fragment>
-            <div>
+            <div className="player-list">
                 {players.map(function(player, index){
                     return(
                         <Player key={player.player.name} name={player.player.name} onClick={handleClick}/>
