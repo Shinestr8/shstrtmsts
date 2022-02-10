@@ -11,7 +11,7 @@ function App() {
         Trackmania Stats
       </div>
       <div className='wrapper' style={{backgroundImage: `url(${page_background})`}}>
-        <div className='content'>
+        <div>
           <Trackmania/>
         </div>
       </div>
