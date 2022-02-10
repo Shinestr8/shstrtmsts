@@ -3,6 +3,10 @@
     width: 60%;
 }
 
+.text-input:focus{
+    outline: none;
+}
+
 .input-group{
     display: flex;
     justify-content: center;
