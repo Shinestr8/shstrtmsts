@@ -8,7 +8,7 @@ import "./responsive.css";
 
 import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import {faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export function Trackmania(){
 
@@ -16,6 +16,7 @@ export function Trackmania(){
     let [data, setData] = useState(null);
     let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
+    let [playerList, setPlayerList] = useState(null);
 
     function updateTextInput(e){
         setTextInput(e.target.value);
@@ -63,6 +64,7 @@ export function Trackmania(){
         setLoading(true); 
         setData(null);
         setRegions(null);
+        setPlayerList(null);
 
         //if there is a localstorage if that url
         if(localStorage.getItem(url) !== null){ //
@@ -73,7 +75,6 @@ export function Trackmania(){
                 localStorage.removeItem(url); // remove the current url from localStorage if it is more than 12 hours old
             } else {
                 console.log(`${textInput} found in the local storage`);
-                console.log(cached);
                 setData(cached.data);
                 setLoading(false);
                 findPlayerRegions(cached.data.trophies.zone)
@@ -85,6 +86,11 @@ export function Trackmania(){
                 return result.json();
             })
             .then(function(result){
+                if(result.length){
+                    setPlayerList(result);
+                    setLoading(false);
+                    return;
+                }
                 setData(result);
                 setLoading(false);
                 findPlayerRegions(result.trophies.zone);
@@ -101,6 +107,9 @@ export function Trackmania(){
 
     return(
         <div>
+            {playerList && (
+                <div>Several players</div>
+            )}
             <form>
                 <input type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
                 <button type="submit" onClick={fetchPlayerInfo}>
