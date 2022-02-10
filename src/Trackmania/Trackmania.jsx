@@ -35,16 +35,19 @@ export function Trackmania(){
     function fetchPlayerInfo(e){
         e.preventDefault();
         const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
-        setLoading(true);
+
+        //reset previous search: data = null, loading = true
+        setLoading(true); 
         setData(null);
         setRegions(null);
 
-        if(localStorage.getItem(url) !== null){
+        //if there is a localstorage if that url
+        if(localStorage.getItem(url) !== null){ //
             let cached = JSON.parse(localStorage.getItem(url));
             let timestamp = new Date(cached.timestamp).getTime();
             let now = new Date().getTime();
             if(timestamp + 12*60*60*1000 < now){
-                localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+                localStorage.removeItem(url); // remove the current url from localStorage if it is more than 12 hours old
             } else {
                 console.log(`${textInput} found in the local storage`);
                 console.log(cached);
@@ -53,6 +56,7 @@ export function Trackmania(){
                 findPlayerRegions(cached.data.trophies.zone)
             }
         } else {
+            //if nothing in the localstorage, request the data to the server and cache it for 12 hours
             fetch('https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=' + textInput)
             .then(function(result){
                 return result.json();
