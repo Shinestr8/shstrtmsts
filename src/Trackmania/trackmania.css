@@ -6,7 +6,7 @@
 .input-group{
     display: flex;
     justify-content: center;
-    background-color: #161d31;
+    background-color: transparent;
     padding-bottom: 3em;
     height: 2em;
 }
