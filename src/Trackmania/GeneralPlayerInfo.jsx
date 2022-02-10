@@ -1,5 +1,9 @@
 import React from "react";
 
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function GeneralPlayerInfo(props){
 
     const data = props.data;
@@ -22,7 +26,7 @@ export function GeneralPlayerInfo(props){
                     
                 </div>
                 <div className="general-trophy-count">
-                    Trophies: {data.trophies.points}
+                    Trophies: {formatNumber(data.trophies.points)}
                 </div>
                 
             </div>
