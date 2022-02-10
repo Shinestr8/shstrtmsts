@@ -139,11 +139,18 @@ export function Trackmania(){
             {data && data.message &&(
                 <div>
                     <div>{data.message}</div>
-                    <img alt='marcINSPECT' src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} style={{"width": "20em"}}/>
+                    <img 
+                        title="marcINSPECT" 
+                        alt='marcINSPECT' 
+                        src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} 
+                        style={{"width": "20em"}}
+                    />
                 </div>
             )}
             {loading &&(
-                <div className="loading"><FontAwesomeIcon icon={faSpinner} size="2x"spin/></div>
+                <div className="loading">
+                    <FontAwesomeIcon icon={faSpinner} size="2x"spin/>
+                </div>
             )}
             {data && !loading && regions && (
                 <div>
