@@ -128,51 +128,52 @@ export function Trackmania(){
                     <UpdateButton onClick={forceUpdate}/>
                 )}
             </form>
-            
-            {playerList && (
-                <div>
-                    <div>No exact match for your search, is it one of the following ?</div>
-                    <PlayerList data={playerList} onClick={playerSelect}/>
-                </div>
-            )}
+            <div className="content">
+                    {playerList && (
+                        <div>
+                            <div>No exact match for your search, is it one of the following ?</div>
+                            <PlayerList data={playerList} onClick={playerSelect}/>
+                        </div>
+                    )}
 
-            {data && data.message &&(
-                <div>
-                    <div>{data.message}</div>
-                    <img 
-                        title="marcINSPECT" 
-                        alt='marcINSPECT' 
-                        src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} 
-                        style={{"width": "20em"}}
-                    />
-                </div>
-            )}
-            {loading &&(
-                <div className="loading">
-                    <FontAwesomeIcon icon={faSpinner} size="2x"spin/>
-                </div>
-            )}
-            {data && !loading && regions && (
-                <div>
-                    
-                    <h1 className="player-name">{data.displayname}</h1>
-                    <div className="section">
-                        <h2 className="section-title">General</h2>
-                        <GeneralPlayerInfo data={data} regions={regions}/>
-                    </div>
+                    {data && data.message &&(
+                        <div>
+                            <div>{data.message}</div>
+                            <img 
+                                title="marcINSPECT" 
+                                alt='marcINSPECT' 
+                                src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} 
+                                style={{"width": "20em"}}
+                            />
+                        </div>
+                    )}
+                    {loading &&(
+                        <div className="loading">
+                            <FontAwesomeIcon icon={faSpinner} size="2x"spin/>
+                        </div>
+                    )}
+                    {data && !loading && regions && (
+                        <div>
+                            
+                            <h1 className="player-name">{data.displayname}</h1>
+                            <div className="section">
+                                <h2 className="section-title">General</h2>
+                                <GeneralPlayerInfo data={data} regions={regions}/>
+                            </div>
 
-                    <div className="section">
-                        <h2 className="section-title">Rank</h2>
-                        <PlayerRank data={data} regions={regions}/>
-                    </div>
+                            <div className="section">
+                                <h2 className="section-title">Rank</h2>
+                                <PlayerRank data={data} regions={regions}/>
+                            </div>
 
-                    <div className="section">
-                        <h2 className="section-title">Trophy Distribution</h2>
-                        <TrophyDistribution data={data}/>
-                    </div>
-                    
+                            <div className="section">
+                                <h2 className="section-title">Trophy Distribution</h2>
+                                <TrophyDistribution data={data}/>
+                            </div>
+                            
+                        </div>
+                    )}
                 </div>
-            )}
-        </div>
+            </div> 
     )
 }
