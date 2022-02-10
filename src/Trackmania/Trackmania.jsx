@@ -2,6 +2,7 @@ import { useState } from "react"
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
+import { remoteServer } from "../config";
 import "./trackmania.css";
 import "./responsive.css";
 
@@ -33,7 +34,7 @@ export function Trackmania(){
 
 
     function forceUpdate(){
-        const url = ("https://tm-stats-bknd.herokuapp.com/forceUpdate?player=" + textInput).toLowerCase();
+        const url  = (`${remoteServer}/forceUpdate?player=${textInput}`).toLowerCase();
         //reset previous search: data = null, loading = true
         setLoading(true); 
         setData(null);
@@ -46,7 +47,7 @@ export function Trackmania(){
         .then(function(result){
             setData(result);
             setLoading(false);
-            localStorage.setItem(("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase(), JSON.stringify({timestamp: new Date(), data: result}));
+            localStorage.setItem((`${remoteServer}/findTrokmoniPlayer?player=${textInput}`).toLowerCase(), JSON.stringify({timestamp: new Date(), data: result}));
             findPlayerRegions(result.trophies.zone);
         })
         .catch(function(error){
@@ -56,7 +57,7 @@ export function Trackmania(){
 
     function fetchPlayerInfo(e){
         e.preventDefault();
-        const url = ("https://tm-stats-bknd.herokuapp.com/findTrokmoniPlayer?player=" + textInput).toLowerCase();
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${textInput}`).toLowerCase();
 
         //reset previous search: data = null, loading = true
         setLoading(true); 
