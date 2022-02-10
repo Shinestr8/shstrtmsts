@@ -8,14 +8,18 @@ export function UpdateButton(props){
     let [spin, setSpin] = useState(false);
 
     return(
-        <FontAwesomeIcon 
+        <div className='loading'>
+            <FontAwesomeIcon 
             icon = {faRotate} 
             size = "1x" 
-            style={{marginLeft: '1em', cursor: 'pointer'}}
+            // className='loading'
+            // style={{marginLeft: '1em', cursor: 'pointer'}}
             spin={spin}
             onMouseEnter={() => setSpin(true)} 
             onMouseLeave= {() => setSpin(false)}
             onClick={props.onClick}
         />
+        </div>
+        
     )
 }

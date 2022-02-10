@@ -6,6 +6,7 @@
 .input-group{
     display: flex;
     justify-content: center;
+    text-align: center;
     background-color: transparent;
     padding-bottom: 3em;
     height: 2em;
@@ -32,10 +33,12 @@
 }
 
 .loading{
+    color: white;
+    cursor: pointer;
+    margin-left: 1em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-top: 3em;
-    padding-bottom: 3em;
 }
 
 .trophy-distribution-table{
