@@ -8,7 +8,7 @@ export function UpdateButton(props){
     let [spin, setSpin] = useState(false);
 
     return(
-        <div className='loading'>
+        <div className='reload-button'>
             <FontAwesomeIcon 
             icon = {faRotate} 
             size = "1x" 

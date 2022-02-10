@@ -37,6 +37,13 @@
 }
 
 .loading{
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    padding: 3rem;
+}
+
+.reload-button{
     color: white;
     cursor: pointer;
     margin-left: 1em;
