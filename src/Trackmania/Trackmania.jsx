@@ -139,7 +139,7 @@ export function Trackmania(){
             {data && data.message &&(
                 <div>
                     <div>{data.message}</div>
-                    <img src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} style={{"width": "20em"}}/>
+                    <img alt='marcINSPECT' src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} style={{"width": "20em"}}/>
                 </div>
             )}
             {loading &&(
