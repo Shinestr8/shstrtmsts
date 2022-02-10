@@ -22,6 +22,7 @@ export function Trackmania(){
 
     function playerSelect(player){
         console.log(player);
+        findTrokmoniPlayer(player);
     }
 
     function updateTextInput(e){
@@ -62,9 +63,9 @@ export function Trackmania(){
         })
     }
 
-    function fetchPlayerInfo(e){
-        e.preventDefault();
-        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${textInput}`).toLowerCase();
+    function findTrokmoniPlayer(player){
+        
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
 
         //reset previous search: data = null, loading = true
         setLoading(true); 
@@ -80,7 +81,7 @@ export function Trackmania(){
             if(timestamp + 12*60*60*1000 < now){
                 localStorage.removeItem(url); // remove the current url from localStorage if it is more than 12 hours old
             } else {
-                console.log(`${textInput} found in the local storage`);
+                console.log(`${player} found in the local storage`);
                 setData(cached.data);
                 setLoading(false);
                 findPlayerRegions(cached.data.trophies.zone)
@@ -108,7 +109,12 @@ export function Trackmania(){
         }
 
         
-        
+    }
+
+
+    function fetchPlayerInfo(e){
+        e.preventDefault();
+        findTrokmoniPlayer(textInput);
     }
 
     return(
