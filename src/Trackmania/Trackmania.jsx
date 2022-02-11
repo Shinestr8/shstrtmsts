@@ -153,6 +153,7 @@ export function Trackmania(){
     //set the player to current textInput, and call the findTrokmoniPlayer function
     function fetchPlayerInfo(e){
         e.preventDefault();
+        setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
     }
@@ -209,8 +210,11 @@ export function Trackmania(){
                         regions={regions}
                      />
                 )}
-                {menu === 'cotd' && (
-                    <COTDStats accountID={data.accountid}/>
+                {menu === 'cotd'  && (
+                    <COTDStats 
+                        accountID={data.accountid}
+                        loading={loading}
+                />
                 )}  
                 </div>
             </div> 

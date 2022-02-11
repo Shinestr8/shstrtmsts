@@ -127,7 +127,7 @@ export function COTDStats(props){
 
     const [data, setData] = useState(null);
     const [chartData, setChartData] = useState(null);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(props.loading)
     const accountID = props.accountID;
     const prevPlayer = useRef();
 
@@ -157,6 +157,7 @@ export function COTDStats(props){
         console.log("entering useeffect");
         console.log(prevPlayer.current, props.accountID);
         if(prevPlayer.current !== props.accountID){
+            setLoading(true);
             console.log("passed if statement")
             // let url = 'COTDStats?accountid=' + props.accountID;
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
@@ -205,7 +206,7 @@ export function COTDStats(props){
     return(
         <div className='trackmania-player-details'>
             <div>
-                {loading === true && (
+                {loading && (
                     <span>Loading...</span>
                 )}
             </div>
