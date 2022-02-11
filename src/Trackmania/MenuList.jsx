@@ -1,12 +1,17 @@
 function Menu(props){
     const name = props.name;
-
+    const selected = props.selected;
     function handleClick(){
         props.handleClick(name);
     }
 
+    const style={
+        backgroundColor: '#007bff',
+        color: '#ffffff'
+    }
+
     return(
-        <div onClick={handleClick}>
+        <div className="menu" onClick={handleClick} style={name === selected ? style : {}}>
             {name}
         </div>
     )
@@ -20,10 +25,10 @@ export function MenuList(props){
     }
 
     return(
-        <div style={{display:'flex', justifyContent:'space-around'}}>
+        <div className="menuList">
             {menus.map(function(menu, index){
                 return(
-                    <Menu key={menu} name={menu} handleClick={handleClick}/>
+                    <Menu selected={props.selected} key={menu} name={menu} handleClick={handleClick}/>
                 )
             })}
         </div>
