@@ -138,6 +138,10 @@
     padding-bottom: 3rem;
 }
 
-.section:not(last-of-type) {
+.section{
     border-bottom: 1px solid lightgray;
+}
+
+.section:last-of-type{
+    border: none;
 }
