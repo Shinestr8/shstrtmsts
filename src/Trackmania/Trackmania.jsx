@@ -25,6 +25,8 @@ export function Trackmania(){
     let [playerList, setPlayerList] = useState(null);
 
 
+
+    //function called on click of a player in player list
     function playerSelect(player){
         console.log(player);
         findTrokmoniPlayer(player);
@@ -32,10 +34,15 @@ export function Trackmania(){
         setTextInput(player);
     }
 
+
+    //state change on input
     function updateTextInput(e){
         setTextInput(e.target.value);
     }
 
+
+
+    //function that fills the Region state
     function findPlayerRegions(zone){
         let zoneName = zone.name;
         let zoneList = [zone]
@@ -48,6 +55,9 @@ export function Trackmania(){
     }
 
 
+
+
+    //function similar to findTrokmoniPlayer, except it bypasses the caching
     function forceUpdate(){
         const url  = (`${remoteServer}/forceUpdate?player=${textInput}`).toLowerCase();
         //reset previous search: data = null, loading = true
@@ -70,47 +80,62 @@ export function Trackmania(){
         })
     }
 
-    function findTrokmoniPlayer(player){
-        
-        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
 
+
+
+    //This function only takes a player name as an argument
+    //It will first check if the player is stored in the localstorage and if the stored data is less than 12 hours long
+    //If not, it will make a call to the backend server to fetch the data
+    //Expected data is:
+    //1) if there are player with similar names, a list of players
+    //2) if there is an exact match, the details of the specific player
+    //3) if there is no match, an object with the message "player not found"
+    function findTrokmoniPlayer(player){
+
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
         setLoading(true); 
         setData(null);
         setRegions(null);
         setPlayerList(null);
 
-        //if there is a localstorage if that url
+        //First, check the local storage for the requested url
         if(localStorage.getItem(url) !== null){ //
             let cached = JSON.parse(localStorage.getItem(url));
             let timestamp = new Date(cached.timestamp).getTime();
             let now = new Date().getTime();
             if(timestamp + 12*60*60*1000 < now){
-                localStorage.removeItem(url); // remove the current url from localStorage if it is more than 12 hours old
-            } else {
+                localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
+            } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
                 console.log(`${player} found in the local storage`);
                 setData(cached.data);
+                findPlayerRegions(cached.data.trophies.zone);
                 setLoading(false);
-                findPlayerRegions(cached.data.trophies.zone)
             }
+
+            //If nothing is found in the localstorage for the requested player, send a fetch request to the backend server
         } else {
-            //if nothing in the localstorage, request the data to the server and cache it for 12 hours
             fetch(url)
             .then(function(result){
                 return result.json();
             })
             .then(function(result){
-                if(result.length){
+                if(result.length){ //If the length of result is defined, we're in the case of a list of player
                     setPlayerList(result);
                     setLoading(false);
-                    return;
+                    return; //exit the function
                 }
+
+                //otherwise, set the data state with fetched data. It can be player details or a message
                 setData(result);
                 setLoading(false);
-                findPlayerRegions(result.trophies.zone);
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                if(result.trophies){ //only try to process the regions if result isnt just an error message
+                    findPlayerRegions(result.trophies.zone);
+                }
+                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
             })
             .catch(function(error){
+                setData({message: 'An error occured'}); //set message in case catch is called
                 console.log(error);
             })
         }
@@ -118,7 +143,8 @@ export function Trackmania(){
         
     }
 
-
+    //function called on button click.
+    //set the player to current textInput, and call the findTrokmoniPlayer function
     function fetchPlayerInfo(e){
         e.preventDefault();
         setPlayer(textInput);
