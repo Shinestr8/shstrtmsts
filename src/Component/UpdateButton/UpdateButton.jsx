@@ -10,15 +10,13 @@ export function UpdateButton(props){
     return(
         <div className='reload-button'>
             <FontAwesomeIcon 
-            icon = {faRotate} 
-            size = "1x" 
-            // className='loading'
-            // style={{marginLeft: '1em', cursor: 'pointer'}}
-            spin={spin}
-            onMouseEnter={() => setSpin(true)} 
-            onMouseLeave= {() => setSpin(false)}
-            onClick={props.onClick}
-        />
+                icon = {faRotate} 
+                size = "1x" 
+                spin={spin}
+                onMouseEnter={() => setSpin(true)} 
+                onMouseLeave= {() => setSpin(false)}
+                onClick={props.onClick}
+            />
         </div>
         
     )

@@ -154,8 +154,18 @@ export function Trackmania(){
     return(
         <div>
             <form className="input-group">
-                <input className="text-input" type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
-                <button className="submit-button" type="submit" onClick={fetchPlayerInfo} disabled={textInput.length < 4 ? true : false}>
+                <input 
+                    className="text-input" 
+                    type="text" 
+                    placeholder="Search a player" 
+                    value={textInput} 
+                    onChange={updateTextInput}
+                />
+                <button 
+                    className="submit-button" 
+                    type="submit" onClick={fetchPlayerInfo} 
+                    disabled={textInput.length < 4 ? true : false}
+                >
                     <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
                 </button>
                 {data && !data.message && !loading &&(
