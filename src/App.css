@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Lobster";
+  src: local("Lobster"),
+   url("./font/Lobster-Regular.ttf") format("truetype");
+  font-weight: bold;
+  }
+
 body, html, #root{
   height: 100%;
   margin: 0;
@@ -17,6 +24,7 @@ body, html, #root{
   justify-content: space-around;
   font-size: 2rem;
   background-color: #161d31;
+  font-family: Lobster;
   color: white;
 }
 
