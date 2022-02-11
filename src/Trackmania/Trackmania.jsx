@@ -4,6 +4,8 @@ import { remoteServer } from "../config";
 
 
 import { GeneralStats } from "./GeneralStats/GeneralStats";
+import { COTDStats } from "./COTDStats/COTDStats";
+import { MenuList } from "./MenuList";
 
 import "./trackmania.css";
 import "./responsive.css";
@@ -21,8 +23,12 @@ export function Trackmania(){
     let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
+    let [menu, setMenu] = useState('general');
 
 
+    function selectMenu(newMenu){
+        setMenu(newMenu);
+    }
 
     //function called on click of a player in player list
     function playerSelect(player){
@@ -171,6 +177,8 @@ export function Trackmania(){
                 )}
             </form>
             <div className="content">
+                <MenuList menus={['general', 'cotd']} handleClick={selectMenu}/>
+                {menu === 'general' && (
                     <GeneralStats
                         player={player}
                         data={data}
@@ -178,7 +186,11 @@ export function Trackmania(){
                         playerList={playerList}
                         regions={regions}
                         handlePlayerClick={playerSelect}
-                    />
+                     />
+                )}
+                {menu === 'cotd' && (
+                    <COTDStats/>
+                )}  
                 </div>
             </div> 
     )
