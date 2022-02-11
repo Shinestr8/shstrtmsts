@@ -196,7 +196,10 @@ export function Trackmania(){
                             />
                         </div>
                     )}
-                <MenuList menus={['general', 'cotd']} handleClick={selectMenu}/>
+                {data && (
+                    <MenuList menus={['general', 'cotd']} handleClick={selectMenu}/>
+                )}
+                
                 {menu === 'general' && (
                     <GeneralStats
                         player={player}
