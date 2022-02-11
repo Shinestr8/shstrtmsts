@@ -210,7 +210,7 @@ export function Trackmania(){
                      />
                 )}
                 {menu === 'cotd' && (
-                    <COTDStats/>
+                    <COTDStats playerID={data.accountid}/>
                 )}  
                 </div>
             </div> 
