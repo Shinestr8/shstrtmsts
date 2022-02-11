@@ -13,10 +13,12 @@ import "./responsive.css";
 import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 export function Trackmania(){
 
     let [textInput, setTextInput] = useState("");
+    let [player, setPlayer] = useState("");
     let [data, setData] = useState(null);
     let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
@@ -26,6 +28,8 @@ export function Trackmania(){
     function playerSelect(player){
         console.log(player);
         findTrokmoniPlayer(player);
+        setPlayer(player);
+        setTextInput(player);
     }
 
     function updateTextInput(e){
@@ -117,6 +121,7 @@ export function Trackmania(){
 
     function fetchPlayerInfo(e){
         e.preventDefault();
+        setPlayer(textInput);
         findTrokmoniPlayer(textInput);
     }
 
@@ -134,7 +139,7 @@ export function Trackmania(){
             <div className="content">
                     {playerList && (
                         <div>
-                            <div>No exact match for your search, is it one of the following ?</div>
+                            <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div>
                             <PlayerList data={playerList} onClick={playerSelect}/>
                         </div>
                     )}
