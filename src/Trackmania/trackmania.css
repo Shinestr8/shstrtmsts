@@ -145,3 +145,20 @@
 .section:last-of-type{
     border: none;
 }
+
+.menuList{
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu{
+    min-height: 3rem;
+    background-color: #161d31;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
