@@ -13,9 +13,6 @@ export function GeneralStats(props){
 
     return(
         <div>
-                    {loading &&(
-                        <LoadingIcon/>
-                    )}
                     {data && !loading && regions && (
                         <div>
                             

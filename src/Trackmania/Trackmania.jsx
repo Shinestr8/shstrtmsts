@@ -16,7 +16,8 @@ import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { text } from "@fortawesome/fontawesome-svg-core";
+
+import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 
 export function Trackmania(){
 
@@ -179,6 +180,9 @@ export function Trackmania(){
                 )}
             </form>
             <div className="content">
+                    {loading && (
+                        <LoadingIcon/>
+                    )}
                      {playerList && (
                         <div>
                             <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div>
