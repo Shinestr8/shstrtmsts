@@ -1,9 +1,12 @@
 import { useState } from "react"
+
+import { remoteServer } from "../config";
+
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
 import { PlayerList } from "./PlayerList";
-import { remoteServer } from "../config";
+
 import "./trackmania.css";
 import "./responsive.css";
 
