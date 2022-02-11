@@ -3,7 +3,7 @@ import { useState } from "react"
 import { remoteServer } from "../config";
 
 
-import { GeneralStats } from "./GeneralStats";
+import { GeneralStats } from "./GeneralStats/GeneralStats";
 
 import "./trackmania.css";
 import "./responsive.css";
