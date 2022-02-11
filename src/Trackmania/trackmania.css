@@ -22,7 +22,7 @@
 
 .submit-button{
     background-color: #007bff;
-    width: 4rem;
+    min-width: 4rem;
     color: #ffffff;
     border: none;
     border-top-right-radius: 5px;

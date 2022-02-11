@@ -11,9 +11,9 @@ import "./trackmania.css";
 import "./responsive.css";
 
 import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { text } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export function Trackmania(){
 
@@ -130,7 +130,7 @@ export function Trackmania(){
             <form className="input-group">
                 <input className="text-input" type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
                 <button className="submit-button" type="submit" onClick={fetchPlayerInfo} disabled={textInput.length < 4 ? true : false}>
-                    Submit
+                    <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
                 </button>
                 {data && !data.message && !loading &&(
                     <UpdateButton onClick={forceUpdate}/>
