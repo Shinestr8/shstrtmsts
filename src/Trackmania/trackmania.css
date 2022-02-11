@@ -161,4 +161,13 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    border: 1px solid gray;
+    border-bottom: none;
+}
+
+.menu:hover{
+    background-color: #d3d3d3;
+    color: black;
+    transition-property: background-color, color;
+    transition-duration: 0.4s;
 }
