@@ -6,6 +6,8 @@ import { remoteServer } from "../config";
 import { GeneralStats } from "./GeneralStats/GeneralStats";
 import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
+import { PlayerList } from "./GeneralStats/PlayerList";
+
 
 import "./trackmania.css";
 import "./responsive.css";
@@ -177,6 +179,23 @@ export function Trackmania(){
                 )}
             </form>
             <div className="content">
+                     {playerList && (
+                        <div>
+                            <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div>
+                            <PlayerList data={playerList} onClick={playerSelect}/>
+                        </div>
+                    )}
+                    {data && data.message &&(
+                        <div>
+                            <div>{data.message}</div>
+                            <img 
+                                title="marcINSPECT" 
+                                alt='marcINSPECT' 
+                                src={`${process.env.PUBLIC_URL}/gif/marc-inspect-inspect.gif`} 
+                                style={{"width": "20em"}}
+                            />
+                        </div>
+                    )}
                 <MenuList menus={['general', 'cotd']} handleClick={selectMenu}/>
                 {menu === 'general' && (
                     <GeneralStats
@@ -185,7 +204,6 @@ export function Trackmania(){
                         loading={loading}
                         playerList={playerList}
                         regions={regions}
-                        handlePlayerClick={playerSelect}
                      />
                 )}
                 {menu === 'cotd' && (
