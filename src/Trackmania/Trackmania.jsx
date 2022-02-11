@@ -129,7 +129,7 @@ export function Trackmania(){
         <div>
             <form className="input-group">
                 <input className="text-input" type="text" placeholder="Player" value={textInput} onChange={updateTextInput}/>
-                <button className="submit-button" type="submit" onClick={fetchPlayerInfo}>
+                <button className="submit-button" type="submit" onClick={fetchPlayerInfo} disabled={textInput.length < 4 ? true : false}>
                     Submit
                 </button>
                 {data && !data.message && !loading &&(

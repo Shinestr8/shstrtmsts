@@ -22,6 +22,11 @@
     border: none;
 }
 
+.submit-button:disabled{
+    background-color: #cccccc;
+    color: #666666
+}
+
 .player-list-player{
     cursor: pointer;
     padding-bottom: 1em;
