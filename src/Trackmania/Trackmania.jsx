@@ -16,6 +16,7 @@ import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 export function Trackmania(){
 
@@ -34,7 +35,6 @@ export function Trackmania(){
 
     //function called on click of a player in player list
     function playerSelect(player){
-        console.log(player);
         findTrokmoniPlayer(player);
         setPlayer(player);
         setTextInput(player);
@@ -113,7 +113,6 @@ export function Trackmania(){
             if(timestamp + 12*60*60*1000 < now){
                 localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
             } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
-                console.log(`${player} found in the local storage`);
                 setData(cached.data);
                 findPlayerRegions(cached.data.trophies.zone);
                 setLoading(false);
@@ -210,7 +209,7 @@ export function Trackmania(){
                         regions={regions}
                      />
                 )}
-                {menu === 'cotd'  && (
+                {menu === 'cotd'  && data && data.accountid && (
                     <COTDStats 
                         accountID={data.accountid}
                         loading={loading}

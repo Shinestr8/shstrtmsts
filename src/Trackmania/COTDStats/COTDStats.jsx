@@ -4,6 +4,8 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } f
 
 import { remoteServer } from "../../config";
 
+import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
+
 function COTDLineShart(props){
 
     return(
@@ -124,10 +126,10 @@ function COTDLineShart(props){
 
 
 export function COTDStats(props){
-
+    console.log("render cotdstats");
     const [data, setData] = useState(null);
     const [chartData, setChartData] = useState(null);
-    const [loading, setLoading] = useState(props.loading)
+    const [loading, setLoading] = useState(true);
     const accountID = props.accountID;
     const prevPlayer = useRef();
 
@@ -147,44 +149,35 @@ export function COTDStats(props){
                 })
             }
         }
-        console.log(lineChartData);
         setChartData(lineChartData.reverse());
         return
     }
 
 
     useEffect(() => {
-        console.log("entering useeffect");
-        console.log(prevPlayer.current, props.accountID);
         if(prevPlayer.current !== props.accountID){
             setLoading(true);
-            console.log("passed if statement")
             // let url = 'COTDStats?accountid=' + props.accountID;
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
             // url = 'https://tm-stats-bknd.herokuapp.com/COTDstats?accountid=957c9eb3-228b-4244-8e6c-834f7300dca5'
-            if(localStorage.getItem(url) !== null){  
-                console.log(`checking if ${url} is in cache`);
+            if(localStorage.getItem(url) !== null){
                 let response = JSON.parse(localStorage.getItem(url)).data;
                 
                 let timestamp = new Date(JSON.parse(localStorage.getItem(url)).timestamp).getTime();
                 let now = new Date().getTime();
                 if(timestamp + 24*60*60*1000 < now){
-                    console.log(`${url} is in cache but more than 24 hours old, deleting`)
                     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
                 } else {
-                    console.log(`${url} is in cache and still valid, Okayge`)
                     setData(response)
                     setLoading(false);
                     buildChartData(response.cotds);
                 }
             } else {
-                console.log(`${url} not in cache, fetching`);
                 fetch(url)  
                 .then(function(result){
                     return(result.json())
                 })
                 .then((result) => {
-                    console.log(`setting result from ${url} as data`)
                     setData(result);
                     setLoading(false);
                     buildChartData(result.cotds);                    
@@ -199,15 +192,15 @@ export function COTDStats(props){
             prevPlayer.current = props.accountID;
         }
         
-    }, [props.accountID]);
+    }, [props.accountID, accountID]);
     // console.log(chartData);
-
+    
 
     return(
         <div className='trackmania-player-details'>
             <div>
                 {loading && (
-                    <span>Loading...</span>
+                    <LoadingIcon/>
                 )}
             </div>
             <div>

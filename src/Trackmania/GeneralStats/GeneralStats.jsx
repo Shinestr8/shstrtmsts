@@ -2,8 +2,7 @@ import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
 
-import {faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 export function GeneralStats(props){
     const data = props.data;
@@ -15,9 +14,7 @@ export function GeneralStats(props){
     return(
         <div>
                     {loading &&(
-                        <div className="loading">
-                            <FontAwesomeIcon icon={faSpinner} size="2x"spin/>
-                        </div>
+                        <LoadingIcon/>
                     )}
                     {data && !loading && regions && (
                         <div>
