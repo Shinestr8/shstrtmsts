@@ -1,21 +1,69 @@
 import React from "react";
 
+function formatRank(rank){
+    let lastDigit = rank.toString().slice(-1);
+    let suffix = 'th';
+    if(lastDigit === '1'){
+        suffix = 'st';
+    } else if(lastDigit === '2'){
+        suffix= 'nd';
+    } else if (lastDigit === '3'){
+        suffix = 'rd'
+    }
+    return rank + suffix
+}
+
+
+function findPlayerCountryCode(zone){
+    let zoneName = zone.name;
+    let zoneList = [zone]
+    while(zoneName !== 'World'){
+        zone = zone.parent;
+        zoneName = zone.name;
+        zoneList.push(zone)
+    }
+    if(zoneList[zoneList.length -3] !== undefined){
+        return (zoneList[zoneList.length -3].flag).toLowerCase();
+    } else {
+        return (zoneList[zoneList.length-1].flag).toLowerCase();
+    }
+    
+}
+
 function Player(props){
     const data = props.data;
     function handleClick(){
-        props.onClick(props.name)
+        props.onClick(data.player.name)
     }
+
+    // findPlayerCountryCode(data.player.zone);
 
     return(
         <tr>
+            <td>
+            {data.player.zone !== undefined && (
+                <img
+                    src={`${process.env.PUBLIC_URL}/img/flag/4x3/${findPlayerCountryCode(data.player.zone)}.svg`}
+                    style={{width:'1rem', outline:'1px solid black'}}
+                    title={findPlayerCountryCode(data.player.zone)}
+                    alt={findPlayerCountryCode(data.player.zone)}
+                />
+            )}
+            
+            </td>
             <td className="player-list-player" onClick={handleClick}>
             {data.player.name}
             </td>
             <td>
-                {data.matchmaking[0].rank}
+                {data.matchmaking[0] !== undefined && (
+                    <span>{formatRank(data.matchmaking[0].rank)}</span>
+                )}
             </td>
             <td>
-                {data.matchmaking[1].rank}
+                {data.matchmaking[1] !== undefined && (
+                    <span>{formatRank(data.matchmaking[1].rank)}</span>
+                )}
+                
             </td>
         </tr>
         
@@ -35,6 +83,7 @@ export function PlayerList(props){
             <table className="player-list-table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Player</th>
                         <th>Matchmaking rank</th>
                         <th>Royal rank</th>

@@ -62,8 +62,8 @@
 
 .player-list-player{
     cursor: pointer;
-    padding-bottom: 1em;
-    font-size: 0.8em;
+    /* padding-bottom: 1em; */
+    /* font-size: 0.8em; */
 }
 
 .player-list-player:hover{

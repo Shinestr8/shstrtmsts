@@ -161,7 +161,7 @@ export function Trackmania(){
     }
 
 
-    const {width } = useWindowDimensions();
+    const {width} = useWindowDimensions();
 
     return(
         <div>
@@ -211,7 +211,7 @@ export function Trackmania(){
                             />
                         </div>
                     )}
-                {data && (
+                {data && playerList && (
                     <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
                 )}
 
