@@ -1,12 +1,14 @@
 import { useState } from "react"
 
 import { remoteServer } from "../config";
+import useWindowDimensions from "../WindowDimensions";
 
 
 import { GeneralStats } from "./GeneralStats/GeneralStats";
 import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
+
 
 
 import "./trackmania.css";
@@ -158,6 +160,9 @@ export function Trackmania(){
         findTrokmoniPlayer(textInput);
     }
 
+
+    const {width } = useWindowDimensions();
+
     return(
         <div>
             <form className={player ? "input-group-small" : "input-group-big"}>
@@ -174,7 +179,8 @@ export function Trackmania(){
                     disabled={textInput.length < 4 ? true : false}
                 >
                     <div className="button-text">
-                        <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
+                        {width > 1024 ? <span><FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player</span> : <FontAwesomeIcon icon={faMagnifyingGlass}/>}
+                        
                     </div>
                 </button>
                 {/* {data && !data.message && !loading &&(

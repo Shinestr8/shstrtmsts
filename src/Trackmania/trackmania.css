@@ -38,15 +38,12 @@
 .submit-button{
     background-color: #007bff;
     width:fit-content;
+    min-width: 3rem;
     color: #ffffff;
     border: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     font-size: inherit;
-}
-
-.button-text{
-    width: max-content;
 }
 
 .submit-button:disabled{

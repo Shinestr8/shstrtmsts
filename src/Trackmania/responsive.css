@@ -13,6 +13,16 @@
         border: none;
     }
 
+    .submit-button{
+        background-color: #007bff;
+        width: 5rem;
+        color: #ffffff;
+        border: none;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        font-size: inherit;
+    }
+
     .trophy-distribution{
         display: flex;
         flex-direction: column;
