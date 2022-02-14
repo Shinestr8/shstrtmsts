@@ -199,6 +199,7 @@ export function Trackmania(){
                             <PlayerList data={playerList} onClick={playerSelect}/>
                         </div>
                     )}
+                    
                     {data && data.message &&(
                         <div>
                             <div>{data.message}</div>
@@ -213,6 +214,16 @@ export function Trackmania(){
                 {data && (
                     <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
                 )}
+
+
+                    {player.toLowerCase() === 'agonix' && (
+                        <img 
+                        title="winke" 
+                        alt='winke' 
+                        src={`${process.env.PUBLIC_URL}/gif/winke.gif`} 
+                        style={{"width": "20em"}}
+                    />
+                    )}
                 
                 {menu === 'general' && (
                     <GeneralStats

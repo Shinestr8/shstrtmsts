@@ -1,3 +1,12 @@
+.player-list-table{
+    text-align: center;
+    width: 100%;
+}
+
+.player-list-table tbody tr:nth-child(2n+1) {
+    background-color: #ccc;
+}
+
 .text-input{
     display: inline-block;
     width: 60%;
