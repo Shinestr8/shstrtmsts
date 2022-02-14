@@ -211,7 +211,7 @@ export function Trackmania(){
                             />
                         </div>
                     )}
-                {data && playerList && (
+                {data && (
                     <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
                 )}
 
