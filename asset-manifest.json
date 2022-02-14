@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tm-stats/static/css/main.065c09e0.css",
-    "main.js": "/tm-stats/static/js/main.4462fe0e.js",
+    "main.css": "/tm-stats/static/css/main.6feb3675.css",
+    "main.js": "/tm-stats/static/js/main.962caa43.js",
     "static/js/787.71a34725.chunk.js": "/tm-stats/static/js/787.71a34725.chunk.js",
     "static/media/Lobster-Regular.ttf": "/tm-stats/static/media/Lobster-Regular.03c38496322925fec242.ttf",
     "index.html": "/tm-stats/index.html",
-    "main.065c09e0.css.map": "/tm-stats/static/css/main.065c09e0.css.map",
-    "main.4462fe0e.js.map": "/tm-stats/static/js/main.4462fe0e.js.map",
+    "main.6feb3675.css.map": "/tm-stats/static/css/main.6feb3675.css.map",
+    "main.962caa43.js.map": "/tm-stats/static/js/main.962caa43.js.map",
     "787.71a34725.chunk.js.map": "/tm-stats/static/js/787.71a34725.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.065c09e0.css",
-    "static/js/main.4462fe0e.js"
+    "static/css/main.6feb3675.css",
+    "static/js/main.962caa43.js"
   ]
 }
