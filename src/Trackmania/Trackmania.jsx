@@ -12,7 +12,7 @@ import { PlayerList } from "./GeneralStats/PlayerList";
 import "./trackmania.css";
 import "./responsive.css";
 
-import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
+// import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -160,7 +160,7 @@ export function Trackmania(){
 
     return(
         <div>
-            <form className="input-group">
+            <form className={player ? "input-group-small" : "input-group-big"}>
                 <input 
                     className="text-input" 
                     type="text" 
@@ -181,6 +181,8 @@ export function Trackmania(){
                     <UpdateButton onClick={forceUpdate}/>
                 )} */}
             </form>
+        
+            
             <div className="content">
                     {loading && (
                         <LoadingIcon/>

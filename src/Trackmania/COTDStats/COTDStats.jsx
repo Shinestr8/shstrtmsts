@@ -216,7 +216,6 @@ export function COTDStats(props){
         }
         
     }, [props.accountID, accountID]);
-    // console.log(chartData);
     
 
     return(
