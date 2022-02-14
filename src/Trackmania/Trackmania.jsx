@@ -175,9 +175,9 @@ export function Trackmania(){
                 >
                     <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
                 </button>
-                {data && !data.message && !loading &&(
+                {/* {data && !data.message && !loading &&(
                     <UpdateButton onClick={forceUpdate}/>
-                )}
+                )} */}
             </form>
             <div className="content">
                     {loading && (
