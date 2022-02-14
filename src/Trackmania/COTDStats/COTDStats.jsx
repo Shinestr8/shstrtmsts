@@ -148,6 +148,19 @@ export function COTDStats(props){
                     'timestamp': formattedDate
                 })
             }
+            //case where data is too old and doesnt contain the cotd type (main, rerun)
+            if(!rawData[i].name.includes('#')){
+                let date = new Date(rawData[i].timestamp)
+                let formattedDate = date.getDate() + '/' + (date.getMonth() +1) + '/' + (date.getFullYear());
+                lineChartData.push({
+                    'name': rawData[i].id, 
+                    'div': rawData[i].div, 
+                    'divrank': rawData[i].divrank === 0 ? 64 : rawData[i].divrank, 
+                    'percent': (Math.floor(100*rawData[i].rank/rawData[i].totalplayers)),
+                    'totalplayers': rawData[i].totalplayers,
+                    'timestamp': formattedDate
+                })
+            }
         }
         setChartData(lineChartData.reverse());
         return
@@ -168,6 +181,13 @@ export function COTDStats(props){
                 if(timestamp + 24*60*60*1000 < now){
                     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
                 } else {
+                    if(!response){
+                        console.log(response);
+                        console.log("blblblbl")
+                        setData(null);
+                        setLoading(false);
+                        return;
+                    }
                     setData(response)
                     setLoading(false);
                     buildChartData(response.cotds);
@@ -178,6 +198,13 @@ export function COTDStats(props){
                     return(result.json())
                 })
                 .then((result) => {
+                    if(!result){
+                        console.log(result);
+                        console.log("blblblbl")
+                        setData(null);
+                        setLoading(false);
+                        return;
+                    }
                     setData(result);
                     setLoading(false);
                     buildChartData(result.cotds);                    
@@ -201,6 +228,9 @@ export function COTDStats(props){
             <div>
                 {loading && (
                     <LoadingIcon/>
+                )}
+                {!loading && !data && (
+                    <div>No data to display for this player</div>
                 )}
             </div>
             <div>
