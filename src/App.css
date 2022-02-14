@@ -8,6 +8,7 @@
 body, html, #root{
   height: 100%;
   margin: 0;
+  background-color: #161d31;
 }
 
 .app{
@@ -23,13 +24,13 @@ body, html, #root{
   flex-direction: column;
   justify-content: space-around;
   font-size: 2rem;
-  background-color: #161d31;
+  
   font-family: Lobster;
   color: white;
 }
 
 .wrapper{
-  background-color: #161d31;
+  /* background-color: #161d31; */
   flex:1;
   background-attachment: fixed;
 }
