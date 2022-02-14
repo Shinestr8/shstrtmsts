@@ -170,6 +170,8 @@ export function COTDStats(props){
     useEffect(() => {
         if(prevPlayer.current !== props.accountID){
             setLoading(true);
+            setData(null);
+            setChartData(null);
             // let url = 'COTDStats?accountid=' + props.accountID;
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
             // url = 'https://tm-stats-bknd.herokuapp.com/COTDstats?accountid=957c9eb3-228b-4244-8e6c-834f7300dca5'
