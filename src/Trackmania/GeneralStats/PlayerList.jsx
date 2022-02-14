@@ -39,7 +39,7 @@ function Player(props){
     // findPlayerCountryCode(data.player.zone);
 
     return(
-        <tr>
+        <tr onClick={handleClick}>
             <td>
             {data.player.zone !== undefined && (
                 <img
@@ -51,7 +51,7 @@ function Player(props){
             )}
             
             </td>
-            <td className="player-list-player" onClick={handleClick}>
+            <td className="player-list-player">
             {data.player.name}
             </td>
             <td>
