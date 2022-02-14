@@ -173,7 +173,9 @@ export function Trackmania(){
                     type="submit" onClick={fetchPlayerInfo} 
                     disabled={textInput.length < 4 ? true : false}
                 >
-                    <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
+                    <div className="button-text">
+                        <FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player
+                    </div>
                 </button>
                 {/* {data && !data.message && !loading &&(
                     <UpdateButton onClick={forceUpdate}/>

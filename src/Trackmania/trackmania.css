@@ -22,11 +22,15 @@
 
 .submit-button{
     background-color: #007bff;
-    min-width: 4rem;
+    width:fit-content;
     color: #ffffff;
     border: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.button-text{
+    width: max-content;
 }
 
 .submit-button:disabled{
