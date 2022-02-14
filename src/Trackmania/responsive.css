@@ -1,5 +1,9 @@
 @media screen and (max-width: 1024px){
 
+    tr{
+        height: 4rem;
+    }
+
     .menuList{
         display: flex;
         flex-direction: column;
