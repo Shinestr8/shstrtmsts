@@ -148,7 +148,6 @@
 
 .menuList{
     display: flex;
-    justify-content: space-around;
 }
 
 .menu{

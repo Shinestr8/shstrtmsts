@@ -1,4 +1,11 @@
 @media screen and (max-width: 1024px){
+
+    .menuList{
+        display: flex;
+        flex-direction: column;
+    }
+
+
     .trophy-distribution{
         display: flex;
         flex-direction: column;
