@@ -1,10 +1,22 @@
 .player-list-table{
     text-align: center;
     width: 100%;
+    padding: 1rem;
 }
 
 .player-list-table tbody tr:nth-child(2n+1) {
     background-color: #ccc;
+}
+
+.player-list-table tbody tr:hover{
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+tr{
+    height: 2rem;
 }
 
 .text-input{
@@ -58,16 +70,6 @@
 .submit-button:disabled{
     background-color: #cccccc;
     color: #666666
-}
-
-.player-list-player{
-    cursor: pointer;
-    /* padding-bottom: 1em; */
-    /* font-size: 0.8em; */
-}
-
-.player-list-player:hover{
-    text-decoration: underline;
 }
 
 .player-list{
