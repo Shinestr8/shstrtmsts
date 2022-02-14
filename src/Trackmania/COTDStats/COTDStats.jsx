@@ -172,9 +172,7 @@ export function COTDStats(props){
             setLoading(true);
             setData(null);
             setChartData(null);
-            // let url = 'COTDStats?accountid=' + props.accountID;
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
-            // url = 'https://tm-stats-bknd.herokuapp.com/COTDstats?accountid=957c9eb3-228b-4244-8e6c-834f7300dca5'
             if(localStorage.getItem(url) !== null){
                 let response = JSON.parse(localStorage.getItem(url)).data;
                 
@@ -184,8 +182,6 @@ export function COTDStats(props){
                     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
                 } else {
                     if(!response){
-                        console.log(response);
-                        console.log("blblblbl")
                         setData(null);
                         setLoading(false);
                         return;
@@ -201,8 +197,6 @@ export function COTDStats(props){
                 })
                 .then((result) => {
                     if(!result){
-                        console.log(result);
-                        console.log("blblblbl")
                         setData(null);
                         setLoading(false);
                         return;
