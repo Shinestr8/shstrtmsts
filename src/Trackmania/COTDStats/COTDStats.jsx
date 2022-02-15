@@ -6,8 +6,10 @@ import { remoteServer } from "../../config";
 
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
-function COTDLineShart(props){
+import useWindowDimensions from "../../WindowDimensions";
 
+function COTDLineShart(props){
+    const {width} = useWindowDimensions();
     return(
         <div style={{"marginTop": '1em', "marginBottom": '1em'}}>
             <h2 style={{marginTop: '2em', marginBottom: '2em', textDecoration: 'underline'}}>Evolution of Div and DivRank</h2>
@@ -18,8 +20,8 @@ function COTDLineShart(props){
                 data={props.data}
                 margin={{
                     top: 5,
-                    right: 30,
-                    left: 20,
+                    right: 0,
+                    left: 0,
                     bottom: 5,
                 }}
                 >
@@ -27,12 +29,12 @@ function COTDLineShart(props){
                 
                     <YAxis 
                         domain={[0, 64]} 
-                        label={{ value: 'Rank', position: 'outsideLeft', dx:-20}}
+                        // label={{ value: width > 1024 ? 'rank' : 'r', position: 'outsideLeft', dx:-20}}
                     />
                     <YAxis 
                         yAxisId='1' 
                         orientation='right' 
-                        label={{ value: 'Div', position: 'insideRight', dx:20}}
+                        // label={{ value: width > 1024 ? 'Div' : 'd', position: 'insideRight', dx:20}}
                     />
                     <Tooltip labelFormatter={(totalplayers) => 'Date: '+ props.data[totalplayers].timestamp}/>
                     <Legend />
@@ -56,8 +58,8 @@ function COTDLineShart(props){
                     data={props.data}
                     margin={{
                         top: 5,
-                        right: 30,
-                        left: 20,
+                        right: 0,
+                        left: 0,
                         bottom: 5,
                     }}
                     >
@@ -65,7 +67,7 @@ function COTDLineShart(props){
                 
                     <YAxis 
                         domain={[0, 64]} 
-                        label={{ value: 'Percent', position: 'outsideLeft' }}
+                        // label={{ value: '%', position: 'outsideLeft' }}
                     />
                     <YAxis 
                         yAxisId='1' 
@@ -91,8 +93,8 @@ function COTDLineShart(props){
                     data={props.data}
                     margin={{
                         top: 5,
-                        right: 30,
-                        left: 20,
+                        right: 0,
+                        left: 0,
                         bottom: 5,
                     }}
                     >
@@ -100,7 +102,7 @@ function COTDLineShart(props){
                 
                     <YAxis 
                         domain={[0, 64]} 
-                        label={{ value: 'players', position: 'outsideLeft', dx:-20}}
+                        // label={{ value: width > 1024 ? 'players' : '', position: 'outsideLeft', dx:-20}}
                     />
                     <YAxis 
                         yAxisId='1' 
