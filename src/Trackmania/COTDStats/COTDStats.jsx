@@ -230,7 +230,7 @@ export function COTDStats(props){
                     <div>No data to display for this player</div>
                 )}
             </div>
-            <div>
+            <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
                 {data !== null && loading === false && (
                     <div className="cells">
                         <div className="data-display">
@@ -240,6 +240,10 @@ export function COTDStats(props){
                         <div className="data-display">
                             <div className="cell-title"> Average div: </div>
                             <div className="cell-data">{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
+                        </div>
+                        <div className="data-display">
+                            <div className="cell-title"> Best pos: </div>
+                            <div className="cell-data">{data.stats.bestoverall.bestrank}</div>
                         </div>
                     </div>
                 )}
