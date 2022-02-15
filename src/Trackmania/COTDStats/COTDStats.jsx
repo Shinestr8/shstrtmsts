@@ -232,10 +232,15 @@ export function COTDStats(props){
             </div>
             <div>
                 {data !== null && loading === false && (
-                    <div>
-                        <div>Player: {props.player}</div>
-                        <div>Total played COTDs: {data.total}</div>
-                        <div>Average div: {(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
+                    <div className="cells">
+                        <div className="data-display">
+                            <div className="cell-title">Total played</div> 
+                            <div className="cell-data">{data.total}</div>
+                        </div>
+                        <div className="data-display">
+                            <div className="cell-title"> Average div: </div>
+                            <div className="cell-data">{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
+                        </div>
                     </div>
                 )}
             </div>
