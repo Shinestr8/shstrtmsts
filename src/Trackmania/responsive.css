@@ -4,6 +4,10 @@
         height: 4rem;
     }
 
+    .cells{
+        width: 90%;
+    }
+
     .menuList{
         display: flex;
         flex-direction: column;
