@@ -187,8 +187,8 @@ export function COTDStats(props){
                         return;
                     }
                     setData(response)
-                    setLoading(false);
                     buildChartData(response.cotds);
+                    setLoading(false);
                 }
             } else {
                 fetch(url)  
@@ -202,8 +202,8 @@ export function COTDStats(props){
                         return;
                     }
                     setData(result);
-                    setLoading(false);
-                    buildChartData(result.cotds);                    
+                    buildChartData(result.cotds);            
+                    setLoading(false);        
                     localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
                 })
                 .catch(function(error){

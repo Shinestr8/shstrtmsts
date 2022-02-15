@@ -133,13 +133,12 @@ export function Trackmania(){
                     setLoading(false);
                     return; //exit the function
                 }
-
                 //otherwise, set the data state with fetched data. It can be player details or a message
                 setData(result);
-                setLoading(false);
                 if(result.trophies){ //only try to process the regions if result isnt just an error message
                     findPlayerRegions(result.trophies.zone);
                 }
+                setLoading(false);
                 localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
             })
             .catch(function(error){
