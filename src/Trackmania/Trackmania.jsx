@@ -142,7 +142,7 @@ export function Trackmania(){
                 localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
             })
             .catch(function(error){
-                setData({message: 'An error occured'}); //set message in case catch is called
+                setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
                 console.log(error);
             })
         }
@@ -199,6 +199,12 @@ export function Trackmania(){
                         </div>
                     )}
                     
+                    
+                {data && (
+                    <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
+                )}
+
+
                     {data && data.message &&(
                         <div>
                             <div>{data.message}</div>
@@ -210,10 +216,6 @@ export function Trackmania(){
                             />
                         </div>
                     )}
-                {data && (
-                    <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
-                )}
-
 
                     {player.toLowerCase() === 'agonix' && (
                         <img 
