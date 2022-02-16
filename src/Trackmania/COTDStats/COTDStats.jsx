@@ -128,7 +128,6 @@ function COTDLineShart(props){
 
 
 export function COTDStats(props){
-    console.log("render cotdstats");
     const [data, setData] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -136,6 +135,7 @@ export function COTDStats(props){
     const prevPlayer = useRef();
 
     function buildChartData(rawData){
+        console.log("buildChartData");
         let lineChartData = [];
         for(let i = 0; i < rawData.length; ++i){
             if(rawData[i].name.includes("#1")){
@@ -164,49 +164,62 @@ export function COTDStats(props){
                 })
             }
         }
+        
         setChartData(lineChartData.reverse());
+        console.log("buildChartdata... done")
         return
     }
 
 
-    useEffect(() => {
+    useEffect(async () => {
+        console.log("entering useEffect");
         if(prevPlayer.current !== props.accountID){
-            setLoading(true);
+            console.log("new player")
+            await switchLoad(true);
             setData(null);
             setChartData(null);
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
             if(localStorage.getItem(url) !== null){
+                console.log("localstorage isnt empty")
                 let response = JSON.parse(localStorage.getItem(url)).data;
                 
                 let timestamp = new Date(JSON.parse(localStorage.getItem(url)).timestamp).getTime();
                 let now = new Date().getTime();
                 if(timestamp + 24*60*60*1000 < now){
+                    console.log("localstorage outdated")
                     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
                 } else {
                     if(!response){
+                        console.log("no data to displa");
                         setData(null);
-                        setLoading(false);
+                        await switchLoad(false);
                         return;
                     }
+                    console.log("local storage is up to date, setting data");
                     setData(response)
                     buildChartData(response.cotds);
-                    setLoading(false);
+                    await switchLoad(false);
                 }
             } else {
+                console.log("nothing in localstorage, fetching")
                 fetch(url)  
                 .then(function(result){
+                    console.log("fetch step 1")
                     return(result.json())
                 })
-                .then((result) => {
+                .then(async (result) => {
                     if(!result){
+                        console.log("fetched data has nothing to show");
                         setData(null);
-                        setLoading(false);
+                        await switchLoad(false);
                         return;
                     }
+                    console.log("setting data with fetched result")
                     setData(result);
                     buildChartData(result.cotds);            
-                    setLoading(false);        
+                    await switchLoad(false);        
                     localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                    console.log("cached")
                 })
                 .catch(function(error){
                     console.log(error);
@@ -218,6 +231,11 @@ export function COTDStats(props){
         }
         
     }, [props.accountID, accountID]);
+
+    async function switchLoad(newLoad){
+        console.log("setting load to " + newLoad);
+        setLoading(newLoad);
+    }
     
 
     return(
@@ -226,12 +244,12 @@ export function COTDStats(props){
                 {loading && (
                     <LoadingIcon/>
                 )}
-                {!loading && !data && (
+                {!data && (
                     <div>No data to display for this player</div>
                 )}
             </div>
             <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
-                {data !== null && loading === false && (
+                {data !== null && (
                     <div className="cells">
                         <div className="data-display">
                             <div className="cell-title">Total played</div> 
@@ -249,7 +267,7 @@ export function COTDStats(props){
                 )}
             </div>
             <div>
-                {chartData !== null && loading === false && (
+                {chartData !== null && (
                     <COTDLineShart data={chartData}/>
                 )}
             </div>
