@@ -172,55 +172,45 @@ export function COTDStats(props){
 
 
     useEffect(async () => {
-        console.log("entering useEffect");
         if(prevPlayer.current !== props.accountID){
-            console.log("new player")
             await switchLoad(true);
             setData(null);
             setChartData(null);
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
             if(localStorage.getItem(url) !== null){
-                console.log("localstorage isnt empty")
                 let response = JSON.parse(localStorage.getItem(url)).data;
                 
                 let timestamp = new Date(JSON.parse(localStorage.getItem(url)).timestamp).getTime();
                 let now = new Date().getTime();
                 if(timestamp + 24*60*60*1000 < now){
-                    console.log("localstorage outdated")
                     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
                 } else {
                     if(!response){
-                        console.log("no data to displa");
                         setData(null);
                         await switchLoad(false);
                         return;
                     }
-                    console.log("local storage is up to date, setting data");
                     setData(response)
                     buildChartData(response.cotds);
                     await switchLoad(false);
                     return
                 }
             }
-                console.log("nothing in localstorage, fetching")
+                
                 fetch(url)  
                 .then(function(result){
-                    console.log("fetch step 1")
                     return(result.json())
                 })
                 .then(async (result) => {
                     if(!result){
-                        console.log("fetched data has nothing to show");
                         setData(null);
                         await switchLoad(false);
                         return;
                     }
-                    console.log("setting data with fetched result")
                     setData(result);
                     buildChartData(result.cotds);            
                     await switchLoad(false);        
                     localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
-                    console.log("cached")
                 })
                 .catch(function(error){
                     console.log(error);
