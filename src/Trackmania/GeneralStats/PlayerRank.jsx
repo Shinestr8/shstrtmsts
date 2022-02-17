@@ -21,6 +21,7 @@ export function PlayerRank(props){
                 <table>
                     <tbody>
                         {regions.map(function(region, index){
+                            let imgsrc = index === regions.length - 3 ? process.env.PUBLIC_URL + "/img/flag/4x3/" + region.flag + ".svg" : "https://trackmania.io/img/flags/" + region.flag + ".jpg"
                             return(
                                 <tr key={"rank-" + region.name}>
                                     <td>
@@ -28,7 +29,7 @@ export function PlayerRank(props){
                                             className="rank-flag" 
                                             title={region.name}
                                             alt={"flag-" + region.flag} 
-                                            src={"https://trackmania.io/img/flags/" + region.flag + ".jpg"}
+                                            src={imgsrc}
                                         />
                                     </td>
                                     <td>{region.name}</td>
