@@ -199,8 +199,9 @@ export function COTDStats(props){
                     setData(response)
                     buildChartData(response.cotds);
                     await switchLoad(false);
+                    return
                 }
-            } else {
+            }
                 console.log("nothing in localstorage, fetching")
                 fetch(url)  
                 .then(function(result){
@@ -225,7 +226,6 @@ export function COTDStats(props){
                     console.log(error);
                 });    
 
-            }
             
             prevPlayer.current = props.accountID;
         }
