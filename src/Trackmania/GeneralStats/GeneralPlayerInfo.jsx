@@ -19,7 +19,7 @@ export function GeneralPlayerInfo(props){
                         style={{outline: '1px solid black'}}
                         className="general-flag-picture"
                         alt={"flag-" + regions[regions.length -3].flag} 
-                        src={process.env.PUBLIC_URL + "/img/flag/4x3/" + regions[regions.length -3].flag + ".svg"}
+                        src={process.env.PUBLIC_URL + "/img/flag/4x3/" + (regions[regions.length -3].flag).toLowerCase() + ".svg"}
                     />
                 </div>
                 <div className="general-trophy-count">
