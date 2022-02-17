@@ -166,7 +166,6 @@ export function COTDStats(props){
         }
         
         setChartData(lineChartData.reverse());
-        console.log("buildChartdata... done")
         return
     }
 
@@ -223,7 +222,6 @@ export function COTDStats(props){
     }, [props.accountID, accountID]);
 
     async function switchLoad(newLoad){
-        console.log("setting load to " + newLoad);
         setLoading(newLoad);
     }
     
