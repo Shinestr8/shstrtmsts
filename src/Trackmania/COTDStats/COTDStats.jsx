@@ -135,7 +135,6 @@ export function COTDStats(props){
     const prevPlayer = useRef();
 
     function buildChartData(rawData){
-        console.log("buildChartData");
         let lineChartData = [];
         for(let i = 0; i < rawData.length; ++i){
             if(rawData[i].name.includes("#1")){
