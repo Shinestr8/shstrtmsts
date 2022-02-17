@@ -16,14 +16,11 @@ export function GeneralPlayerInfo(props){
                 
                 <div className="general-country">
                     <img 
+                        style={{outline: '1px solid black'}}
                         className="general-flag-picture"
                         alt={"flag-" + regions[regions.length -3].flag} 
-                        src={"https://trackmania.io/img/flags/" + regions[regions.length -3].flag + ".jpg"}
+                        src={process.env.PUBLIC_URL + "/img/flag/4x3/" + regions[regions.length -3].flag + ".svg"}
                     />
-                    <span className="general-country-name">
-                        Country: {regions[regions.length -3].name}
-                    </span>
-                    
                 </div>
                 <div className="general-trophy-count">
                     Trophies: {formatNumber(data.trophies.points)}
