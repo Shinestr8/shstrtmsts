@@ -110,7 +110,7 @@ export function COTDStats(props){
                 {loading && (
                     <LoadingIcon/>
                 )}
-                {!data && (
+                {!data && !loading && (
                     <div>No data to display for this player</div>
                 )}
             </div>
