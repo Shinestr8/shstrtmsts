@@ -68,26 +68,43 @@ export function Trackmania(){
 
 
     //function similar to findTrokmoniPlayer, except it bypasses the caching
-    function forceUpdate(){
-        const url  = (`${remoteServer}/forceUpdate?player=${textInput}`).toLowerCase();
+    function forceUpdateGeneralInfo(){
+        // console.log("entering findTrokmoniPlayer function with parameter " + player);
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
         setLoading(true); 
         setData(null);
         setRegions(null);
+        setPlayerList(null);
+
+        if(localStorage.getItem(url) !== null){ 
+            localStorage.removeItem(url); 
+        }
         
-        fetch(url)
+        fetch(url + '&forceupdate=true')
         .then(function(result){
             return result.json();
         })
-        .then(function(result){
+        .then(async function(result){
+            if(result.length){ 
+                setPlayerList(result);
+                setLoading(false);
+                return; 
+            }
             setData(result);
+            if(result.trophies){ //only try to process the regions if result isnt just an error message
+                findPlayerRegions(result.trophies.zone);
+            }
             setLoading(false);
-            localStorage.setItem((`${remoteServer}/findTrokmoniPlayer?player=${textInput}`).toLowerCase(), JSON.stringify({timestamp: new Date(), data: result}));
-            findPlayerRegions(result.trophies.zone);
+            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
         })
         .catch(function(error){
+            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
             console.log(error);
         })
+    
+
+    
     }
 
     async function switchLoad(newLoad){
@@ -248,6 +265,7 @@ export function Trackmania(){
                         loading={loading}
                         playerList={playerList}
                         regions={regions}
+                        forceUpdate={forceUpdateGeneralInfo}
                      />
                 )}
                 {menu === 'cotd'  && data && data.accountid && (

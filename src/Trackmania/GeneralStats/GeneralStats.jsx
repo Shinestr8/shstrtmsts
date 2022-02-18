@@ -24,7 +24,7 @@ export function GeneralStats(props){
                                 onMouseLeave={()=>setShowUpdate(false)}
                             >
                                 {data.displayname} 
-                                <UpdateButton show={showUpdate}/>
+                                <UpdateButton show={showUpdate} onClick={props.forceUpdate}/>
                             </h1>
                             
                             <div className="section">
