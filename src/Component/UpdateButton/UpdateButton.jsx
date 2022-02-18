@@ -9,7 +9,8 @@ export function UpdateButton(props){
 
     return(
         <div className='reload-button'>
-            <FontAwesomeIcon 
+            <FontAwesomeIcon
+                style={props.show ? {color: '#000'} : {}}
                 icon = {faRotate} 
                 size = "1x" 
                 spin={spin}

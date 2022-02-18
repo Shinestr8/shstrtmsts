@@ -18,8 +18,14 @@ export function GeneralStats(props){
         <div>
                     {data && !loading && regions && (
                         <div>
-                            
-                            <h1 className="player-name" onMouseEnter={()=>setShowUpdate(true)} onMouseLeave={()=>setShowUpdate(false)}>{data.displayname} {showUpdate && (<UpdateButton/>)}</h1>
+                            <h1 
+                                className="player-name" 
+                                onMouseEnter={()=>setShowUpdate(true)} 
+                                onMouseLeave={()=>setShowUpdate(false)}
+                            >
+                                {data.displayname} 
+                                <UpdateButton show={showUpdate}/>
+                            </h1>
                             
                             <div className="section">
                                 <h2 className="section-title">General</h2>
