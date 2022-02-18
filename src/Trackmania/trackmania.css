@@ -109,12 +109,12 @@ tr{
 }
 
 .reload-button{
-    color: white;
+    color: #000;
     cursor: pointer;
     margin-left: 1em;
+    font-size: 1rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 .trophy-distribution-table{
@@ -179,8 +179,8 @@ tr{
 }
 
 .player-name{
+    margin-left: 50vh;
     display: flex;
-    justify-content: center;
 }
 
 .section-title{

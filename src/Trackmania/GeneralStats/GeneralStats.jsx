@@ -2,12 +2,15 @@ import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
 
-import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
+import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
+import { useState } from "react";
 
 export function GeneralStats(props){
     const data = props.data;
     const loading = props.loading;
     const regions = props.regions;
+
+    let [showUpdate, setShowUpdate] = useState(false);
 
 
 
@@ -16,7 +19,8 @@ export function GeneralStats(props){
                     {data && !loading && regions && (
                         <div>
                             
-                            <h1 className="player-name">{data.displayname}</h1>
+                            <h1 className="player-name" onMouseEnter={()=>setShowUpdate(true)} onMouseLeave={()=>setShowUpdate(false)}>{data.displayname} {showUpdate && (<UpdateButton/>)}</h1>
+                            
                             <div className="section">
                                 <h2 className="section-title">General</h2>
                                 <GeneralPlayerInfo data={data} regions={regions}/>
