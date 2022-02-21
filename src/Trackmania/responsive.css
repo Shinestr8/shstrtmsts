@@ -1,5 +1,29 @@
 @media screen and (max-width: 1024px){
 
+    #main-mm-stats{
+        padding-top: 1rem;
+        flex-direction: column;
+        padding: 0rem;
+    }
+
+    .mm-rank{
+        width: 100%;
+        padding-bottom: 1rem;
+    }
+
+    .mm-detail{
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left:0rem;
+        padding-right: 0rem;
+    }
+
+    .mm-detail div{
+        padding-bottom: 1rem;
+    }
+
     tr{
         height: 4rem;
     }
