@@ -19,6 +19,11 @@ export function MainMM(props){
         'TrackMaster'
     ];
 
+    function computePercentage(rank, total){
+        return parseFloat(100*rank/total).toPrecision(1);
+    }
+
+
     return(
         <div id="main-mm-stats">
             <div className="mm-rank">
@@ -30,7 +35,8 @@ export function MainMM(props){
             </div>
 
             <div className="mm-detail">
-                <div>Rank: {formatRank(data.info.rank)}</div>
+                <div>Rank: {formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
+                <div>Top: {computePercentage(data.info.rank, data.total)}%</div>
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>MMR: {formatNumber(data.info.progression)} points</div>
                 <div>next rank in {data.info.division_next.minpoints - data.info.progression} points</div>
