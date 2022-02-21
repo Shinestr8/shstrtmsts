@@ -39,7 +39,10 @@ export function MainMM(props){
                 <div>Top: {computePercentage(data.info.rank, data.total)}%</div>
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>MMR: {formatNumber(data.info.progression)} points</div>
-                <div>next rank in {data.info.division_next.minpoints - data.info.progression} points</div>
+                {data.info.division_next && (
+                    <div>next rank in {data.info.division_next.minpoints - data.info.progression} points</div>
+                )}
+                
             </div>
             
         </div>
