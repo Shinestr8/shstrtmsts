@@ -17,6 +17,36 @@ export function COTDStats(props){
     const accountID = props.accountID;
     const prevPlayer = useRef();
 
+
+    function forceUpdateCOTD(){
+        switchLoad(true);
+        setData(null);
+        setChartData(null);
+        const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
+        if(localStorage.getItem(url) !== null){
+            localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+        }
+            
+            fetch(url + '&forceupdate=true')  
+            .then(function(result){
+                return(result.json())
+            })
+            .then(async (result) => {
+                if(!result){
+                    setData(null);
+                    await switchLoad(false);
+                    return;
+                }
+                setData(result);
+                buildChartData(result.cotds);            
+                await switchLoad(false);        
+                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+            })
+            .catch(function(error){
+                console.log(error);
+            });    
+        }
+
     function buildChartData(rawData){
         let lineChartData = [];
         for(let i = 0; i < rawData.length; ++i){
@@ -124,7 +154,7 @@ export function COTDStats(props){
                 onMouseLeave={()=>setShowUpdate(false)}
             >
                 {props.player} 
-                <UpdateButton show={showUpdate} onClick={props.forceUpdate}/>
+                <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/>
             </h1>
             <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
                 {data !== null && (
