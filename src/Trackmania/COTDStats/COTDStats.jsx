@@ -6,10 +6,14 @@ import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 import { COTDLineChart } from "./COTDLineChart";
 
+
+import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
+
 export function COTDStats(props){
     const [data, setData] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showUpdate, setShowUpdate] = useState(false);
     const accountID = props.accountID;
     const prevPlayer = useRef();
 
@@ -114,6 +118,14 @@ export function COTDStats(props){
                     <div>No data to display for this player</div>
                 )}
             </div>
+            <h1 
+                className="player-name" 
+                onMouseEnter={()=>setShowUpdate(true)} 
+                onMouseLeave={()=>setShowUpdate(false)}
+            >
+                {props.player} 
+                <UpdateButton show={showUpdate} onClick={props.forceUpdate}/>
+            </h1>
             <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
                 {data !== null && (
                     <div className="cells">

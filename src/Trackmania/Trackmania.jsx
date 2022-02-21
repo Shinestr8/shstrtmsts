@@ -271,6 +271,7 @@ export function Trackmania(){
                 {menu === 'cotd'  && data && data.accountid && (
                     <COTDStats 
                         accountID={data.accountid}
+                        player={data.displayname}
                         loading={loading}
                 />
                 )}  
