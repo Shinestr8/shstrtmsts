@@ -8,7 +8,6 @@
 
 .mm-rank{
     width: 50%;
-    border: 1px solid black;
 }
 
 .mm-rank-img{
@@ -20,16 +19,17 @@
 
 .mm-rank-name{
     text-align: center;
+    font-size: 2rem;
 }
 
 .mm-detail{
-    width: 25%;
+    width: 50%;
     display: flex;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     flex-direction: column;
     justify-content: space-around;
-    font-size: x-large;
+    font-size: 1.5rem;
     background-color: rgb(21, 52, 38);
     color: rgb(131, 213, 159);
     border: 1px solid rgb(131, 213, 159);
