@@ -1,8 +1,4 @@
-import React from "react";
-
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { formatNumber } from "../../functions/formatNumber";
 
 export function GeneralPlayerInfo(props){
 

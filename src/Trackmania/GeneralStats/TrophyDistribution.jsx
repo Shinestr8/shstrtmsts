@@ -1,4 +1,5 @@
 import { TrophyPieChart } from "./TrophyPieChart";
+import { formatNumber } from "../../functions/formatNumber";
 
 export function TrophyDistribution(props){
     
@@ -8,10 +9,6 @@ export function TrophyDistribution(props){
     function computePercentage(partial, type, total){
         let percentage = partial*(10**type)/total*100;
         return parseFloat(percentage).toPrecision(2);
-    }
-
-    function formatNumber(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     return(
