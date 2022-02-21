@@ -8,6 +8,7 @@ import { GeneralStats } from "./GeneralStats/GeneralStats";
 import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
+import { Matchmaking } from "./Matchmaking/Matchmaking";
 
 
 
@@ -235,7 +236,7 @@ export function Trackmania(){
                     
                     
                 {data && (
-                    <MenuList menus={['general', 'cotd']} handleClick={selectMenu} selected={menu}/>
+                    <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
                 )}
 
 
@@ -276,7 +277,10 @@ export function Trackmania(){
                         player={data.displayname}
                         loading={loading}
                 />
-                )}  
+                )}
+                {menu === 'matchmaking' && data && (
+                    <Matchmaking data={data.matchmaking}/>
+                )}
                 </div>
             </div> 
     )
