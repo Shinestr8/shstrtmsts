@@ -67,9 +67,9 @@ export function Trackmania(){
 
 
 
-    //function similar to findTrokmoniPlayer, except it bypasses the caching
+    //function called to update the general info and ignore the 12 hours cache life
     function forceUpdateGeneralInfo(){
-        // console.log("entering findTrokmoniPlayer function with parameter " + player);
+        //keep the original url for interaction with the local storage
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
         setLoading(true); 
@@ -77,10 +77,12 @@ export function Trackmania(){
         setRegions(null);
         setPlayerList(null);
 
+        //if the item exists, remove it as it will be updated
         if(localStorage.getItem(url) !== null){ 
             localStorage.removeItem(url); 
         }
         
+        //whatever happens, fetch the original url with argument forceupdate = true
         fetch(url + '&forceupdate=true')
         .then(function(result){
             return result.json();
