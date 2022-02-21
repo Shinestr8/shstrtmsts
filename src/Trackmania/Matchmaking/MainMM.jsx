@@ -40,7 +40,7 @@ export function MainMM(props){
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>MMR: {formatNumber(data.info.progression)} points</div>
                 {data.info.division_next && (
-                    <div>next rank in {data.info.division_next.minpoints - data.info.progression} points</div>
+                    <div>next rank ({ranks[data.info.division.position +1]}) in {data.info.division_next.minpoints - data.info.progression} points</div>
                 )}
                 
             </div>
