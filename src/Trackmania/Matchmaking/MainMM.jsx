@@ -1,3 +1,5 @@
+import { formatNumber } from "../../functions/formatNumber";
+import { formatRank } from "../../functions/formatRank";
 export function MainMM(props){
     const data = props.data;
     const ranks = [
@@ -28,9 +30,9 @@ export function MainMM(props){
             </div>
 
             <div className="mm-detail">
-                <div>Rank: {data.info.rank}</div>
-                <div>Total Players: {data.total}</div>
-                <div>MMR: {data.info.progression} points</div>
+                <div>Rank: {formatRank(data.info.rank)}</div>
+                <div>Total Players: {formatNumber(data.total)}</div>
+                <div>MMR: {formatNumber(data.info.progression)} points</div>
                 <div>next rank in {data.info.division_next.minpoints - data.info.progression} points</div>
             </div>
             
