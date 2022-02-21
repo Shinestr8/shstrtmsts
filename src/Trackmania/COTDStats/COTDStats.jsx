@@ -12,14 +12,14 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 export function COTDStats(props){
     const [data, setData] = useState(null);
     const [chartData, setChartData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoad] = useState(true);
     const [showUpdate, setShowUpdate] = useState(false);
     const accountID = props.accountID;
     const prevPlayer = useRef();
 
 
     function forceUpdateCOTD(){
-        switchLoad(true);
+        setLoad(true);
         setData(null);
         setChartData(null);
         const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
@@ -34,12 +34,12 @@ export function COTDStats(props){
             .then(async (result) => {
                 if(!result){
                     setData(null);
-                    await switchLoad(false);
+                    setLoad(false);
                     return;
                 }
                 setData(result);
                 buildChartData(result.cotds);            
-                await switchLoad(false);        
+                setLoad(false);        
                 localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
             })
             .catch(function(error){
@@ -84,7 +84,7 @@ export function COTDStats(props){
 
     useEffect(async () => {
         if(prevPlayer.current !== props.accountID){
-            await switchLoad(true);
+            setLoad(true);
             setData(null);
             setChartData(null);
             const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
@@ -98,12 +98,12 @@ export function COTDStats(props){
                 } else {
                     if(!response){
                         setData(null);
-                        await switchLoad(false);
+                        setLoad(false);
                         return;
                     }
                     setData(response)
                     buildChartData(response.cotds);
-                    await switchLoad(false);
+                    setLoad(false);
                     return
                 }
             }
@@ -115,12 +115,12 @@ export function COTDStats(props){
                 .then(async (result) => {
                     if(!result){
                         setData(null);
-                        await switchLoad(false);
+                        setLoad(false);
                         return;
                     }
                     setData(result);
                     buildChartData(result.cotds);            
-                    await switchLoad(false);        
+                    setLoad(false);        
                     localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
                 })
                 .catch(function(error){
@@ -132,10 +132,6 @@ export function COTDStats(props){
         }
         
     }, [props.accountID, accountID]);
-
-    async function switchLoad(newLoad){
-        setLoading(newLoad);
-    }
     
 
     return(
