@@ -1,9 +1,9 @@
 @media screen and (max-width: 1024px){
 
-    #main-mm-stats{
+    #mm-stats{
         padding-top: 1rem;
         flex-direction: column;
-        padding: 0rem;
+        padding: 1%;
     }
 
     .mm-rank{

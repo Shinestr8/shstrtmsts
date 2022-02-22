@@ -1,4 +1,4 @@
-#main-mm-stats{
+#mm-stats{
     display: flex;
     padding-top: 1rem;
     padding-left: 4rem;
@@ -43,7 +43,7 @@
     padding-right: 3rem;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 1.5rem;
+    font-size: larger;
     background-color: rgb(21, 52, 38);
     color: rgb(131, 213, 159);
     border: 1px solid rgb(131, 213, 159);

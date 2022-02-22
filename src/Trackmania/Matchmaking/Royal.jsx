@@ -16,7 +16,7 @@ export function Royal(props){
     }
 
     return(
-        <div id="main-mm-stats">
+        <div id="mm-stats">
             <div className="mm-rank">
                 <img 
                     className="mm-rank-img"
