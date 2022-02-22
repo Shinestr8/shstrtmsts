@@ -6,7 +6,7 @@
     justify-content: space-around;
 }
 
-.container{
+.content-body{
     /* background-color: blue; */
     padding: 1rem;
 }
@@ -15,10 +15,6 @@
     background-color: rgb(156, 18, 45);
     color: rgba(227, 225, 222, 0.7);
     padding: 1rem;
-    /* margin-top: 1rem; */
-    /* margin-bottom: 1rem; */
-    margin-left: 1rem;
-    margin-right: 1rem;
 }
 
 .mm-rank{
@@ -156,7 +152,7 @@ tr{
 .loading{
     display: flex;
     justify-content: center;
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
     padding: 3rem;
 }
 
