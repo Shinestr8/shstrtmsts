@@ -31,7 +31,7 @@ export function COTDStats(props){
             .then(function(result){
                 return(result.json())
             })
-            .then(async (result) => {
+            .then((result) => {
                 if(!result){
                     setData(null);
                     setLoad(false);
@@ -82,7 +82,7 @@ export function COTDStats(props){
     }
 
 
-    useEffect(async () => {
+    useEffect(() => {
         if(prevPlayer.current !== props.accountID){
             setLoad(true);
             setData(null);
