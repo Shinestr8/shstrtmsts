@@ -11,7 +11,7 @@ export function Matchmaking(props){
 
     if(!data[0] && !data[1]){
         return(
-            <div>This user has never played matchmaking, super sorry alexander</div>
+            <div className="error-message">This user has never played matchmaking, super sorry alexander</div>
         )
     }
 

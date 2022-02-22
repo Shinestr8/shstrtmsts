@@ -141,7 +141,7 @@ export function COTDStats(props){
                     <LoadingIcon/>
                 )}
                 {!data && !loading && (
-                    <div>No data to display for this player</div>
+                    <div className="error-message">No data to display for this player</div>
                 )}
             </div>
             <h1 

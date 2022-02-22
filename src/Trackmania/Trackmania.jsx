@@ -242,7 +242,7 @@ export function Trackmania(){
 
                     {data && data.message &&(
                         <div>
-                            <div>{data.message}</div>
+                            <div className="error-message">{data.message}</div>
                             <img 
                                 title="marcINSPECT" 
                                 alt='marcINSPECT' 
