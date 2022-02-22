@@ -146,38 +146,38 @@ export function COTDStats(props){
             </div>
             {data && (
                 <React.Fragment>
-                <h1 
-                className="player-name" 
-                onMouseEnter={()=>setShowUpdate(true)} 
-                onMouseLeave={()=>setShowUpdate(false)}
-            >
-                {props.player} 
-                <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/>
-            </h1>
-            <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
-                {data !== null && (
-                    <div className="cells">
-                        <div className="data-display">
-                            <div className="cell-title">Total played</div> 
-                            <div className="cell-data">{data.total}</div>
+                    <h1 
+                        className="player-name" 
+                        onMouseEnter={()=>setShowUpdate(true)} 
+                        onMouseLeave={()=>setShowUpdate(false)}
+                    >
+                        {props.player} 
+                        <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/>
+                    </h1>
+                    <div style={{display: 'flex', 'justifyContent': 'space-around'}}>
+                        {data !== null && (
+                            <div className="cells">
+                                <div className="data-display">
+                                <div className="cell-title">Total played</div> 
+                                <div className="cell-data">{data.total}</div>
+                            </div>
+                            <div className="data-display">
+                                <div className="cell-title"> Average div: </div>
+                                <div className="cell-data">{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
+                            </div>
+                            <div className="data-display">
+                                <div className="cell-title"> Best pos: </div>
+                                <div className="cell-data">{data.stats.bestoverall.bestrank}</div>
+                            </div>
                         </div>
-                        <div className="data-display">
-                            <div className="cell-title"> Average div: </div>
-                            <div className="cell-data">{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
-                        </div>
-                        <div className="data-display">
-                            <div className="cell-title"> Best pos: </div>
-                            <div className="cell-data">{data.stats.bestoverall.bestrank}</div>
-                        </div>
+                    )}
                     </div>
-                )}
-            </div>
-            <div>
-                {chartData !== null && (
-                    <COTDLineChart data={chartData}/>
-                )}
-            </div>
-            </React.Fragment>
+                    <div>
+                        {chartData !== null && (
+                            <COTDLineChart data={chartData}/>
+                        )}
+                     </div>
+                </React.Fragment>
             )}
             
             
