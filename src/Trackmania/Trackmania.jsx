@@ -279,7 +279,7 @@ export function Trackmania(){
                 />
                 )}
                 {menu === 'matchmaking' && data && (
-                    <Matchmaking data={data.matchmaking}/>
+                    <Matchmaking data={data.matchmaking} displayname={data.displayname}/>
                 )}
                 </div>
             </div> 
