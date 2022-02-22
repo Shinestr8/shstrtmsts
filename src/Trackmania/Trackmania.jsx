@@ -216,7 +216,7 @@ export function Trackmania(){
             <div className="content">
                 <div className="content-header">
                     {data && !data.message && (
-                        <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
+                        <MenuList menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
                     )}
                 </div>
                      
@@ -239,7 +239,7 @@ export function Trackmania(){
                         <div className="error-message">{data.message}</div>
                     )}
                 
-                    {menu === 'general' && (
+                    {menu === 'General' && (
                         <GeneralStats
                             player={player}
                             data={data}
@@ -249,14 +249,14 @@ export function Trackmania(){
                             forceUpdate={forceUpdateGeneralInfo}
                         />
                     )}
-                    {menu === 'cotd'  && data && data.accountid && (
+                    {menu === 'COTD'  && data && data.accountid && (
                         <COTDStats 
                             accountID={data.accountid}
                             player={data.displayname}
                             loading={loading}
                     />
                     )}
-                    {menu === 'matchmaking' && data && data.matchmaking && (
+                    {menu === 'Matchmaking' && data && data.matchmaking && (
                         <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
                     )}
                     </div>
