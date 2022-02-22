@@ -217,67 +217,59 @@ export function Trackmania(){
                         
                     </div>
                 </button>
-                {/* {data && !data.message && !loading &&(
-                    <UpdateButton onClick={forceUpdate}/>
-                )} */}
             </form>
         
             
             <div className="content">
-                    {loading && (
-                        <LoadingIcon/>
+                <div className="content-header">
+                    {data && !data.message && (
+                        <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
                     )}
-                     {playerList && (
+                </div>
+                     
+                {
+                    // playerList || loading || data &&(
+                        <div className="content-body" style={loading || playerList || data ? {} : {display: 'none'}}>
+
+                    {playerList && (
                         <div>
                             <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div>
                             <PlayerList data={playerList} onClick={playerSelect}/>
                         </div>
                     )}
-                    
-                    
-                {data && !data.message && (
-                    <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
-                )}
 
-                <div className="container">
-
+                    {loading && (
+                        <LoadingIcon/>
+                    )}
                 
                     {data && data.message &&(
-                       
-                            <div className="error-message">{data.message}</div>
-                       
-                    )}
-
-                    {player.toLowerCase() === 'agonix' && (
-                        <img 
-                        title="winke" 
-                        alt='winke' 
-                        src={`${process.env.PUBLIC_URL}/gif/winke.gif`} 
-                        style={{"width": "20em"}}
-                    />
+                        <div className="error-message">{data.message}</div>
                     )}
                 
-                {menu === 'general' && (
-                    <GeneralStats
-                        player={player}
-                        data={data}
-                        loading={loading}
-                        playerList={playerList}
-                        regions={regions}
-                        forceUpdate={forceUpdateGeneralInfo}
-                     />
-                )}
-                {menu === 'cotd'  && data && data.accountid && (
-                    <COTDStats 
-                        accountID={data.accountid}
-                        player={data.displayname}
-                        loading={loading}
-                />
-                )}
-                {menu === 'matchmaking' && data && data.matchmaking && (
-                    <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
-                )}
-                </div>
+                    {menu === 'general' && (
+                        <GeneralStats
+                            player={player}
+                            data={data}
+                            loading={loading}
+                            playerList={playerList}
+                            regions={regions}
+                            forceUpdate={forceUpdateGeneralInfo}
+                        />
+                    )}
+                    {menu === 'cotd'  && data && data.accountid && (
+                        <COTDStats 
+                            accountID={data.accountid}
+                            player={data.displayname}
+                            loading={loading}
+                    />
+                    )}
+                    {menu === 'matchmaking' && data && data.matchmaking && (
+                        <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
+                    )}
+                    </div>
+                    // )
+                }
+                
                 </div>
             </div> 
     )
