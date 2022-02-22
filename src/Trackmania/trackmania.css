@@ -8,7 +8,10 @@
 
 .content-body{
     /* background-color: blue; */
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .error-message{
@@ -46,6 +49,11 @@
     border: 1px solid rgb(131, 213, 159);
 }
 
+.top-infos{
+    display: flex;
+    justify-content: space-around;
+}
+
 .cells{
     display: flex;
     flex-direction: row;
@@ -58,10 +66,6 @@
     padding: 1rem;
     border: 1px solid rgb(131, 213, 159);
 }
-
-/* .data-display{
-    
-} */
 
 .cell-title{
     font-size: larger;

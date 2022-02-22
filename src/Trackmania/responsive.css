@@ -11,6 +11,12 @@
         padding-bottom: 1rem;
     }
 
+    .content-body{
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+
+
     .mm-detail{
         text-align: center;
         width: 100%;
@@ -29,7 +35,8 @@
     }
 
     .cells{
-        width: 90%;
+        width: 100%;
+        margin: 1%;
     }
 
     .reload-button{
