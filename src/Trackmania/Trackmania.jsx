@@ -106,13 +106,6 @@ export function Trackmania(){
             console.log(error);
         })
     
-
-    
-    }
-
-    async function switchLoad(newLoad){
-        // console.log("setting load to " + newLoad);
-        setLoading(newLoad);
     }
 
 
@@ -123,11 +116,11 @@ export function Trackmania(){
     //1) if there are player with similar names, a list of players
     //2) if there is an exact match, the details of the specific player
     //3) if there is no match, an object with the message "player not found"
-    async function findTrokmoniPlayer(player){
+    function findTrokmoniPlayer(player){
         // console.log("entering findTrokmoniPlayer function with parameter " + player);
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
-        await switchLoad(true); 
+        setLoading(true); 
         setData(null);
         setRegions(null);
         setPlayerList(null);
@@ -145,7 +138,7 @@ export function Trackmania(){
                 // console.log("local storage is less than 12 hours old");
                 setData(cached.data);
                 findPlayerRegions(cached.data.trophies.zone);
-                await switchLoad(false);
+                setLoading(false);
                 return;
             }
 
@@ -157,12 +150,12 @@ export function Trackmania(){
             // console.log("first then");
             return result.json();
         })
-        .then(async function(result){
+        .then(function(result){
             // console.log("second then");
             if(result.length){ //If the length of result is defined, we're in the case of a list of player
                 // console.log("data is a list of player");
                 setPlayerList(result);
-                await switchLoad(false);
+                setLoading(false);
                 return; //exit the function
             }
             // console.log("data isnt a list");
@@ -171,7 +164,7 @@ export function Trackmania(){
             if(result.trophies){ //only try to process the regions if result isnt just an error message
                 findPlayerRegions(result.trophies.zone);
             }
-            await switchLoad(false);
+            setLoading(false);
             // console.log("saving to cache");
             localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
         })
@@ -186,10 +179,10 @@ export function Trackmania(){
 
     //function called on button click.
     //set the player to current textInput, and call the findTrokmoniPlayer function
-    async function fetchPlayerInfo(e){
+    function fetchPlayerInfo(e){
         // console.log("calling fetchPlayerInfo")
         e.preventDefault();
-        await switchLoad(true);
+        setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
     }
@@ -269,7 +262,6 @@ export function Trackmania(){
                     </div>
                     // )
                 }
-                
                 </div>
             </div> 
     )
