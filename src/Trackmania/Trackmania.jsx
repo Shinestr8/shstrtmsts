@@ -235,7 +235,7 @@ export function Trackmania(){
                     )}
                     
                     
-                {data && (
+                {data && !data.message && (
                     <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
                 )}
 
@@ -270,7 +270,7 @@ export function Trackmania(){
                         loading={loading}
                 />
                 )}
-                {menu === 'matchmaking' && data && (
+                {menu === 'matchmaking' && data && data.matchmaking && (
                     <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
                 )}
                 </div>
