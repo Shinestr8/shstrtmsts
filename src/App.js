@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
 
@@ -5,14 +6,21 @@ import { Trackmania } from './Trackmania/Trackmania';
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
 
 function App() {
+  const [title, setTitle] = useState('big');
+
+  function changeTitle(){
+    console.log('yepcock')
+    setTitle('small')
+  }
+
   return (
     <div className="app" style={{backgroundImage: `url(${page_background})`}}>
-      <div className='header'>
+      <div className={title + ' header'}>
         Trackmania Stats
       </div>
       <div className='wrapper' >
         <div>
-          <Trackmania/>
+          <Trackmania changeTitle={changeTitle}/>
         </div>
       </div>
     </div>

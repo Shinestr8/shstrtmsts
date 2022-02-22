@@ -30,6 +30,10 @@
         padding-bottom: 1rem;
     }
 
+    .big{
+        font-size: 3rem;
+    }
+
     tr{
         height: 4rem;
     }

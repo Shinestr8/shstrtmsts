@@ -22,7 +22,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 
-export function Trackmania(){
+export function Trackmania(props){
 
     let [textInput, setTextInput] = useState("");
     let [player, setPlayer] = useState("");
@@ -179,9 +179,10 @@ export function Trackmania(){
 
     //function called on button click.
     //set the player to current textInput, and call the findTrokmoniPlayer function
-    function fetchPlayerInfo(e){
+    function handleSubmit(e){
         // console.log("calling fetchPlayerInfo")
         e.preventDefault();
+        props.changeTitle();
         setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
@@ -189,6 +190,10 @@ export function Trackmania(){
 
 
     const {width} = useWindowDimensions();
+    let buttonText = <span><FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player</span>
+    if(width < 1024){
+        buttonText = <FontAwesomeIcon icon={faMagnifyingGlass}/>
+    } 
 
     return(
         <div>
@@ -202,11 +207,11 @@ export function Trackmania(){
                 />
                 <button 
                     className="submit-button" 
-                    type="submit" onClick={fetchPlayerInfo} 
+                    type="submit" onClick={handleSubmit} 
                     disabled={textInput.length < 4 ? true : false}
                 >
                     <div className="button-text">
-                        {width > 1024 ? <span><FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player</span> : <FontAwesomeIcon icon={faMagnifyingGlass}/>}
+                        {buttonText}
                         
                     </div>
                 </button>
