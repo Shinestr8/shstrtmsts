@@ -27,7 +27,6 @@ export function Royal(props){
 
             <div className="mm-detail">
                 <div>Rank: {formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
-                <div>Top: {computePercentage(data.info.rank, data.total)}%</div>
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>Wins: {formatNumber(data.info.progression)}</div>
                 {data.info.division_next && (
