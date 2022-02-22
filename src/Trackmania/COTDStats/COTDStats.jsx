@@ -124,6 +124,7 @@ export function COTDStats(props){
                     localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
                 })
                 .catch(function(error){
+                    setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
                     console.log(error);
                 });    
 
@@ -137,14 +138,17 @@ export function COTDStats(props){
     return(
         <div className='trackmania-player-details'>
             <div>
-                {loading && (
+                {loading && !data && (
                     <LoadingIcon/>
                 )}
                 {!data && !loading && (
                     <div className="error-message">No data to display for this player</div>
                 )}
+                {data && data.message && (
+                    <div className="error-message">{data.message}</div>
+                )}
             </div>
-            {data && (
+            {data && !data.message && (
                 <React.Fragment>
                     <h1 
                         className="player-name" 
