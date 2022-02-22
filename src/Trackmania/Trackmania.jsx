@@ -238,7 +238,7 @@ export function Trackmania(){
                         </div>
                     )}
 
-                    {loading && (
+                    {loading && !data && (
                         <LoadingIcon/>
                     )}
                 
