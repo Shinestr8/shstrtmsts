@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 
 import { remoteServer } from "../../config";
 
@@ -144,7 +144,9 @@ export function COTDStats(props){
                     <div className="error-message">No data to display for this player</div>
                 )}
             </div>
-            <h1 
+            {data && (
+                <React.Fragment>
+                <h1 
                 className="player-name" 
                 onMouseEnter={()=>setShowUpdate(true)} 
                 onMouseLeave={()=>setShowUpdate(false)}
@@ -175,9 +177,9 @@ export function COTDStats(props){
                     <COTDLineChart data={chartData}/>
                 )}
             </div>
-            <div>
-                {props.accountID}
-            </div>
+            </React.Fragment>
+            )}
+            
             
         </div>
         
