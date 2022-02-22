@@ -30,7 +30,7 @@ export function Trackmania(){
     let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
-    let [menu, setMenu] = useState('general');
+    let [menu, setMenu] = useState('General');
 
 
     function selectMenu(newMenu){
