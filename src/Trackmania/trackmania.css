@@ -6,11 +6,17 @@
     justify-content: space-around;
 }
 
+.container{
+    /* background-color: blue; */
+    padding: 1rem;
+}
+
 .error-message{
     background-color: rgb(156, 18, 45);
     color: rgba(227, 225, 222, 0.7);
     padding: 1rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
+    /* margin-bottom: 1rem; */
     margin-left: 1rem;
     margin-right: 1rem;
 }

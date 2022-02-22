@@ -239,9 +239,13 @@ export function Trackmania(){
                     <MenuList menus={['general', 'cotd', 'matchmaking']} handleClick={selectMenu} selected={menu}/>
                 )}
 
+                <div className="container">
 
+                
                     {data && data.message &&(
+                       
                             <div className="error-message">{data.message}</div>
+                       
                     )}
 
                     {player.toLowerCase() === 'agonix' && (
@@ -273,6 +277,7 @@ export function Trackmania(){
                 {menu === 'matchmaking' && data && data.matchmaking && (
                     <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
                 )}
+                </div>
                 </div>
             </div> 
     )
