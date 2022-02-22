@@ -20,6 +20,8 @@ export function Royal(props){
             <div className="mm-rank">
                 <img 
                     className="mm-rank-img"
+                    alt={ranks[data.info.division.position -1]}
+                    title={ranks[data.info.division.position -1]}
                     src={process.env.PUBLIC_URL + '/img/royalrank/' + data.info.division.position + '.png'}
                 />
                 <div className="mm-rank-name">{ranks[data.info.division.position -1]}</div>

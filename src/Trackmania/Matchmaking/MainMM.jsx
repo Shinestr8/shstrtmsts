@@ -29,6 +29,8 @@ export function MainMM(props){
             <div className="mm-rank">
                 <img 
                     className="mm-rank-img"
+                    alt={ranks[data.info.division.position]}
+                    title={ranks[data.info.division.position]}
                     src={process.env.PUBLIC_URL + '/img/mmrank/' + data.info.division.position + '.png'}
                 />
                 <div className="mm-rank-name">{ranks[data.info.division.position]}</div>
