@@ -9,6 +9,7 @@ import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
 import { Matchmaking } from "./Matchmaking/Matchmaking";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -32,6 +33,8 @@ export function Trackmania(props){
     let [playerList, setPlayerList] = useState(null);
     let [menu, setMenu] = useState('General');
 
+
+    const navigate = useNavigate();
 
     function selectMenu(newMenu){
         setMenu(newMenu);
@@ -138,6 +141,7 @@ export function Trackmania(props){
                 // console.log("local storage is less than 12 hours old");
                 setData(cached.data);
                 findPlayerRegions(cached.data.trophies.zone);
+                navigate(`${cached.data.displayname}/General`);
                 setLoading(false);
                 return;
             }
@@ -154,6 +158,7 @@ export function Trackmania(props){
             // console.log("second then");
             if(result.length){ //If the length of result is defined, we're in the case of a list of player
                 // console.log("data is a list of player");
+                navigate('/');
                 setPlayerList(result);
                 setLoading(false);
                 return; //exit the function
@@ -166,10 +171,15 @@ export function Trackmania(props){
             }
             setLoading(false);
             // console.log("saving to cache");
+            navigate(`${result.displayname}/General`);
+            if(!result.displayname){
+                navigate('/');
+            }
             localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
         })
         .catch(function(error){
             setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            navigate('/');
             console.log(error);
         })
     
