@@ -69,6 +69,7 @@ export function Matchmaking(){
                 navigate('/');
                 console.log(error);
             })
+            prevPlayer.current = playerNameParam;
         }
     }, [playerNameParam, navigate])
 

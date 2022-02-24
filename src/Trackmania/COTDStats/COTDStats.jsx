@@ -6,6 +6,7 @@ import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 import { COTDLineChart } from "./COTDLineChart";
 
+import { useParams, useNavigate } from "react-router-dom";
 
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 
@@ -14,38 +15,41 @@ export function COTDStats(props){
     const [chartData, setChartData] = useState(null);
     const [loading, setLoad] = useState(true);
     const [showUpdate, setShowUpdate] = useState(false);
-    const accountID = props.accountID;
+    // const accountID = props.accountID;
+
     const prevPlayer = useRef();
+    const playerNameParam = useParams().player;
+    const navigate = useNavigate();
 
 
-    function forceUpdateCOTD(){
-        setLoad(true);
-        setData(null);
-        setChartData(null);
-        const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
-        if(localStorage.getItem(url) !== null){
-            localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
-        }
+    // function forceUpdateCOTD(){
+    //     setLoad(true);
+    //     setData(null);
+    //     setChartData(null);
+    //     const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
+    //     if(localStorage.getItem(url) !== null){
+    //         localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+    //     }
             
-            fetch(url + '&forceupdate=true')  
-            .then(function(result){
-                return(result.json())
-            })
-            .then((result) => {
-                if(!result){
-                    setData(null);
-                    setLoad(false);
-                    return;
-                }
-                setData(result);
-                buildChartData(result.cotds);            
-                setLoad(false);        
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
-            })
-            .catch(function(error){
-                console.log(error);
-            });    
-        }
+    //         fetch(url + '&forceupdate=true')  
+    //         .then(function(result){
+    //             return(result.json())
+    //         })
+    //         .then((result) => {
+    //             if(!result){
+    //                 setData(null);
+    //                 setLoad(false);
+    //                 return;
+    //             }
+    //             setData(result);
+    //             buildChartData(result.cotds);            
+    //             setLoad(false);        
+    //             localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+    //         })
+    //         .catch(function(error){
+    //             console.log(error);
+    //         });    
+    //     }
 
     function buildChartData(rawData){
         let lineChartData = [];
@@ -81,13 +85,34 @@ export function COTDStats(props){
         return
     }
 
+    function findPlayerID(player){
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
+        if(localStorage.getItem(url) !== null){
+            let cached = JSON.parse(localStorage.getItem(url));
+            return cached.data.accountid;
+        } else {
+            fetch(url)
+            .then(function(result){
+                return result.json();
+            })
+            .then(function(result){
+                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+
+                return result.accountid;
+            })
+        }
+    }
+
 
     useEffect(() => {
-        if(prevPlayer.current !== props.accountID){
+        if(prevPlayer.current !== playerNameParam){
             setLoad(true);
             setData(null);
             setChartData(null);
-            const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
+
+            let id = findPlayerID(playerNameParam);
+
+            const url  = (`${remoteServer}/COTDStats?accountID=${id}`).toLowerCase();
             if(localStorage.getItem(url) !== null){
                 let response = JSON.parse(localStorage.getItem(url)).data;
                 
@@ -129,10 +154,10 @@ export function COTDStats(props){
                 });    
 
             
-            prevPlayer.current = props.accountID;
+            prevPlayer.current = playerNameParam;
         }
         
-    }, [props.accountID, accountID]);
+    }, [playerNameParam]);
     
 
     return(
@@ -155,8 +180,8 @@ export function COTDStats(props){
                         onMouseEnter={()=>setShowUpdate(true)} 
                         onMouseLeave={()=>setShowUpdate(false)}
                     >
-                        {props.player} 
-                        <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/>
+                        {playerNameParam} 
+                        {/* <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/> */}
                     </h1>
                     <div className="top-infos">
                         {data !== null && (

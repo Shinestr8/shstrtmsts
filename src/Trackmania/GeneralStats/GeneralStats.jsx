@@ -95,6 +95,7 @@ export function GeneralStats(props){
                 navigate('/');
                 console.log(error);
             })
+            prevPlayer.current = playerNameParam;
         }
     }, [playerNameParam, navigate])
 
