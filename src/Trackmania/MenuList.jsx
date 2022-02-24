@@ -1,6 +1,9 @@
+import { NavLink } from "react-router-dom";
+
 function Menu(props){
     const name = props.name;
     const selected = props.selected;
+    const playername = props.playername;
     function handleClick(){
         props.handleClick(name);
     }
@@ -11,9 +14,9 @@ function Menu(props){
     }
 
     return(
-        <div className="menu" onClick={handleClick} style={name === selected ? style : {}}>
+        <NavLink to={`${playername}/${name}`} className="menu" onClick={handleClick} style={name === selected ? style : {}}>
             {name}
-        </div>
+        </NavLink>
     )
 }
 
@@ -28,7 +31,7 @@ export function MenuList(props){
         <div className="menuList">
             {menus.map(function(menu, index){
                 return(
-                    <Menu selected={props.selected} key={menu} name={menu} handleClick={handleClick}/>
+                    <Menu selected={props.selected} key={menu} name={menu} handleClick={handleClick} playername={props.playername}/>
                 )
             })}
         </div>
