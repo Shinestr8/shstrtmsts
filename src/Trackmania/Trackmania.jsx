@@ -9,7 +9,7 @@ import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
 import { Matchmaking } from "./Matchmaking/Matchmaking";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet, useParams } from "react-router-dom";
 
 
 
@@ -32,6 +32,7 @@ export function Trackmania(props){
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
     let [menu, setMenu] = useState('General');
+    let ParamPlayer = useParams().player;
 
 
     const navigate = useNavigate();
@@ -207,7 +208,8 @@ export function Trackmania(props){
 
     return(
         <div>
-            <form className={player ? "input-group-small" : "input-group-big"}>
+            <form 
+                className={player || ParamPlayer ? "input-group-small" : "input-group-big"}>
                 <input 
                     className="text-input" 
                     type="text" 
@@ -230,14 +232,17 @@ export function Trackmania(props){
             
             <div className="content">
                 <div className="content-header">
-                    {data && !data.message && (
-                        <MenuList playername={data.displayname} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
+                    {ParamPlayer && !(data && data.message) && (
+                        <MenuList playername={data && data.displayname || ParamPlayer} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
                     )}
                 </div>
                      
                 {
                     // playerList || loading || data &&(
-                        <div className="content-body" style={loading || playerList || data ? {} : {display: 'none'}}>
+                        <div 
+                            className="content-body" 
+                            style={loading || playerList || data || ParamPlayer ? {} : {display: 'none'}}
+                        >
 
                     {playerList && (
                         <div>
@@ -253,8 +258,9 @@ export function Trackmania(props){
                     {data && data.message &&(
                         <div className="error-message">{data.message}</div>
                     )}
-                
-                    {menu === 'General' && (
+
+                    <Outlet/>
+                    {/* {menu === 'General' && (
                         <GeneralStats
                             player={player}
                             data={data}
@@ -273,11 +279,12 @@ export function Trackmania(props){
                     )}
                     {menu === 'Matchmaking' && data && data.matchmaking && (
                         <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
-                    )}
+                    )} */}
                     </div>
                     // )
                 }
                 </div>
+                
             </div> 
     )
 }
