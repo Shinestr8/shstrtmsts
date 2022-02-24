@@ -161,7 +161,7 @@ export function COTDStats(props){
     
 
     return(
-        <div className='trackmania-player-details'>
+        <div className='content-body'>
             <div>
                 {loading && !data && (
                     <LoadingIcon/>

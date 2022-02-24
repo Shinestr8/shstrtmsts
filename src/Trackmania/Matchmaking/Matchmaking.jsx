@@ -80,7 +80,7 @@ export function Matchmaking(){
     // }
 
     return(
-        <div>
+        <div className="content-body">
             <h1 
                 className="player-name" 
                 onMouseEnter={()=>setShowUpdate(true)} 

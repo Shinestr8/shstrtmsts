@@ -101,7 +101,7 @@ export function GeneralStats(props){
 
 
     return(
-        <div>
+        <div className="content-body">
                     {load && (
                         <LoadingIcon/>
                     )}
