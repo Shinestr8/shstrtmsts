@@ -7,14 +7,20 @@ function Menu(props){
     function handleClick(){
         props.handleClick(name);
     }
-
-    const style={
-        backgroundColor: '#007bff',
-        color: '#ffffff'
-    }
-
+    
     return(
-        <NavLink to={`player/${playername}/${name}`} className="menu" onClick={handleClick} style={name === selected ? style : {}}>
+        <NavLink 
+            to={`player/${playername}/${name}`} 
+            className="menu" 
+            onClick={handleClick} 
+            // style={name === selected ? style : {}}
+            style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#007bff" : "",
+                  color: isActive ? '#ffffff' : ''
+                };
+              }}
+        >
             {name}
         </NavLink>
     )
