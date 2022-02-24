@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Redirect } from 'react-router-dom';
 import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
 import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
@@ -26,14 +26,21 @@ function App() {
       <div className='wrapper' >
         <BrowserRouter>
           <Routes>
+            <Route path="*" element={<div style={{color:'white', padding: '5rem', textAlign: 'center', fontSize: 'larger', fontWeight: 'bold'}}>404</div>}/>
             <Route path="/" element={<Trackmania changeTitle={changeTitle}/>}>
-              <Route path=":player" element={<GeneralStats/>}>
+              
+            {/* <Route exact path="test" element={<div style={{backgroundColor:'red'}}>404</div>}/> */}
+              
+              <Route path="player">
                 
-                <Route path="General" element={<GeneralStats/>}/>
-                <Route path="COTD" element={<COTDStats/>}/>
-                <Route path="Matchmaking" element={<Matchmaking/>}/>
+                <Route path=":player" element={<GeneralStats/>}/>
+                <Route path=":player/General" element={<GeneralStats/>}/>
+                <Route path=":player/COTD" element={<COTDStats/>}/>
+                <Route path=":player/Matchmaking" element={<Matchmaking/>}/>
               </Route>
+              
             </Route>
+            
           </Routes>
           
         </BrowserRouter>
