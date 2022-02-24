@@ -29,7 +29,7 @@ function App() {
               <Route path=":player">
                 <Route path="General" element={<GeneralStats/>}/>
                 <Route path="COTD" element={<COTDStats/>}/>
-                <Route path="matchmaking" element={<Matchmaking/>}/>
+                <Route path="Matchmaking" element={<Matchmaking/>}/>
               </Route>
             </Route>
           </Routes>
