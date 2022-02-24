@@ -14,7 +14,7 @@ function Menu(props){
     }
 
     return(
-        <NavLink to={`${playername}/${name}`} className="menu" onClick={handleClick} style={name === selected ? style : {}}>
+        <NavLink to={`player/${playername}/${name}`} className="menu" onClick={handleClick} style={name === selected ? style : {}}>
             {name}
         </NavLink>
     )

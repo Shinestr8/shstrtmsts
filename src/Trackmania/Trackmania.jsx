@@ -2,13 +2,8 @@ import { useState } from "react"
 
 import { remoteServer } from "../config";
 import useWindowDimensions from "../WindowDimensions";
-
-
-import { GeneralStats } from "./GeneralStats/GeneralStats";
-import { COTDStats } from "./COTDStats/COTDStats";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
-import { Matchmaking } from "./Matchmaking/Matchmaking";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 
 
@@ -142,7 +137,7 @@ export function Trackmania(props){
                 // console.log("local storage is less than 12 hours old");
                 setData(cached.data);
                 findPlayerRegions(cached.data.trophies.zone);
-                navigate(`${cached.data.displayname}/General`);
+                navigate(`player/${cached.data.displayname}/General`);
                 setLoading(false);
                 return;
             }
@@ -172,7 +167,7 @@ export function Trackmania(props){
             }
             setLoading(false);
             // console.log("saving to cache");
-            navigate(`${result.displayname}/General`);
+            navigate(`player/${result.displayname}/General`);
             if(!result.displayname){
                 navigate('/');
             }
@@ -237,12 +232,11 @@ export function Trackmania(props){
                     )}
                 </div>
                      
-                {
-                    // playerList || loading || data &&(
-                        <div 
-                            className="content-body" 
-                            style={loading || playerList || data || ParamPlayer ? {} : {display: 'none'}}
-                        >
+                
+                {loading || playerList && (
+                    <div 
+                        className="content-body" 
+                >
 
                     {playerList && (
                         <div>
@@ -254,37 +248,19 @@ export function Trackmania(props){
                     {loading && !data && (
                         <LoadingIcon/>
                     )}
-                
+            
                     {data && data.message &&(
                         <div className="error-message">{data.message}</div>
                     )}
-
-                    <Outlet/>
-                    {/* {menu === 'General' && (
-                        <GeneralStats
-                            player={player}
-                            data={data}
-                            loading={loading}
-                            playerList={playerList}
-                            regions={regions}
-                            forceUpdate={forceUpdateGeneralInfo}
-                        />
-                    )}
-                    {menu === 'COTD'  && data && data.accountid && (
-                        <COTDStats 
-                            accountID={data.accountid}
-                            player={data.displayname}
-                            loading={loading}
-                    />
-                    )}
-                    {menu === 'Matchmaking' && data && data.matchmaking && (
-                        <Matchmaking data={data.matchmaking} displayname={data.displayname} forceUpdate={forceUpdateGeneralInfo}/>
-                    )} */}
-                    </div>
-                    // )
-                }
+                    
                 </div>
                 
-            </div> 
+                )}
+                
+                
+                <Outlet/>
+            </div>
+                
+        </div> 
     )
 }
