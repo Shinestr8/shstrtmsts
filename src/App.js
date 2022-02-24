@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
+import { COTDStats } from './Trackmania/COTDStats/COTDStats';
+import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 
 // const header_background = process.env.PUBLIC_URL + '/img/background/header_background.png';
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
@@ -19,9 +23,18 @@ function App() {
         Trackmania Stats
       </div>
       <div className='wrapper' >
-        <div>
-          <Trackmania changeTitle={changeTitle}/>
-        </div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Trackmania changeTitle={changeTitle}/>}>
+              <Route path=":player">
+                <Route path="General" element={<GeneralStats/>}/>
+                <Route path="COTD" element={<COTDStats/>}/>
+                <Route path="matchmaking" element={<Matchmaking/>}/>
+              </Route>
+            </Route>
+          </Routes>
+          
+        </BrowserRouter>
       </div>
     </div>
   );
