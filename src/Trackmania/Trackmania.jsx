@@ -131,6 +131,7 @@ export function Trackmania(props){
         // console.log("entering findTrokmoniPlayer function with parameter " + player);
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
+        navigate('/');
         setLoading(true); 
         setData(null);
         setRegions(null);
@@ -245,7 +246,7 @@ export function Trackmania(props){
                 </div>
                      
                 
-                {loading || playerList && (
+                {(loading || playerList) && (
                     <div 
                         className="content-body" 
                 >
@@ -257,7 +258,7 @@ export function Trackmania(props){
                         </div>
                     )}
 
-                    {loading && !data && (
+                    {loading && (
                         <LoadingIcon/>
                     )}
             
