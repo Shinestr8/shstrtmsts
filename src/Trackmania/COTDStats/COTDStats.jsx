@@ -13,6 +13,7 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 export function COTDStats(props){
     const [data, setData] = useState(null);
     const [displayname, setDisplayname] = useState('');
+    const [accountid, setAccountid] = useState('');
     const [chartData, setChartData] = useState(null);
     const [loading, setLoad] = useState(true);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -22,34 +23,29 @@ export function COTDStats(props){
     const playerNameParam = useParams().player;
 
 
-    // function forceUpdateCOTD(){
-    //     setLoad(true);
-    //     setData(null);
-    //     setChartData(null);
-    //     const url  = (`${remoteServer}/COTDStats?accountID=${accountID}`).toLowerCase();
-    //     if(localStorage.getItem(url) !== null){
-    //         localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
-    //     }
+    function forceUpdate(){
+        setLoad(true);
+        setData(null);
+        setChartData(null);
+        const url  = (`${remoteServer}/COTDStats?accountID=${accountid}`).toLowerCase();
+        if(localStorage.getItem(url) !== null){
+            localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+        }
             
-    //         fetch(url + '&forceupdate=true')  
-    //         .then(function(result){
-    //             return(result.json())
-    //         })
-    //         .then((result) => {
-    //             if(!result){
-    //                 setData(null);
-    //                 setLoad(false);
-    //                 return;
-    //             }
-    //             setData(result);
-    //             buildChartData(result.cotds);            
-    //             setLoad(false);        
-    //             localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
-    //         })
-    //         .catch(function(error){
-    //             console.log(error);
-    //         });    
-    //     }
+            fetch(url + '&forceupdate=true')  
+            .then(function(result){
+                return(result.json())
+            })
+            .then((result) => {
+                setData(result);
+                buildChartData(result.cotds);            
+                setLoad(false);        
+                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+            })
+            .catch(function(error){
+                console.log(error);
+            });    
+        }
 
     function buildChartData(rawData){
         let lineChartData = [];
@@ -89,8 +85,10 @@ export function COTDStats(props){
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         if(localStorage.getItem(url) !== null){
             let cached = JSON.parse(localStorage.getItem(url));
-            setDisplayname(cached.data.displayname)
+            setDisplayname(cached.data.displayname);
+            setAccountid(cached.data.accountid);
             return cached.data.accountid;
+
         } else {
             fetch(url)
             .then(function(result){
@@ -98,6 +96,7 @@ export function COTDStats(props){
             })
             .then(function(result){
                 setDisplayname(result.displayname);
+                setAccountid(result.accountid);
                 localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
 
                 return result.accountid;
@@ -183,7 +182,7 @@ export function COTDStats(props){
                         onMouseLeave={()=>setShowUpdate(false)}
                     >
                         {displayname} 
-                        {/* <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/> */}
+                        <UpdateButton show={showUpdate} onClick={forceUpdate}/>
                     </h1>
                     <div className="top-infos">
                         {data !== null && (
