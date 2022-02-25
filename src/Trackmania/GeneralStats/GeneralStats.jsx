@@ -37,6 +37,37 @@ export function GeneralStats(props){
         setRegions (zoneList);
     }
 
+    function forceUpdate(){
+        //keep the original url for interaction with the local storage
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${data.displayname}`).toLowerCase();
+        //reset previous search: data = null, loading = true
+        setLoad(true); 
+        setData(null);
+        setRegions(null);
+
+        //if the item exists, remove it as it will be updated
+        if(localStorage.getItem(url) !== null){ 
+            localStorage.removeItem(url); 
+        }
+        
+        //whatever happens, fetch the original url with argument forceupdate = true
+        fetch(url + '&forceupdate=true')
+        .then(function(result){
+            return result.json();
+        })
+        .then(function(result){
+            setData(result);
+            findPlayerRegions(result.trophies.zone);
+            setLoad(false);
+            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+        })
+        .catch(function(error){
+            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            console.log(error);
+        })
+    
+    }
+
 
     useEffect(()=>{
         if(prevPlayer.current !== playerNameParam){
@@ -113,7 +144,7 @@ export function GeneralStats(props){
                                 onMouseLeave={()=>setShowUpdate(false)}
                             >
                                 {data.displayname} 
-                                {/* <UpdateButton show={showUpdate} onClick={props.forceUpdate}/> */}
+                                <UpdateButton show={showUpdate} onClick={forceUpdate}/>
                             </h1>
                             
                             <div className="section">
