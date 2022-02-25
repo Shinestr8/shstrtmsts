@@ -14,7 +14,6 @@ function App() {
   const [title, setTitle] = useState('big');
 
   function changeTitle(){
-    console.log('yepcock')
     setTitle('small')
   }
 
