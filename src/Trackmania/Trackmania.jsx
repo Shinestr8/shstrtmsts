@@ -131,6 +131,11 @@ export function Trackmania(props){
         // console.log("entering findTrokmoniPlayer function with parameter " + player);
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         //reset previous search: data = null, loading = true
+        let loc = 'General';
+        if(location.includes('/player')){
+            let splitted = location.split('/');
+            loc = splitted[splitted.length -1]
+        }
         navigate('/');
         setLoading(true); 
         setData(null);
@@ -150,7 +155,7 @@ export function Trackmania(props){
                 // console.log("local storage is less than 12 hours old");
                 setData(cached.data);
                 findPlayerRegions(cached.data.trophies.zone);
-                navigate(`player/${cached.data.displayname}/General`);
+                navigate(`player/${cached.data.displayname}/${loc}`);
                 setLoading(false);
                 return;
             }
@@ -180,7 +185,7 @@ export function Trackmania(props){
             }
             setLoading(false);
             // console.log("saving to cache");
-            navigate(`player/${result.displayname}/General`);
+            navigate(`player/${result.displayname}/${loc}`);
             if(!result.displayname){
                 navigate('/');
             }
