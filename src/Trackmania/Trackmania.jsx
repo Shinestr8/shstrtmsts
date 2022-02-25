@@ -23,7 +23,6 @@ export function Trackmania(props){
     let [textInput, setTextInput] = useState("");
     let [player, setPlayer] = useState("");
     let [data, setData] = useState(null);
-    let [regions, setRegions] = useState(null);
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
     let [menu, setMenu] = useState('General');
@@ -61,63 +60,8 @@ export function Trackmania(props){
         setTextInput(e.target.value);
     }
 
-
-
-    //function that fills the Region state
-    function findPlayerRegions(zone){
-        // console.log("entering findPlayerRegions")
-        let zoneName = zone.name;
-        let zoneList = [zone]
-        while(zoneName !== 'World'){
-            zone = zone.parent;
-            zoneName = zone.name;
-            zoneList.push(zone)
-        }
-        setRegions (zoneList);
-    }
-
-
-
-
     //function called to update the general info and ignore the 12 hours cache life
-    function forceUpdateGeneralInfo(){
-        //keep the original url for interaction with the local storage
-        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
-        //reset previous search: data = null, loading = true
-        setLoading(true); 
-        setData(null);
-        setRegions(null);
-        setPlayerList(null);
-
-        //if the item exists, remove it as it will be updated
-        if(localStorage.getItem(url) !== null){ 
-            localStorage.removeItem(url); 
-        }
-        
-        //whatever happens, fetch the original url with argument forceupdate = true
-        fetch(url + '&forceupdate=true')
-        .then(function(result){
-            return result.json();
-        })
-        .then(function(result){
-            if(result.length){ 
-                setPlayerList(result);
-                setLoading(false);
-                return; 
-            }
-            setData(result);
-            if(result.trophies){ //only try to process the regions if result isnt just an error message
-                findPlayerRegions(result.trophies.zone);
-            }
-            setLoading(false);
-            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
-        })
-        .catch(function(error){
-            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
-            console.log(error);
-        })
     
-    }
 
 
     //This function only takes a player name as an argument
@@ -139,7 +83,6 @@ export function Trackmania(props){
         navigate('/');
         setLoading(true); 
         setData(null);
-        setRegions(null);
         setPlayerList(null);
 
         //First, check the local storage for the requested url
@@ -154,7 +97,6 @@ export function Trackmania(props){
             } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
                 // console.log("local storage is less than 12 hours old");
                 setData(cached.data);
-                findPlayerRegions(cached.data.trophies.zone);
                 navigate(`player/${cached.data.displayname}/${loc}`);
                 setLoading(false);
                 return;
@@ -180,9 +122,6 @@ export function Trackmania(props){
             // console.log("data isnt a list");
             //otherwise, set the data state with fetched data. It can be player details or a message
             setData(result);
-            if(result.trophies){ //only try to process the regions if result isnt just an error message
-                findPlayerRegions(result.trophies.zone);
-            }
             setLoading(false);
             // console.log("saving to cache");
             navigate(`player/${result.displayname}/${loc}`);

@@ -6,7 +6,7 @@ import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 import { COTDLineChart } from "./COTDLineChart";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 
@@ -17,7 +17,6 @@ export function COTDStats(props){
     const [chartData, setChartData] = useState(null);
     const [loading, setLoad] = useState(true);
     const [showUpdate, setShowUpdate] = useState(false);
-    // const accountID = props.accountID;
 
     const prevPlayer = useRef();
     const playerNameParam = useParams().player;
