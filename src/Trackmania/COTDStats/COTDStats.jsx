@@ -12,6 +12,7 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 
 export function COTDStats(props){
     const [data, setData] = useState(null);
+    const [displayname, setDisplayname] = useState('');
     const [chartData, setChartData] = useState(null);
     const [loading, setLoad] = useState(true);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -19,7 +20,6 @@ export function COTDStats(props){
 
     const prevPlayer = useRef();
     const playerNameParam = useParams().player;
-    const navigate = useNavigate();
 
 
     // function forceUpdateCOTD(){
@@ -89,6 +89,7 @@ export function COTDStats(props){
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
         if(localStorage.getItem(url) !== null){
             let cached = JSON.parse(localStorage.getItem(url));
+            setDisplayname(cached.data.displayname)
             return cached.data.accountid;
         } else {
             fetch(url)
@@ -96,6 +97,7 @@ export function COTDStats(props){
                 return result.json();
             })
             .then(function(result){
+                setDisplayname(result.displayname);
                 localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
 
                 return result.accountid;
@@ -180,7 +182,7 @@ export function COTDStats(props){
                         onMouseEnter={()=>setShowUpdate(true)} 
                         onMouseLeave={()=>setShowUpdate(false)}
                     >
-                        {playerNameParam} 
+                        {displayname} 
                         {/* <UpdateButton show={showUpdate} onClick={forceUpdateCOTD}/> */}
                     </h1>
                     <div className="top-infos">
