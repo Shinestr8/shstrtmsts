@@ -87,7 +87,7 @@ export function Trackmania(props){
         .then(function(result){
             return result.json();
         })
-        .then(async function(result){
+        .then(function(result){
             if(result.length){ 
                 setPlayerList(result);
                 setLoading(false);
