@@ -86,7 +86,7 @@ export function Matchmaking(){
                 onMouseEnter={()=>setShowUpdate(true)} 
                 onMouseLeave={()=>setShowUpdate(false)}
             >
-                {playerNameParam} 
+                {data && data.displayname} 
                 {/* <UpdateButton show={showUpdate} onClick={props.forceUpdate}/> */}
             </h1>
             {data && data.matchmaking[0] && (
