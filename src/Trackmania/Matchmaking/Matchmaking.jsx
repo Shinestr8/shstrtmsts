@@ -18,6 +18,35 @@ export function Matchmaking(){
     const prevPlayer = useRef();
     const navigate = useNavigate();
 
+    function forceUpdate(){
+        //keep the original url for interaction with the local storage
+        const url  = (`${remoteServer}/findTrokmoniPlayer?player=${data.displayname}`).toLowerCase();
+        //reset previous search: data = null, loading = true
+        setLoad(true); 
+        setData(null);
+        
+        //if the item exists, remove it as it will be updated
+        if(localStorage.getItem(url) !== null){ 
+            localStorage.removeItem(url); 
+        }
+        
+        //whatever happens, fetch the original url with argument forceupdate = true
+        fetch(url + '&forceupdate=true')
+        .then(function(result){
+            return result.json();
+        })
+        .then(function(result){
+            setData(result);
+            setLoad(false);
+            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+        })
+        .catch(function(error){
+            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            console.log(error);
+        })
+    
+    }
+
     useEffect(()=>{
         if(prevPlayer.current !== playerNameParam){
             setLoad(true);
@@ -90,7 +119,7 @@ export function Matchmaking(){
                 onMouseLeave={()=>setShowUpdate(false)}
             >
                 {data && data.displayname} 
-                {/* <UpdateButton show={showUpdate} onClick={props.forceUpdate}/> */}
+                <UpdateButton show={showUpdate} onClick={forceUpdate}/>
             </h1>
             {load && !data &&(
                 <LoadingIcon/>
