@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
 import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
@@ -23,7 +23,7 @@ function App() {
         Trackmania Stats
       </div>
       <div className='wrapper' >
-        <BrowserRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="*" element={<div style={{color:'white', padding: '5rem', textAlign: 'center', fontSize: 'larger', fontWeight: 'bold'}}>404</div>}/>
             <Route path="/" element={<Trackmania changeTitle={changeTitle}/>}>
@@ -40,7 +40,7 @@ function App() {
             
           </Routes>
           
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </div>
   );
