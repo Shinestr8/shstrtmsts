@@ -7,6 +7,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 
 import { remoteServer } from "../../config";
+import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 export function Matchmaking(){
     const [showUpdate, setShowUpdate] = useState(false);
@@ -73,11 +74,13 @@ export function Matchmaking(){
         }
     }, [playerNameParam, navigate])
 
-    // if(!load && !data[0] && !data[1]){
-    //     return(
-    //         <div className="error-message">This user has never played matchmaking, super sorry alexander</div>
-    //     )
-    // }
+    if(!load && !data.matchmaking[0] && !data.matchmaking[1]){
+        return(
+            <div className="content-body">
+                <div className="error-message">This user has never played matchmaking, super sorry alexander</div>
+            </div>   
+        )
+    }
 
     return(
         <div className="content-body">
@@ -89,6 +92,9 @@ export function Matchmaking(){
                 {data && data.displayname} 
                 {/* <UpdateButton show={showUpdate} onClick={props.forceUpdate}/> */}
             </h1>
+            {load && !data &&(
+                <LoadingIcon/>
+            )}
             {data && data.matchmaking[0] && (
                 <div className="section">
                     <h2 className="section-title">3v3</h2>
