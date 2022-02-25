@@ -184,7 +184,7 @@ export function Trackmania(props){
             <div className="content">
                 <div className="content-header">
                     {ParamPlayer && !(data && data.message) && (
-                        <MenuList playername={data && data.displayname || ParamPlayer} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
+                        <MenuList playername={(data && data.displayname) || ParamPlayer} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
                     )}
                 </div>
                      
