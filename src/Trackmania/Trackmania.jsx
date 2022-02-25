@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { remoteServer } from "../config";
 import useWindowDimensions from "../WindowDimensions";
 import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
-import { useNavigate, Outlet, useParams } from "react-router-dom";
+import { useNavigate, Outlet, useParams, useLocation } from "react-router-dom";
 
 
 
@@ -29,12 +29,24 @@ export function Trackmania(props){
     let [menu, setMenu] = useState('General');
     let ParamPlayer = useParams().player;
 
+    let location = useLocation().pathname;
+    let [prevLoc, setPrevLoc] = useState('/')
 
     const navigate = useNavigate();
 
     function selectMenu(newMenu){
         setMenu(newMenu);
     }
+
+    useEffect(()=> {
+        if(location !== prevLoc){
+            if(location !== '/'){
+                props.changeTitle();
+                setPrevLoc(location);
+            }
+        }
+        
+    })
 
     //function called on click of a player in player list
     function playerSelect(player){
@@ -188,7 +200,7 @@ export function Trackmania(props){
     function handleSubmit(e){
         // console.log("calling fetchPlayerInfo")
         e.preventDefault();
-        props.changeTitle();
+        // props.changeTitle();
         setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
