@@ -13,8 +13,8 @@ const page_background = process.env.PUBLIC_URL + '/img/background/page_backgroun
 function App() {
   const [title, setTitle] = useState('big');
 
-  function changeTitle(){
-    setTitle('small')
+  function changeTitle(newClass){
+    setTitle(newClass)
   }
 
   return (
