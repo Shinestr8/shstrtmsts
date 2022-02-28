@@ -65,21 +65,20 @@ export function Trackmania(props){
     
 
 
-    //This function only takes a player name as an argument
-    //It will first check if the player is stored in the localstorage and if the stored data is less than 12 hours long
-    //If not, it will make a call to the backend server to fetch the data
-    //Expected data is:
-    //1) if there are player with similar names, a list of players
-    //2) if there is an exact match, the details of the specific player
-    //3) if there is no match, an object with the message "player not found"
+    //function that finds a player by its name by fetching or checking localstorage
+    //only takes player name as argumnt
+    //is called by handleSubmit and playerSelect
     function findTrokmoniPlayer(player){
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
-        //reset previous search: data = null, loading = true
+        
+        //location used to keep trace of where user is (general, cotd, matchmaking) default is general
         let loc = 'General';
         if(location.includes('/player')){
-            let splitted = location.split('/');
+            let splitted = location.split('/'); //parse url and take last argument to navigate there later
             loc = splitted[splitted.length -1]
         }
+
+        //when called, go back to '/', and set state accordingly
         navigate('/');
         setLoading(true); 
         setData(null);
@@ -91,7 +90,6 @@ export function Trackmania(props){
             let timestamp = new Date(cached.timestamp).getTime();
             let now = new Date().getTime();
             if(timestamp + 12*60*60*1000 < now){
-                
                 localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
             } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
                 setData(cached.data);
@@ -151,7 +149,8 @@ export function Trackmania(props){
     return(
         <div>
             <form 
-                className={player || ParamPlayer ? "input-group-small" : "input-group-big"}>
+                className={player || ParamPlayer ? "input-group-small" : "input-group-big"}
+            >
                 <input 
                     className="text-input" 
                     type="text" 
