@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
-import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
+import {Route, Routes, HashRouter } from 'react-router-dom';
 import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
 import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
-
+import { Error404 } from './Component/UpdateButton/404';
 
 // const header_background = process.env.PUBLIC_URL + '/img/background/header_background.png';
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
@@ -25,7 +25,7 @@ function App() {
       <div className='wrapper' >
         <HashRouter basename={process.env.PUBLIC_URL}>
           <Routes>
-            <Route path="*" element={<div style={{color:'white', padding: '5rem', textAlign: 'center', fontSize: 'larger', fontWeight: 'bold'}}>404</div>}/>
+            <Route path="*" element={<Error404/>}/>
             <Route path="/" element={<Trackmania changeTitle={changeTitle}/>}>
               
               <Route path="player">

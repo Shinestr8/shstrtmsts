@@ -1,3 +1,11 @@
+.error-404{
+    color: white;
+    padding: 5rem;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
 #mm-stats{
     display: flex;
     padding-top: 1rem;
