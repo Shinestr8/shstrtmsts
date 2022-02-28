@@ -10,10 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
-export function GeneralStats(props){
-    // const data = props.data;
-    // const loading = props.loading;
-    // const regions = props.regions;
+export function GeneralStats(){
 
     const [load, setLoad] = useState(false);
     const [data, setData] = useState(null);
@@ -26,7 +23,6 @@ export function GeneralStats(props){
     const navigate = useNavigate();
 
     function findPlayerRegions(zone){
-        // console.log("entering findPlayerRegions")
         let zoneName = zone.name;
         let zoneList = [zone]
         while(zoneName !== 'World'){
@@ -81,41 +77,30 @@ export function GeneralStats(props){
                 let timestamp = new Date(cached.timestamp).getTime();
                 let now = new Date().getTime();
                 if(timestamp + 12*60*60*1000 < now){
-                    // console.log("local storage is too old");
                     localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
                 } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
-                    // console.log("local storage is less than 12 hours old");
                     setData(cached.data);
                     findPlayerRegions(cached.data.trophies.zone);
                     setLoad(false);
                     return;
                 }
-    
-                //If nothing is found in the localstorage for the requested player, send a fetch request to the backend server
             }
-            // console.log("nothing in the localstorage, gonna fetch");
             fetch(url)
             .then(function(result){
-                // console.log("first then");
                 return result.json();
             })
             .then(function(result){
-                // console.log("second then");
                 if(result.length){ //If the length of result is defined, we're in the case of a list of player
-                    // console.log("data is a list of player");
                     navigate('/');
                     setLoad(false);
                     return; //exit the function
                 }
-                // console.log("data isnt a list");
                 //otherwise, set the data state with fetched data. It can be player details or a message
                 setData(result);
                 if(result.trophies){ //only try to process the regions if result isnt just an error message
                     findPlayerRegions(result.trophies.zone);
                 }
                 setLoad(false);
-                // console.log("saving to cache");
-                // navigate(`${result.displayname}/General`);
                 if(!result.displayname){
                     navigate('/');
                 }
