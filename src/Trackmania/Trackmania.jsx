@@ -46,7 +46,7 @@ export function Trackmania(props){
             }
             setPrevLoc(location);
         } 
-    }, [location, prevLoc, props])
+    }, [ParamPlayer, player, location, prevLoc, props])
 
     //function called on click of a player in player list
     function playerSelect(player){
