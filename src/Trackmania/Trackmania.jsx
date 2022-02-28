@@ -38,8 +38,9 @@ export function Trackmania(props){
     }
 
     useEffect(()=> {
+        console.log(location)
         if(location !== prevLoc){
-            if(location !== '/'){
+            if(location !== '/' || player || ParamPlayer){
                 props.changeTitle('small');
             } else {
                 props.changeTitle('big')
@@ -144,14 +145,7 @@ export function Trackmania(props){
     //function called on button click.
     //set the player to current textInput, and call the findTrokmoniPlayer function
     function handleSubmit(e){
-        // console.log("calling fetchPlayerInfo")
         e.preventDefault();
-        // props.changeTitle();
-        if(textInput){
-            props.changeTitle('small')
-        } else {
-            props.changeTitle('big')
-        }
         setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
