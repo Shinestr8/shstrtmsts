@@ -134,6 +134,7 @@ export function Trackmania(props){
     //set the player to current textInput, and call the findTrokmoniPlayer function
     function handleSubmit(e){
         e.preventDefault();
+        props.changeTitle('small');
         setLoading(true);
         setPlayer(textInput);
         findTrokmoniPlayer(textInput);
