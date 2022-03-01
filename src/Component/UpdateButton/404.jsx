@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import useWindowDimensions from "../../WindowDimensions";
 
-
-export function Error404(props){
+export function Error404(){
 
     const [count, setCount] = useState(0);
     const [color, setColor] = useState(null);
     const [bgColor, setbgColor] = useState(null);
-    const [index, setIndex] = useState(0)
+
+
 
     var colorArray = ['#00FFFF', '#FF0000', '#00FF00', '#0000FF', '#7FFF00', '#FF8C00', '#FF1493', '#FF00FF' ,'#800080', '#FFFF00'];
 
-
-    // let colorTable = ['#ff0000', '#00ff00', '#0000ff', '#f0f0f0']
 
     function between(min, max) {  
         return Math.floor(
@@ -56,13 +53,6 @@ export function Error404(props){
         changeBgColor();
         
     },[count])
-
-    
-
-    const {width, height} = useWindowDimensions();
-
-
-    // let color = '#000000';
     
 
     return(
