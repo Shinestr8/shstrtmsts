@@ -3,7 +3,6 @@
     background-color: #4B555D;
     margin:auto;
     width: 95%;
-    /* height: 600px; */
     height: 80vh;
     font-size: 7vh;
     position: relative;
@@ -25,43 +24,15 @@
         moveX 3s linear 0s infinite alternate, 
         moveY 7s linear 0s infinite alternate
   }
-
-  @keyframes bgy {
-      0%{
-        color: red;
-      }
-      50%{
-          color: green;
-      }
-  }
-
-  @keyframes bgx {
-    0% {
-      color: blue;
-    }
-    50% {
-      color: grey;
-    }
-  }
   
-  @keyframes colorY{
-    from{color: orange} to {color: yellow}
-}
   @keyframes moveX {
     from { left: 0} to { left: 75%}
   }
-  /* @-webkit-keyframes moveY {
-    from { top: 0; } to { top: 580px; }
-  }
-  @-moz-keyframes moveY {
-    from { top: 0; } to { top: 580px; }
-  }
-  @-o-keyframes moveY {
-    from { top: 0; } to { top: 580px; }
-  } */
+
   @keyframes moveY {
     from { top: 0} to { top: 80%}
   }
+
 #mm-stats{
     display: flex;
     padding-top: 1rem;
@@ -71,7 +42,6 @@
 }
 
 .content-body{
-    /* background-color: blue; */
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 1rem;
