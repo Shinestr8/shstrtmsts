@@ -36,7 +36,7 @@ export function Error404(props){
         if(count % 3 === 0 || count % 7 === 0){
             let newIndex = between(0, colorArray.length - 1);
             let newColor = colorArray[newIndex];
-            while(newColor === bgColor){
+            while(newColor === bgColor && newColor !== color){
                 newIndex = between(0, colorArray.length - 1);
                 newColor = colorArray[newIndex];
             }
