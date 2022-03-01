@@ -59,9 +59,13 @@ export function Error404(){
     
 
     return(
-    <div className="error-parent">
-        <div className="box coloranim" style={{color: color}}><div style={{backgroundColor: bgColor}}>404</div></div>
-    </div>
+    
+        <div className="box coloranim" style={{color: color}}>
+            <div style={{backgroundColor: bgColor}}>
+                404
+            </div>
+        </div>
+    
         
     )
 }
