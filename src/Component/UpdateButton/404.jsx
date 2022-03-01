@@ -6,18 +6,19 @@ export function Error404(){
     const [color, setColor] = useState(null);
     const [bgColor, setbgColor] = useState(null);
 
+    //array of possible colors for color and bgColor
+    const colorArray = ['#00FFFF', '#FF0000', '#00FF00', '#0000FF', '#7FFF00', '#FF8C00', '#FF1493', '#FF00FF' ,'#800080', '#FFFF00'];
 
 
-    var colorArray = ['#00FFFF', '#FF0000', '#00FF00', '#0000FF', '#7FFF00', '#FF8C00', '#FF1493', '#FF00FF' ,'#800080', '#FFFF00'];
-
-
+    //function that returns a random number between 2 limits
     function between(min, max) {  
         return Math.floor(
           Math.random() * (max - min) + min
         )
       }
 
-      function changeFontColor(){
+
+    function changeFontColor(){
         if(count % 3 === 0 || count % 7 === 0){
             let newIndex = between(0, colorArray.length - 1);
             let newColor = colorArray[newIndex];
@@ -27,9 +28,9 @@ export function Error404(){
             }
             setColor(colorArray[newIndex]);
         }
-      }
+    }
 
-      function changeBgColor(){
+    function changeBgColor(){
         if(count % 3 === 0 || count % 7 === 0){
             let newIndex = between(0, colorArray.length - 1);
             let newColor = colorArray[newIndex];
@@ -39,14 +40,16 @@ export function Error404(){
             }
             setbgColor(colorArray[newIndex]);
         }
-      }
+    }
 
+    //useEffect to setCount
     useEffect(() => {
       setInterval(() => {
         setCount(prevCount => prevCount + 1);
       }, 1000);
     }, []);
 
+    //useEffect to change color
     useEffect(()=> {
         console.log(count);
         changeFontColor();
@@ -57,7 +60,7 @@ export function Error404(){
 
     return(
     <div className="error-parent">
-        <div className="box coloranim" style={{color: color}}><div style={{backgroundColor: bgColor}}>{404}</div></div>
+        <div className="box coloranim" style={{color: color}}><div style={{backgroundColor: bgColor}}>404</div></div>
     </div>
         
     )
