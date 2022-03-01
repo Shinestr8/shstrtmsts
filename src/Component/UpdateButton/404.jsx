@@ -6,18 +6,10 @@ export function Error404(props){
 
     const [count, setCount] = useState(0);
     const [color, setColor] = useState(null);
+    const [bgColor, setbgColor] = useState(null);
     const [index, setIndex] = useState(0)
 
-    var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
-		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
-		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
-		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
-		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
-		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
-		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
-		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
-		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
-		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+    var colorArray = ['#00FFFF', '#FF0000', '#00FF00', '#0000FF', '#7FFF00', '#FF8C00', '#FF1493', '#FF00FF' ,'#800080', '#FFFF00'];
 
 
     // let colorTable = ['#ff0000', '#00ff00', '#0000ff', '#f0f0f0']
@@ -28,6 +20,30 @@ export function Error404(props){
         )
       }
 
+      function changeFontColor(){
+        if(count % 3 === 0 || count % 7 === 0){
+            let newIndex = between(0, colorArray.length - 1);
+            let newColor = colorArray[newIndex];
+            while(newColor === color){
+                newIndex = between(0, colorArray.length - 1);
+                newColor = colorArray[newIndex];
+            }
+            setColor(colorArray[newIndex]);
+        }
+      }
+
+      function changeBgColor(){
+        if(count % 3 === 0 || count % 7 === 0){
+            let newIndex = between(0, colorArray.length - 1);
+            let newColor = colorArray[newIndex];
+            while(newColor === bgColor){
+                newIndex = between(0, colorArray.length - 1);
+                newColor = colorArray[newIndex];
+            }
+            setbgColor(colorArray[newIndex]);
+        }
+      }
+
     useEffect(() => {
       setInterval(() => {
         setCount(prevCount => prevCount + 1);
@@ -36,16 +52,8 @@ export function Error404(props){
 
     useEffect(()=> {
         console.log(count);
-        if(count % 3 === 0){
-            let newIndex = between(0, colorArray.length - 1)
-            console.log("pocx")
-            setColor(colorArray[newIndex]);
-        }
-        if(count % 7 === 0){
-            let newIndex = between(0, colorArray.length - 1)
-            console.log("pocx")
-            setColor(colorArray[newIndex]);
-        }
+        changeFontColor();
+        changeBgColor();
         
     },[count])
 
@@ -59,7 +67,7 @@ export function Error404(props){
 
     return(
     <div className="error-parent">
-        <div className="box coloranim" style={{color: color}}><div>{404}</div></div>
+        <div className="box coloranim" style={{color: color}}><div style={{backgroundColor: bgColor}}>{404}</div></div>
     </div>
         
     )
