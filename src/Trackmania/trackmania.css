@@ -1,17 +1,11 @@
-/* .coloranim{
-    animation: 
-         
-        bgx 7s steps(1) 0s infinite
-} */
-
 
 .box {
     background-color: #4B555D;
-    margin: 0 auto;
-    width: 1000px;
-    height: 600px;
-    text-align: center;
-    font-size: 30px;
+    margin:auto;
+    width: 95%;
+    /* height: 600px; */
+    height: 80vh;
+    font-size: 7vh;
     position: relative;
     box-shadow: inset 0 0 3px #000;
     border-radius: 5px;
@@ -20,34 +14,17 @@
     text-shadow: 2px 0 0 #000;
   }
   .box div {
-    display: block;
-    /* color: pink; */
-    background-color: black;
-    width: 60px;
-    height: 40px;
-    /* border-radius: 50%; */
-    /* background-color: #3673cf; */
-    /* box-shadow: inset -5px -5px 5px rgba(0,0,0,.6), 15px 15px 2px rgba(0,0,0,.04); */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 25%;
+    height: 20%;
     position: absolute;
-    /* -webkit-animation: moveX 3.5s linear 0s infinite alternate, moveY 5s linear 0s infinite alternate; */
-    /* -moz-animation: moveX 3.5s linear 0s infinite alternate, moveY 5s linear 0s infinite alternate; */
-    /* -o-animation: moveX 3.5s linear 0s infinite alternate, moveY 5s linear 0s infinite alternate; */
     animation: 
         moveX 3s linear 0s infinite alternate, 
         moveY 7s linear 0s infinite alternate
-        /* bgx 7s steps(1) 0s infinite forwards, */
-        /* bgy 10s steps(1) 0s infinite */
   }
-  
-  /* @-webkit-keyframes moveX {
-    from { left: 0; } to { left: 980px; }
-  }
-  @-moz-keyframes moveX {
-    from { left: 0; } to { left: 980px; }
-  }
-  @-o-keyframes moveX {
-    from { left: 0; } to { left: 980px; }
-  } */
 
   @keyframes bgy {
       0%{
@@ -71,7 +48,7 @@
     from{color: orange} to {color: yellow}
 }
   @keyframes moveX {
-    from { left: 0} to { left: 940px}
+    from { left: 0} to { left: 75%}
   }
   /* @-webkit-keyframes moveY {
     from { top: 0; } to { top: 580px; }
@@ -83,7 +60,7 @@
     from { top: 0; } to { top: 580px; }
   } */
   @keyframes moveY {
-    from { top: 0} to { top: 560px}
+    from { top: 0} to { top: 80%}
   }
 #mm-stats{
     display: flex;
