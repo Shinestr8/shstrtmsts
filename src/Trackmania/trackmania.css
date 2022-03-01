@@ -289,6 +289,7 @@ tr{
 
 .menu{
     min-height: 3rem;
+    text-decoration: none;
     background-color: #161d31;
     width: 100%;
     text-align: center;
