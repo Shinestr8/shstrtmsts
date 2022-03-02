@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 
 export function Error404(){
 
@@ -37,7 +37,7 @@ export function Error404(){
 
     return(
     
-        <div className="box coloranim" style={{color: color}}>
+        <div className="error-404" style={{color: color}}>
             <div style={{backgroundColor: bgColor}}>
                 404
             </div>
