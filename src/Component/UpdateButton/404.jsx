@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 
 export function Error404(){
 
-    const [count, setCount] = useState(0);
-    const [color, setColor] = useState(null);
-    const [bgColor, setbgColor] = useState(null);
-
+    const [color, setColor] = useState('#00FFFF');
+    const [bgColor, setbgColor] = useState('#FF0000');
+  
     //array of possible colors for color and bgColor
     const colorArray = ['#00FFFF', '#FF0000', '#00FF00', '#0000FF', '#7FFF00', '#FF8C00', '#FF1493', '#FF00FF' ,'#800080', '#FFFF00'];
 
@@ -18,45 +17,23 @@ export function Error404(){
       }
 
 
-    function changeFontColor(){
-        if(count % 3 === 0 || count % 7 === 0){
-            let newIndex = between(0, colorArray.length - 1);
-            let newColor = colorArray[newIndex];
-            while(newColor === color){
-                newIndex = between(0, colorArray.length - 1);
-                newColor = colorArray[newIndex];
-            }
-            setColor(colorArray[newIndex]);
-        }
+
+    function changefontcolor(){
+        let index = between(0, colorArray.length -1);
+        let index2 = between(0, colorArray.length -1);
+        setColor(colorArray[index]);
+        setbgColor(colorArray[index2]);
     }
 
-    function changeBgColor(){
-        if(count % 3 === 0 || count % 7 === 0){
-            let newIndex = between(0, colorArray.length - 1);
-            let newColor = colorArray[newIndex];
-            while(newColor === bgColor && newColor !== color){
-                newIndex = between(0, colorArray.length - 1);
-                newColor = colorArray[newIndex];
-            }
-            setbgColor(colorArray[newIndex]);
-        }
-    }
-
-    //useEffect to setCount
     useEffect(() => {
-      setInterval(() => {
-        setCount(prevCount => prevCount + 1);
-      }, 1000);
-    }, []);
-
-    //useEffect to change color
-    useEffect(()=> {
-        console.log(count);
-        changeFontColor();
-        changeBgColor();
-        
-    },[count])
-    
+        const IntervalX = setInterval(changefontcolor, 3000);
+        const intervalY  = setInterval(changefontcolor, 7000)
+        return function cleanup(){
+            clearInterval(IntervalX);
+            clearInterval(intervalY);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
 
     return(
     
