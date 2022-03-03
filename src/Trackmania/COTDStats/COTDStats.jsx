@@ -150,6 +150,7 @@ export function COTDStats(props){
                 })
                 .catch(function(error){
                     setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+                    setLoad(false);
                     console.log(error);
                 });    
 

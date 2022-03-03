@@ -41,7 +41,8 @@ export function Matchmaking(){
             localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
         })
         .catch(function(error){
-            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            setData({message: 'An error occured, server might be offline'}); //set message in case catch is called*
+            setLoad(false);
             console.log(error);
         })
     
@@ -99,6 +100,14 @@ export function Matchmaking(){
             <div className="content-body">
                 <div className="error-message">This user has never played matchmaking, super sorry alexander</div>
             </div>   
+        )
+    }
+
+    if(data && data.message){
+        return(
+            <div className="content-body">
+                <div className="error-message">{data.message}</div>
+            </div>
         )
     }
 

@@ -122,6 +122,7 @@ export function Trackmania(props){
         })
         .catch(function(error){
             setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            setLoading(false);
             navigate('/');
             console.log(error);
         })
@@ -180,7 +181,7 @@ export function Trackmania(props){
                 </div>
                      
                 
-                {(loading || playerList) && (
+                {(loading || playerList || (data && data.message)) && (
                     <div 
                         className="content-body" 
                 >
