@@ -7,31 +7,53 @@ import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
 
+
+
 import { lightTheme } from './theme';
 
-import { ThemeProvider } from 'styled-components';
+import styled,{ ThemeProvider } from 'styled-components';
 
-// const header_background = process.env.PUBLIC_URL + '/img/background/header_background.png';
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
 
-function App() {
-  const [title, setTitle] = useState('big');
+const Page  = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url(${page_background});
+`
 
-  function changeTitle(newClass){
-    setTitle(newClass)
+const Title = styled.div`
+  min-height: 10%;
+  text-align: center;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Lobster;
+  color: white;
+  font-size: ${(props)=>props.titleSize ==='big' ? '5rem' : '2.5rem'};
+  transition-property: font-size;
+  transition-duration: 0.4s;
+`
+
+function App() {
+  const [titleSize, setTitleSize] = useState('big');
+
+  function changeTitleSize(newClass){
+    setTitleSize(newClass)
   }
 
   return (
     <ThemeProvider theme={lightTheme}>
-      <div className="app" style={{backgroundImage: `url(${page_background})`}}>
-      <div className={title + ' header'}>
+      <Page>
+      <Title titleSize={titleSize}>
         Trackmania Stats
-      </div>
+      </Title>
       <div className='wrapper' >
         <HashRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="*" element={<Error404/>}/>
-            <Route path="/" element={<Trackmania changeTitle={changeTitle}/>}>
+            <Route path="/" element={<Trackmania changeTitle={changeTitleSize}/>}>
               
               <Route path="player">
                 
@@ -47,7 +69,7 @@ function App() {
           
         </HashRouter>
       </div>
-    </div>
+    </Page>
     </ThemeProvider>
     
   );
