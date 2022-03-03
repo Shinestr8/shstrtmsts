@@ -19,6 +19,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 
+import { ContentHeader } from "../StyledComponents/Page/ContentHeader";
+import { ContentBody } from "../StyledComponents/Page/ContentBody";
+import { Content } from "../StyledComponents/Page/Content";
+
+
 export function Trackmania(props){
 
     let [textInput, setTextInput] = useState("");
@@ -172,18 +177,16 @@ export function Trackmania(props){
             </form>
         
             
-            <div className="content">
-                <div className="content-header">
+            <Content>
+                <ContentHeader>
                     {ParamPlayer && !(data && data.message) && (
                         <MenuList playername={(data && data.displayname) || ParamPlayer} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
                     )}
-                </div>
+                </ContentHeader>
                      
                 
                 {(loading || playerList || (data && data.message)) && (
-                    <div 
-                        className="content-body" 
-                >
+                    <ContentBody>
 
                     {playerList && (
                         <div>
@@ -200,13 +203,13 @@ export function Trackmania(props){
                         <div className="error-message">{data.message}</div>
                     )}
                     
-                </div>
+                </ContentBody>
                 
                 )}
                 
                 
                 <Outlet/>
-            </div>
+            </Content>
                 
         </div> 
     )
