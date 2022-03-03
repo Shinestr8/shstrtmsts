@@ -7,6 +7,10 @@ import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
 
+import { lightTheme } from './theme';
+
+import { ThemeProvider } from 'styled-components';
+
 // const header_background = process.env.PUBLIC_URL + '/img/background/header_background.png';
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
 
@@ -18,7 +22,8 @@ function App() {
   }
 
   return (
-    <div className="app" style={{backgroundImage: `url(${page_background})`}}>
+    <ThemeProvider theme={lightTheme}>
+      <div className="app" style={{backgroundImage: `url(${page_background})`}}>
       <div className={title + ' header'}>
         Trackmania Stats
       </div>
@@ -43,6 +48,8 @@ function App() {
         </HashRouter>
       </div>
     </div>
+    </ThemeProvider>
+    
   );
 }
 
