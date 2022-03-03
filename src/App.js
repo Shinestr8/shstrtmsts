@@ -6,14 +6,15 @@ import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
 import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
-
+import { GlobalStyle } from './StyledComponents/GlobalStyle';
 
 
 import { lightTheme } from './theme';
 
-import styled,{ ThemeProvider } from 'styled-components';
+import styled,{ ThemeProvider} from 'styled-components';
 
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
+
 
 const Page  = styled.div`
   height: 100%;
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <ThemeProvider theme={lightTheme}>
+      <GlobalStyle/>
       <Page>
       <Title titleSize={titleSize}>
         Trackmania Stats
