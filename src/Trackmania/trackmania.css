@@ -1,38 +1,3 @@
-
-.error-404{
-    background-color: #4B555D;
-    margin:auto;
-    width: 95%;
-    height: 80vh;
-    font-size: 7vh;
-    position: relative;
-    box-shadow: inset 0 0 3px #000;
-    border-radius: 5px;
-    border: 10px solid #7B838B;
-    overflow: hidden;
-    text-shadow: 2px 0 0 #000;
-  }
-  .error-404 div {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    width: 25%;
-    height: 20%;
-    position: absolute;
-    animation: 
-        moveX 3s linear 0s infinite alternate, 
-        moveY 7s linear 0s infinite alternate
-  }
-  
-  @keyframes moveX {
-    from { left: 0} to { left: 75%}
-  }
-
-  @keyframes moveY {
-    from { top: 0} to { top: 80%}
-  }
-
 #mm-stats{
     display: flex;
     padding-top: 1rem;
