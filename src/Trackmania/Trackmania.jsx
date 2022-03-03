@@ -6,7 +6,8 @@ import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
 import { useNavigate, Outlet, useParams, useLocation } from "react-router-dom";
 
-
+import { StyledTextInput } from "../StyledComponents/Input/StyledTextInput";
+import { StyledButton } from "../StyledComponents/Input/StyledButton";
 
 import "./trackmania.css";
 import "./responsive.css";
@@ -153,15 +154,13 @@ export function Trackmania(props){
             <form 
                 className={player || ParamPlayer ? "input-group-small" : "input-group-big"}
             >
-                <input 
-                    className="text-input" 
+                <StyledTextInput
                     type="text" 
                     placeholder="Search a player" 
                     value={textInput} 
                     onChange={updateTextInput}
                 />
-                <button 
-                    className="submit-button" 
+                <StyledButton
                     type="submit" onClick={handleSubmit} 
                     disabled={textInput.length < 4 ? true : false}
                 >
@@ -169,7 +168,7 @@ export function Trackmania(props){
                         {buttonText}
                         
                     </div>
-                </button>
+                </StyledButton>
             </form>
         
             
