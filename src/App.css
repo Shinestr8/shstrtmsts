@@ -11,15 +11,8 @@ body, html, #root{
   background-color: #161d31;
 }
 
-.wrapper{
-  /* background-color: #161d31; */
-  flex:1;
-  background-attachment: fixed;
-}
-
 .content{
   background-color: white;
   border-radius: 7px;
   margin: 0 1rem 1rem 1rem;
-  /* padding-bottom: 1rem; */
 }

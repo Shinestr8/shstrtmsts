@@ -49,26 +49,25 @@ function App() {
       <Title titleSize={titleSize}>
         Trackmania Stats
       </Title>
-      <div className='wrapper' >
-        <HashRouter basename={process.env.PUBLIC_URL}>
-          <Routes>
-            <Route path="*" element={<Error404/>}/>
-            <Route path="/" element={<Trackmania changeTitle={changeTitleSize}/>}>
+    
+      <HashRouter basename={process.env.PUBLIC_URL}>
+        <Routes>
+          <Route path="*" element={<Error404/>}/>
+          <Route path="/" element={<Trackmania changeTitle={changeTitleSize}/>}>
+            
+            <Route path="player">
               
-              <Route path="player">
-                
-                <Route path=":player" element={<GeneralStats/>}/>
-                <Route path=":player/General" element={<GeneralStats/>}/>
-                <Route path=":player/COTD" element={<COTDStats/>}/>
-                <Route path=":player/Matchmaking" element={<Matchmaking/>}/>
-              </Route>
-              
+              <Route path=":player" element={<GeneralStats/>}/>
+              <Route path=":player/General" element={<GeneralStats/>}/>
+              <Route path=":player/COTD" element={<COTDStats/>}/>
+              <Route path=":player/Matchmaking" element={<Matchmaking/>}/>
             </Route>
             
-          </Routes>
+          </Route>
           
-        </HashRouter>
-      </div>
+        </Routes>
+        
+    </HashRouter>
     </Page>
     </ThemeProvider>
     
