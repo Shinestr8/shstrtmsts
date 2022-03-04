@@ -10,6 +10,8 @@ import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
+import { PlayerName } from "../../StyledComponents/General/PlayerName";
+import { Section, SectionTitle } from "../../StyledComponents/General/Section";
 
 export function Matchmaking(){
     const [showUpdate, setShowUpdate] = useState(false);
@@ -115,29 +117,28 @@ export function Matchmaking(){
 
     return(
         <ContentBody>
-            <h1 
-                className="player-name" 
+            <PlayerName
                 onMouseEnter={()=>setShowUpdate(true)} 
                 onMouseLeave={()=>setShowUpdate(false)}
             >
                 {data && data.displayname} 
                 <UpdateButton show={showUpdate} onClick={forceUpdate}/>
-            </h1>
+            </PlayerName>
             {load && !data &&(
                 <LoadingIcon/>
             )}
             {data && data.matchmaking[0] && (
-                <div className="section">
-                    <h2 className="section-title">3v3</h2>
+                <Section>
+                    <SectionTitle>3v3</SectionTitle>
                     <MainMM data={data.matchmaking[0]}/>
-                </div>
+                </Section>
             )}
             
             {data && data.matchmaking[1] && (
-                <div className="section">
-                    <h2 className="section-title">Royal</h2>
+                <Section>
+                    <SectionTitle>Royal</SectionTitle>
                     <Royal data={data.matchmaking[1]}/>
-                </div>
+                </Section>
             )}
             
         </ContentBody>
