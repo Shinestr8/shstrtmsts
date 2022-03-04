@@ -12,6 +12,9 @@ import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
 
+import {PlayerName} from '../../StyledComponents/General/PlayerName'
+import {Section, SectionTitle} from '../../StyledComponents/General/Section'
+
 export function GeneralStats(){
 
     const [load, setLoad] = useState(false);
@@ -129,29 +132,28 @@ export function GeneralStats(){
                     )}
                     {data && !load && regions && (
                         <div>
-                            <h1 
-                                className="player-name" 
+                            <PlayerName 
                                 onMouseEnter={()=>setShowUpdate(true)} 
                                 onMouseLeave={()=>setShowUpdate(false)}
                             >
                                 {data.displayname} 
                                 <UpdateButton show={showUpdate} onClick={forceUpdate}/>
-                            </h1>
+                            </PlayerName>
                             
-                            <div className="section">
-                                <h2 className="section-title">General</h2>
+                            <Section>
+                                <SectionTitle>General</SectionTitle>
                                 <GeneralPlayerInfo data={data} regions={regions}/>
-                            </div>
+                            </Section>
 
-                            <div className="section">
-                                <h2 className="section-title">Rank</h2>
+                            <Section>
+                                <SectionTitle>Rank</SectionTitle>
                                 <PlayerRank data={data} regions={regions}/>
-                            </div>
+                            </Section>
 
-                            <div className="section">
-                                <h2 className="section-title">Trophy Distribution</h2>
+                            <Section>
+                                <SectionTitle>Trophy Distribution</SectionTitle>
                                 <TrophyDistribution data={data}/>
-                            </div>
+                            </Section>
                             
                         </div>
                     )}
