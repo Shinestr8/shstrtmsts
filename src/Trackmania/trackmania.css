@@ -29,13 +29,6 @@
     width: 50%;
 }
 
-.mm-rank-img{
-    align-self: center;
-    width: 50%;
-    display: flex;
-    margin: auto;
-}
-
 .mm-rank-name{
     text-align: center;
     font-size: 2rem;
@@ -201,15 +194,6 @@ tr{
     display: flex;
     justify-content: center;
     padding-left: 1rem;
-}
-
-.reload-button{
-    color: #fff;
-    cursor: pointer;
-    margin-left: 1em;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
 }
 
 .section-title{

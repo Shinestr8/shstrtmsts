@@ -154,6 +154,8 @@ export function Trackmania(props){
         buttonText = <FontAwesomeIcon icon={faMagnifyingGlass}/>
     } 
 
+    const menus = ['General', 'COTD', 'Matchmaking'];
+
     return(
         <div>
             <form 
@@ -177,7 +179,7 @@ export function Trackmania(props){
             <Content>
                 <ContentHeader>
                     {ParamPlayer && !(data && data.message) && (
-                        <MenuList playername={(data && data.displayname) || ParamPlayer} menus={['General', 'COTD', 'Matchmaking']} handleClick={selectMenu} selected={menu}/>
+                        <MenuList playername={(data && data.displayname) || ParamPlayer} menus={menus} handleClick={selectMenu} selected={menu}/>
                     )}
                 </ContentHeader>
                      

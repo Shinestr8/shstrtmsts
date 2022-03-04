@@ -1,5 +1,6 @@
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
+import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
 export function Royal(props){
     const data = props.data;
     const ranks = [
@@ -16,18 +17,17 @@ export function Royal(props){
     }
 
     return(
-        <div id="mm-stats">
-            <div className="mm-rank">
-                <img 
-                    className="mm-rank-img"
+        <MatchmakingStats>
+            <Rank>
+                <RankImage
                     alt={ranks[data.info.division.position -1]}
                     title={ranks[data.info.division.position -1]}
                     src={process.env.PUBLIC_URL + '/img/royalrank/' + data.info.division.position + '.png'}
                 />
-                <div className="mm-rank-name">{ranks[data.info.division.position -1]}</div>
-            </div>
+                <RankText>{ranks[data.info.division.position -1]}</RankText>
+            </Rank>
 
-            <div className="mm-detail">
+            <Details>
                 <div>Rank: {formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>Wins: {formatNumber(data.info.progression)}</div>
@@ -35,8 +35,8 @@ export function Royal(props){
                     <div>next rank ({ranks[data.info.division.position]}) in {data.info.division_next.minwins - data.info.progression} Wins</div>
                 )}
                 
-            </div>
+            </Details>
             
-        </div>
+        </MatchmakingStats>
     )
 }
