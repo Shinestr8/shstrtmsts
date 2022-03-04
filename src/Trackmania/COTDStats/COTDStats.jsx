@@ -12,7 +12,8 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
-
+import {PlayerName} from "../../StyledComponents/General/PlayerName";
+import {CellData, Cells, CellTitle, InfoBox } from "./StyledCOTD";
 
 export function COTDStats(props){
     const [data, setData] = useState(null);
@@ -175,37 +176,36 @@ export function COTDStats(props){
                     <ErrorMessage>No data to display for this player</ErrorMessage>
                 )}
                 {data && data.message && (
-                    <ErrorMessage className="error-message">{data.message}</ErrorMessage>
+                    <ErrorMessage>{data.message}</ErrorMessage>
                 )}
             </div>
             {data && !data.message && (
                 <React.Fragment>
-                    <h1 
-                        className="player-name" 
+                    <PlayerName
                         onMouseEnter={()=>setShowUpdate(true)} 
                         onMouseLeave={()=>setShowUpdate(false)}
                     >
                         {displayname} 
                         <UpdateButton show={showUpdate} onClick={forceUpdate}/>
-                    </h1>
-                    <div className="top-infos">
+                    </PlayerName>
+                    <InfoBox>
                         {data !== null && (
-                            <div className="cells">
-                                <div className="data-display">
-                                    <div className="cell-title">Total played</div> 
-                                    <div className="cell-data">{data.total}</div>
+                            <Cells>
+                                <div>
+                                    <CellTitle>Total played</CellTitle> 
+                                    <CellData>{data.total}</CellData>
                                 </div>
-                                <div className="data-display">
-                                    <div className="cell-title"> Average div: </div>
-                                    <div className="cell-data">{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</div>
+                                <div>
+                                    <CellTitle> Average div: </CellTitle>
+                                    <CellData>{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</CellData>
                                 </div>
-                                <div className="data-display">
-                                    <div className="cell-title"> Best pos: </div>
-                                    <div className="cell-data">{data.stats.bestoverall.bestrank}</div>
+                                <div>
+                                    <CellTitle> Best pos: </CellTitle>
+                                    <CellData>{data.stats.bestoverall.bestrank}</CellData>
                                 </div>
-                            </div>
+                            </Cells>
                     )}
-                    </div>
+                    </InfoBox>
                     <div>
                         {chartData !== null && (
                             <COTDLineChart data={chartData}/>
