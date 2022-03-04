@@ -9,6 +9,7 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
+import { ContentBody } from "../../StyledComponents/Page/ContentBody";
 
 export function Matchmaking(){
     const [showUpdate, setShowUpdate] = useState(false);
@@ -98,22 +99,22 @@ export function Matchmaking(){
 
     if(!load && !data.matchmaking[0] && !data.matchmaking[1]){
         return(
-            <div className="content-body">
-                <div className="error-message">This user has never played matchmaking, super sorry alexander</div>
-            </div>   
+            <ContentBody>
+                <ErrorMessage>This user has never played matchmaking, super sorry alexander</ErrorMessage>
+            </ContentBody>   
         )
     }
 
     if(data && data.message){
         return(
-            <div className="content-body">
+            <ContentBody>
                 <ErrorMessage>{data.message}</ErrorMessage>
-            </div>
+            </ContentBody>
         )
     }
 
     return(
-        <div className="content-body">
+        <ContentBody>
             <h1 
                 className="player-name" 
                 onMouseEnter={()=>setShowUpdate(true)} 
@@ -139,6 +140,6 @@ export function Matchmaking(){
                 </div>
             )}
             
-        </div>
+        </ContentBody>
     )
 }

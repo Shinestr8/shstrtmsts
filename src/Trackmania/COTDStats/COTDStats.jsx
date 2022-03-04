@@ -11,6 +11,9 @@ import { useParams} from "react-router-dom";
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 
+import { ContentBody } from "../../StyledComponents/Page/ContentBody";
+
+
 export function COTDStats(props){
     const [data, setData] = useState(null);
     const [displayname, setDisplayname] = useState('');
@@ -163,7 +166,7 @@ export function COTDStats(props){
     
 
     return(
-        <div className='content-body'>
+        <ContentBody>
             <div>
                 {loading && !data && (
                     <LoadingIcon/>
@@ -212,7 +215,7 @@ export function COTDStats(props){
             )}
             
             
-        </div>
+        </ContentBody>
         
     )
 }

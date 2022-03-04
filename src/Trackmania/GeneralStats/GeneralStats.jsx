@@ -10,6 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
+import { ContentBody } from "../../StyledComponents/Page/ContentBody";
 
 export function GeneralStats(){
 
@@ -119,7 +120,7 @@ export function GeneralStats(){
 
 
     return(
-        <div className="content-body">
+        <ContentBody>
                     {load && (
                         <LoadingIcon/>
                     )}
@@ -154,6 +155,6 @@ export function GeneralStats(){
                             
                         </div>
                     )}
-        </div>
+        </ContentBody>
     )
 }
