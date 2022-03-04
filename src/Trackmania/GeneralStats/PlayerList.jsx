@@ -1,5 +1,33 @@
 import React from "react";
+import styled from "styled-components";
 import { formatRank } from "../../functions/formatRank";
+
+const Flag = styled.img`
+    width: 1rem;
+    outline: 1px solid #000000;
+`
+
+const PlayerTable = styled.table`
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+
+    >tr{
+        height: 2rem;
+    }
+
+    >tbody tr:nth-child(2n+1) {
+        background-color: #ccc;
+    }
+
+    >tbody tr:hover{
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+`
+
 
 function findPlayerCountryCode(zone){
     let zoneName = zone.name;
@@ -13,8 +41,7 @@ function findPlayerCountryCode(zone){
         return (zoneList[zoneList.length -3].flag).toLowerCase();
     } else {
         return (zoneList[zoneList.length-1].flag).toLowerCase();
-    }
-    
+    }   
 }
 
 function Player(props){
@@ -23,23 +50,20 @@ function Player(props){
         props.onClick(data.player.name)
     }
 
-    // findPlayerCountryCode(data.player.zone);
-
     return(
         <tr onClick={handleClick}>
             <td>
             {data.player.zone !== undefined && (
-                <img
+                <Flag
                     src={`${process.env.PUBLIC_URL}/img/flag/4x3/${findPlayerCountryCode(data.player.zone)}.svg`}
-                    style={{width:'1rem', outline:'1px solid black'}}
                     title={findPlayerCountryCode(data.player.zone)}
                     alt={findPlayerCountryCode(data.player.zone)}
                 />
             )}
             
             </td>
-            <td className="player-list-player">
-            {data.player.name}
+            <td>
+                {data.player.name}
             </td>
             <td>
                 {data.matchmaking[0] !== undefined && (
@@ -67,7 +91,7 @@ export function PlayerList(props){
 
     return(
         <React.Fragment>
-            <table className="player-list-table">
+            <PlayerTable>
                 <thead>
                     <tr>
                         <th></th>
@@ -84,14 +108,7 @@ export function PlayerList(props){
                     )
                 })}    
                 </tbody>
-            </table>
-            {/* <div className="player-list">
-                {players.map(function(player, index){
-                    return(
-                        <Player key={player.player.name} name={player.player.name} onClick={handleClick}/>
-                    )
-                })}
-            </div> */}
+            </PlayerTable>
 
         </React.Fragment>
     )
