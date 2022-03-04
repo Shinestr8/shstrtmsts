@@ -1,16 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react';
+import styled from 'styled-components';
 
+
+const StyledUpdateIcon = styled.div`
+    color: ${(props) => props.show ? props.theme.font_main : props.theme.main};
+    cursor: pointer;
+    margin-left: 1em;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+`
 
 export function UpdateButton(props){
 
     let [spin, setSpin] = useState(false);
 
     return(
-        <div className='reload-button'>
+        <StyledUpdateIcon show={props.show}>
             <FontAwesomeIcon
-                style={props.show ? {color: '#000'} : {}}
                 icon = {faRotate} 
                 size = "1x" 
                 spin={spin}
@@ -18,7 +27,7 @@ export function UpdateButton(props){
                 onMouseLeave= {() => setSpin(false)}
                 onClick={props.onClick}
             />
-        </div>
+        </StyledUpdateIcon>
         
     )
 }
