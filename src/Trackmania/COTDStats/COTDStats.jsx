@@ -9,6 +9,7 @@ import { COTDLineChart } from "./COTDLineChart";
 import { useParams} from "react-router-dom";
 
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
+import { ErrorMessage } from "../../StyledComponents/General/Error";
 
 export function COTDStats(props){
     const [data, setData] = useState(null);
@@ -168,10 +169,10 @@ export function COTDStats(props){
                     <LoadingIcon/>
                 )}
                 {!data && !loading && (
-                    <div className="error-message">No data to display for this player</div>
+                    <ErrorMessage>No data to display for this player</ErrorMessage>
                 )}
                 {data && data.message && (
-                    <div className="error-message">{data.message}</div>
+                    <ErrorMessage className="error-message">{data.message}</ErrorMessage>
                 )}
             </div>
             {data && !data.message && (

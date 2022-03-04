@@ -9,6 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
+import { ErrorMessage } from "../../StyledComponents/General/Error";
 
 export function GeneralStats(){
 
@@ -59,6 +60,7 @@ export function GeneralStats(){
         })
         .catch(function(error){
             setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+            setLoad(false);
             console.log(error);
         })
     
@@ -120,6 +122,9 @@ export function GeneralStats(){
         <div className="content-body">
                     {load && (
                         <LoadingIcon/>
+                    )}
+                    {data && data.message &&(
+                        <ErrorMessage>{data.message}</ErrorMessage>
                     )}
                     {data && !load && regions && (
                         <div>

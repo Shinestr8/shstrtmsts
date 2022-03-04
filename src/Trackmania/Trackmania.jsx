@@ -22,7 +22,7 @@ import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 import { ContentHeader } from "../StyledComponents/Page/ContentHeader";
 import { ContentBody } from "../StyledComponents/Page/ContentBody";
 import { Content } from "../StyledComponents/Page/Content";
-
+import { ErrorMessage } from "../StyledComponents/General/Error";
 
 export function Trackmania(props){
 
@@ -200,7 +200,7 @@ export function Trackmania(props){
                     )}
             
                     {data && data.message &&(
-                        <div className="error-message">{data.message}</div>
+                        <ErrorMessage>{data.message}</ErrorMessage>
                     )}
                     
                 </ContentBody>

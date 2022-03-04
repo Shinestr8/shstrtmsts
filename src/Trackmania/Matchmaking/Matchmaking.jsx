@@ -8,6 +8,7 @@ import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 
 import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
+import { ErrorMessage } from "../../StyledComponents/General/Error";
 
 export function Matchmaking(){
     const [showUpdate, setShowUpdate] = useState(false);
@@ -106,7 +107,7 @@ export function Matchmaking(){
     if(data && data.message){
         return(
             <div className="content-body">
-                <div className="error-message">{data.message}</div>
+                <ErrorMessage>{data.message}</ErrorMessage>
             </div>
         )
     }
