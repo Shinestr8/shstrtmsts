@@ -169,10 +169,7 @@ export function Trackmania(props){
                     type="submit" onClick={handleSubmit} 
                     disabled={textInput.length < 4 ? true : false}
                 >
-                    <div className="button-text">
-                        {buttonText}
-                        
-                    </div>
+                    {buttonText}    
                 </StyledButton>
             </form>
         
