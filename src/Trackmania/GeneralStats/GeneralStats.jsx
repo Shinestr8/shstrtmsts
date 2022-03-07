@@ -52,22 +52,28 @@ export function GeneralStats(){
         }
         
         //whatever happens, fetch the original url with argument forceupdate = true
+        let isSubscribed = true;
         fetch(url + '&forceupdate=true')
         .then(function(result){
-            return result.json();
+            if(isSubscribed){
+                return result.json();
+            }
         })
         .then(function(result){
-            setData(result);
-            findPlayerRegions(result.trophies.zone);
-            setLoad(false);
-            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+            if(isSubscribed){
+                setData(result);
+                findPlayerRegions(result.trophies.zone);
+                setLoad(false);
+                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+            }
+            
         })
         .catch(function(error){
             setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
             setLoad(false);
             console.log(error);
         })
-    
+        return() => isSubscribed = false;
     }
 
 
