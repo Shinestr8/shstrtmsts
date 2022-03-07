@@ -53,7 +53,9 @@ export function Matchmaking(){
     }
 
     useEffect(()=>{
+        let isSubscribed = true;
         if(prevPlayer.current !== playerNameParam){
+            
             setLoad(true);
             setData(null);
             const url  = (`${remoteServer}/findTrokmoniPlayer?player=${playerNameParam}`).toLowerCase();
@@ -74,21 +76,27 @@ export function Matchmaking(){
             }
             fetch(url)
             .then(function(result){
-                return result.json();
+                if(isSubscribed){
+                    return result.json();
+                }
+                
             })
             .then(function(result){
-                if(result.length){ //If the length of result is defined, we're in the case of a list of player
-                    navigate('/');
+                if(isSubscribed){
+                    if(result.length){ //If the length of result is defined, we're in the case of a list of player
+                        navigate('/');
+                        setLoad(false);
+                        return; //exit the function
+                    }
+                    //otherwise, set the data state with fetched data. It can be player details or a message
+                    setData(result);
                     setLoad(false);
-                    return; //exit the function
+                    if(!result.displayname){
+                        navigate('/');
+                    }
+                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
                 }
-                //otherwise, set the data state with fetched data. It can be player details or a message
-                setData(result);
-                setLoad(false);
-                if(!result.displayname){
-                    navigate('/');
-                }
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+                
             })
             .catch(function(error){
                 setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
@@ -97,6 +105,7 @@ export function Matchmaking(){
             })
             prevPlayer.current = playerNameParam;
         }
+        return() => isSubscribed = false;
     }, [playerNameParam, navigate])
 
     if(!load && !data.matchmaking[0] && !data.matchmaking[1]){
