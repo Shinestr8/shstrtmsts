@@ -9,7 +9,8 @@ import { Error404 } from './Component/UpdateButton/404';
 import { GlobalStyle } from './StyledComponents/GlobalStyle';
 
 
-import { lightTheme } from './theme';
+import { lightTheme, darkTheme } from './theme';
+import { ThemeSwitch } from './StyledComponents/Input/ThemeSwitch';
 
 import styled,{ ThemeProvider} from 'styled-components';
 
@@ -39,19 +40,38 @@ const Title = styled.div`
 
 function App() {
   const [titleSize, setTitleSize] = useState('big');
+  const [currentTheme, setTheme] = useState(lightTheme)
 
   function changeTitleSize(newClass){
     setTitleSize(newClass)
   }
 
+  function toggle(e){
+    let checked = e.target.checked;
+    if(checked){
+      setTheme(lightTheme);
+    } else {
+      setTheme(darkTheme);
+    }
+  }
+
+  function switchTheme(){
+    if(currentTheme === darkTheme){
+      setTheme(lightTheme);
+    } else {
+      setTheme(darkTheme);
+    }
+  }
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={currentTheme}>
       <GlobalStyle/>
       <Page>
       <Title titleSize={titleSize}>
         Trackmania Stats
       </Title>
-    
+      {/* <div style={{color: 'red'}} onClick={switchTheme}></div> */}
+      <ThemeSwitch handleChange={toggle}/>
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="*" element={<Error404/>}/>
