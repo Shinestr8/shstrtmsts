@@ -9,8 +9,8 @@ import { useNavigate, Outlet, useParams, useLocation } from "react-router-dom";
 import { StyledTextInput } from "../StyledComponents/Input/StyledTextInput";
 import { StyledButton } from "../StyledComponents/Input/StyledButton";
 
-import "./trackmania.css";
-import "./responsive.css";
+// import "./trackmania.css";
+// import "./responsive.css";
 
 // import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +23,22 @@ import { ContentHeader } from "../StyledComponents/Page/ContentHeader";
 import { ContentBody } from "../StyledComponents/Page/ContentBody";
 import { Content } from "../StyledComponents/Page/Content";
 import { ErrorMessage } from "../StyledComponents/General/Error";
+
+import styled from "styled-components"
+
+const StyledForm = styled.form`
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: ${(props) => props.player ? "3rem" : "5rem"};
+    margin-top: ${(props)=> props.player ?  "0" : "25vh"};
+    font-size: ${(props)=> props.player ? "1rem" : "1.5rem"};
+    transition-property: height, margin-top;
+    transition-duration: 0.6s;
+`
+
 
 export function Trackmania(props){
 
@@ -158,7 +174,7 @@ export function Trackmania(props){
 
     return(
         <div>
-            <form 
+            <StyledForm player = {player||ParamPlayer}
                 className={player || ParamPlayer ? "input-group-small" : "input-group-big"}
             >
                 <StyledTextInput
@@ -173,7 +189,7 @@ export function Trackmania(props){
                 >
                     {buttonText}    
                 </StyledButton>
-            </form>
+            </StyledForm>
         
             
             <Content>
