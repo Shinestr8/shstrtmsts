@@ -97,26 +97,31 @@ export function GeneralStats(){
                     return;
                 }
             }
+            let isSubscribed = true;
             fetch(url)
             .then(function(result){
-                return result.json();
+                if(isSubscribed){
+                    return result.json();
+                }
             })
             .then(function(result){
-                if(result.length){ //If the length of result is defined, we're in the case of a list of player
-                    navigate('/');
+                if(isSubscribed){
+                    if(result.length){ //If the length of result is defined, we're in the case of a list of player
+                        navigate('/');
+                        setLoad(false);
+                        return; //exit the function
+                    }
+                    //otherwise, set the data state with fetched data. It can be player details or a message
+                    setData(result);
+                    if(result.trophies){ //only try to process the regions if result isnt just an error message
+                        findPlayerRegions(result.trophies.zone);
+                    }
                     setLoad(false);
-                    return; //exit the function
+                    if(!result.displayname){
+                        navigate('/');
+                    }
+                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
                 }
-                //otherwise, set the data state with fetched data. It can be player details or a message
-                setData(result);
-                if(result.trophies){ //only try to process the regions if result isnt just an error message
-                    findPlayerRegions(result.trophies.zone);
-                }
-                setLoad(false);
-                if(!result.displayname){
-                    navigate('/');
-                }
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
             })
             .catch(function(error){
                 setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
@@ -124,6 +129,7 @@ export function GeneralStats(){
                 console.log(error);
             })
             prevPlayer.current = playerNameParam;
+            return () => isSubscribed = false;
         }
     }, [playerNameParam, navigate])
 
