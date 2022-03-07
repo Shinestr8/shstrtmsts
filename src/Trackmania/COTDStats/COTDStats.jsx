@@ -35,20 +35,25 @@ export function COTDStats(props){
         if(localStorage.getItem(url) !== null){
             localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
         }
-            
+            let isSubscribed = true;
             fetch(url + '&forceupdate=true')  
             .then(function(result){
-                return(result.json())
+                if(isSubscribed){
+                    return(result.json());
+                }
             })
             .then((result) => {
-                setData(result);
-                buildChartData(result.cotds);            
-                setLoad(false);        
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                if(isSubscribed){
+                    setData(result);
+                    buildChartData(result.cotds);            
+                    setLoad(false);        
+                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                }
             })
             .catch(function(error){
                 console.log(error);
             });    
+            return () => isSubscribed = false;
         }
 
     function buildChartData(rawData){
@@ -110,6 +115,7 @@ export function COTDStats(props){
 
 
     useEffect(() => {
+        let isSubscribed = true;
         if(prevPlayer.current !== playerNameParam){
             setLoad(true);
             setData(null);
@@ -140,18 +146,23 @@ export function COTDStats(props){
                 
                 fetch(url)  
                 .then(function(result){
-                    return(result.json())
-                })
-                .then(async (result) => {
-                    if(!result){
-                        setData(null);
-                        setLoad(false);
-                        return;
+                    if(isSubscribed){
+                        return(result.json());
                     }
-                    setData(result);
-                    buildChartData(result.cotds);            
-                    setLoad(false);        
-                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                    
+                })
+                .then((result) => {
+                    if(isSubscribed){
+                        if(!result){
+                            setData(null);
+                            setLoad(false);
+                            return;
+                        }
+                        setData(result);
+                        buildChartData(result.cotds);            
+                        setLoad(false);        
+                        localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                    }
                 })
                 .catch(function(error){
                     setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
@@ -162,7 +173,7 @@ export function COTDStats(props){
             
             prevPlayer.current = playerNameParam;
         }
-        
+        return () => isSubscribed = false;
     }, [playerNameParam]);
     
 
