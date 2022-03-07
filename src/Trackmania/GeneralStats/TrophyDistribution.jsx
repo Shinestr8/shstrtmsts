@@ -1,5 +1,29 @@
 import { TrophyPieChart } from "./TrophyPieChart";
 import { formatNumber } from "../../functions/formatNumber";
+import styled from "styled-components";
+
+const StyledTrophy = styled.img`
+    width: 3rem;
+    @media screen and (max-width: 1024px){
+        width: 2rem;
+    }
+`
+
+const StyledTrophyTable = styled.table`
+    width: 100%;
+    padding-bottom: 2rem;
+    >td{
+        padding-right: 1rem;
+    }
+`
+
+const StyledTrophyDistrib = styled.div`
+    display: flex;
+    justify-content: space-around;
+    @media screen and (max-width: 1024px){
+        flex-direction: column;
+    }
+`
 
 export function TrophyDistribution(props){
     
@@ -13,17 +37,16 @@ export function TrophyDistribution(props){
 
     return(
         
-        <div className="trophy-distribution">
-            <table className="trophy-distribution-table">
+        <StyledTrophyDistrib>
+            <StyledTrophyTable>
                 <tbody>
                     {data.trophies.counts.map(function(count, index){
                         return(
                             <tr key={`trophy-${index+1}`}>
                                 <td>
-                                    <img 
+                                    <StyledTrophy
                                         title={"T" + (index+1)}
                                         alt={"Trophy" + index+1}
-                                        className="trophy-distribution-img" 
                                         src={process.env.PUBLIC_URL + '/img/trophies/' + index + '.png'}
                                     />
                                 </td>
@@ -43,8 +66,8 @@ export function TrophyDistribution(props){
                         <td>{formatNumber(data.trophies.points)}</td>
                     </tr>
                 </tbody>
-            </table>
+            </StyledTrophyTable>
             <TrophyPieChart data={data.trophies.counts}/>
-        </div>
+        </StyledTrophyDistrib>
     )
 }
