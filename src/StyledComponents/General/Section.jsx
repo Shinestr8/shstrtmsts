@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Section = styled.div`
     padding-bottom: 3rem;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid ${(props)=>props.theme.border};
 
     &:last-of-type{
         border: none;

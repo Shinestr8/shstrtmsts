@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     body, html, #root{
         height: 100%;
         margin: 0;
-        background-color: #161d31;
+        background-color: ${(props)=>props.theme.background};
     }
 
     @font-face {

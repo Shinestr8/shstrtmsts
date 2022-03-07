@@ -6,22 +6,22 @@ import styled from "styled-components";
 const StyledNavLink = styled(NavLink)`
     min-height: 3rem;
     text-decoration: none;
-    background-color: #161d31;
+    background-color: ${(props)=>props.theme.menu.main};
     width: 100%;
     text-align: center;
-    color: #ffffff;
+    color: ${(props)=>props.theme.menu.font_light};
     justify-content: center;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     border: 1px solid gray;
     border-bottom: none;
-    background-color: ${(props) => props.location === props.name ? "#007bff" : ""};
-    color: ${(props) => props.location === props.name ? "#ffffff" : ""};
+    background-color: ${(props) => props.location === props.name ? props.theme.menu.selected : ""};
+    color: ${(props) => props.location === props.name ? props.theme.menu.font_light : ""};
 
     &:hover{
-        background-color: #d3d3d3;
-        color: black;
+        background-color: ${(props)=>props.theme.menu.hover};
+        color: ${(props)=>props.theme.menu.font_dark};
         transition-property: background-color, color;
         transition-duration: 0.4s;
     }

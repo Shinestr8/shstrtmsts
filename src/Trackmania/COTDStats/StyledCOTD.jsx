@@ -12,10 +12,10 @@ export const Cells = styled.div`
     text-align: center;
     margin-top: 1em;
     width: 50%;
-    background-color: rgb(21, 52, 38);
-    color: rgb(131, 213, 159);
+    background-color: ${(props)=>props.theme.infobox.background};
+    color: ${(props)=>props.theme.infobox.font};
     padding: 1rem;
-    border: 1px solid rgb(131, 213, 159);
+    border: 1px solid ${(props)=>props.theme.infobox.font};
 `
 
 export const CellTitle = styled.div`
