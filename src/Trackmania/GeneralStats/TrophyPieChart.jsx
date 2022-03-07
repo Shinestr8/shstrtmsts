@@ -62,7 +62,7 @@ export function TrophyPieChart(props){
       const y = cy + (2.2*radius) * Math.sin(-midAngle * RADIAN);
       return (
         
-          <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+          <text x={x} y={y} fill="grey" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
             {item.name}
           </text>
         
