@@ -1,4 +1,24 @@
+import styled from "styled-components";
 import { formatNumber } from "../../functions/formatNumber";
+
+const Flag = styled.img`
+    width: 9rem;
+    height: 5rem;
+    outline: 1px solid #000000;
+`
+
+const PlayerInfo = styled.div`
+    display: flex;
+    justify-content: space-around;
+`
+
+const TrophyCount = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    font-weight: 600;
+`
 
 export function GeneralPlayerInfo(props){
 
@@ -8,20 +28,15 @@ export function GeneralPlayerInfo(props){
 
     
     return(
-            <div className="general-player-info">
-                
-                <div className="general-country">
-                    <img 
-                        style={{outline: '1px solid black'}}
-                        className="general-flag-picture"
+            <PlayerInfo>
+                    <Flag
                         alt={"flag-" + regions[regions.length -3].flag} 
                         src={process.env.PUBLIC_URL + "/img/flag/4x3/" + (regions[regions.length -3].flag).toLowerCase() + ".svg"}
                     />
-                </div>
-                <div className="general-trophy-count">
+                <TrophyCount>
                     Trophies: {formatNumber(data.trophies.points)}
-                </div>
+                </TrophyCount>
                 
-            </div>
+            </PlayerInfo>
     )
 }
