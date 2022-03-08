@@ -1,5 +1,8 @@
+//external
 import {useState, useEffect, useRef} from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, LabelList, Line} from 'recharts';
+
+//functions
 import useWindowDimensions from '../../WindowDimensions';
 
 export function TrophyPieChart(props){

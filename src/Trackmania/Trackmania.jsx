@@ -1,30 +1,28 @@
+//external
 import { useEffect, useState } from "react"
-
-import { remoteServer } from "../config";
-import useWindowDimensions from "../WindowDimensions";
-import { MenuList } from "./MenuList";
-import { PlayerList } from "./GeneralStats/PlayerList";
 import { useNavigate, Outlet, useParams, useLocation } from "react-router-dom";
-
-import { StyledTextInput } from "../StyledComponents/Input/StyledTextInput";
-import { StyledButton } from "../StyledComponents/Input/StyledButton";
-
-// import "./trackmania.css";
-// import "./responsive.css";
-
-// import { UpdateButton } from "../Component/UpdateButton/UpdateButton";
+import styled from "styled-components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 
+//components
+import { MenuList } from "./MenuList";
+import { PlayerList } from "./GeneralStats/PlayerList";
+import { StyledTextInput } from "../StyledComponents/Input/StyledTextInput";
+import { StyledButton } from "../StyledComponents/Input/StyledButton";
+import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 import { ContentHeader } from "../StyledComponents/Page/ContentHeader";
 import { ContentBody } from "../StyledComponents/Page/ContentBody";
 import { Content } from "../StyledComponents/Page/Content";
 import { ErrorMessage } from "../StyledComponents/General/Error";
 
-import styled from "styled-components"
+//variables
+import { remoteServer } from "../config";
+
+//functions
+import useWindowDimensions from "../WindowDimensions";
+
 
 const StyledForm = styled.form`
     display: flex;

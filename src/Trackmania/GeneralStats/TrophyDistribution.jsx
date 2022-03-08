@@ -1,6 +1,12 @@
-import { TrophyPieChart } from "./TrophyPieChart";
-import { formatNumber } from "../../functions/formatNumber";
+//external
 import styled from "styled-components";
+
+//components
+import { TrophyPieChart } from "./TrophyPieChart";
+
+//functions
+import { formatNumber } from "../../functions/formatNumber";
+
 
 const StyledTrophy = styled.img`
     width: 3rem;

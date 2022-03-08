@@ -1,3 +1,4 @@
+//external
 import styled from "styled-components";
 
 export const PlayerName = styled.h1`

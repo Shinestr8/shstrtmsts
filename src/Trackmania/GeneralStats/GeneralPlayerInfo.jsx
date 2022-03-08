@@ -1,4 +1,7 @@
+//external
 import styled from "styled-components";
+
+//functions
 import { formatNumber } from "../../functions/formatNumber";
 
 const Flag = styled.img`

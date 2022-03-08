@@ -1,10 +1,7 @@
-import '../../Trackmania/trackmania.css';
+//external
 import styled from "styled-components";
-
 import {faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { useState } from 'react';
 
 const StyledDiv = styled.div`
     position: absolute;
@@ -49,10 +46,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 export function ThemeSwitch(props){
 
-    // const [checked, setChecked] = useState(false);
-
     function handleClick(){
-        // setChecked(!checked);
         props.handleClick();
     }
 

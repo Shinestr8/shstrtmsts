@@ -1,19 +1,18 @@
+//external
 import React, { useEffect, useState, useRef } from "react"
-
-import { remoteServer } from "../../config";
-
-import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
-
-import { COTDLineChart } from "./COTDLineChart";
-
 import { useParams} from "react-router-dom";
 
+//components
+import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
+import { COTDLineChart } from "./COTDLineChart";
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
-
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
 import {PlayerName} from "../../StyledComponents/General/PlayerName";
 import {CellData, Cells, CellTitle, InfoBox } from "./StyledCOTD";
+
+//variables
+import { remoteServer } from "../../config";
 
 export function COTDStats(props){
     const [data, setData] = useState(null);

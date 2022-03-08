@@ -1,6 +1,10 @@
+//external
+import styled from "styled-components";
+
+//functions
 import { formatRank } from "../../functions/formatRank";
 
-import styled from "styled-components";
+
 
 const Flag = styled.img`
     width: 2rem;

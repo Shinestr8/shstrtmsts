@@ -1,4 +1,7 @@
+//external
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+//components
 import {Section, SectionTitle} from '../../StyledComponents/General/Section';
 
 export function COTDLineChart(props){

@@ -1,5 +1,8 @@
+//external
 import React from "react";
 import styled from "styled-components";
+
+//function
 import { formatRank } from "../../functions/formatRank";
 
 const Flag = styled.img`

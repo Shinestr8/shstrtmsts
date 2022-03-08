@@ -1,5 +1,7 @@
+//external
 import { createGlobalStyle } from "styled-components";
 
+//font
 import lobster from '../font/Lobster-Regular.ttf'
 
 export const GlobalStyle = createGlobalStyle`

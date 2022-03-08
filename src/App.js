@@ -1,18 +1,19 @@
+//libraries
 import { useLayoutEffect, useState } from 'react';
-import './App.css';
-import { Trackmania } from './Trackmania/Trackmania';
+import styled,{ ThemeProvider} from 'styled-components';
 import {Route, Routes, HashRouter } from 'react-router-dom';
+
+//Components
+import { Trackmania } from './Trackmania/Trackmania';
 import { GeneralStats } from './Trackmania/GeneralStats/GeneralStats';
 import { COTDStats } from './Trackmania/COTDStats/COTDStats';
 import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
 import { GlobalStyle } from './StyledComponents/GlobalStyle';
-
-
-import { lightTheme, darkTheme } from './theme';
 import { ThemeSwitch } from './StyledComponents/Input/ThemeSwitch';
 
-import styled,{ ThemeProvider} from 'styled-components';
+//variable
+import { lightTheme, darkTheme } from './theme';
 
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
 

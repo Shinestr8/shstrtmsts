@@ -1,19 +1,20 @@
+//external
+import { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+//components
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
 import { PlayerRank } from "./PlayerRank";
 import { TrophyDistribution } from "./TrophyDistribution";
-
 import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
-import { useEffect, useState, useRef } from "react";
-
-import { useParams, useNavigate } from "react-router-dom";
-
-import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
-
 import {PlayerName} from '../../StyledComponents/General/PlayerName'
 import {Section, SectionTitle} from '../../StyledComponents/General/Section'
+
+//variables
+import { remoteServer } from "../../config";
 
 export function GeneralStats(){
 

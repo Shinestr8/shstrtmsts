@@ -1,3 +1,29 @@
+.box{
+    background-color: lightgrey;
+    width: 3.2rem;
+    height: 2rem;
+    border-radius: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+}
+
+.round{
+    border-radius: 50%;
+    background-color: black;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.on{
+    margin-left: 1.6rem;
+}
+
+
+
 .content{
     background-color: white;
     border-radius: 7px;
@@ -72,7 +98,7 @@
 
 /* The switch - the box around the slider */
 .switch {
-  position: relative;
+  position: relative;   
   display: inline-block;
   width: 55px;
   height: 28px;
