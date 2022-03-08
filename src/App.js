@@ -32,7 +32,7 @@ const Title = styled.div`
   flex-direction: column;
   justify-content: space-around;
   font-family: Lobster;
-  color: white;
+  color: ${(props)=>props.theme.font_secondary};
   font-size: ${(props)=>props.titleSize ==='big' ? '5rem' : '2.5rem'};
   transition-property: font-size;
   transition-duration: 0.4s;
