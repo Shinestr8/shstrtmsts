@@ -27,7 +27,7 @@ const Page  = styled.div`
 const Title = styled.div`
   min-height: 10%;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -36,6 +36,9 @@ const Title = styled.div`
   font-size: ${(props)=>props.titleSize ==='big' ? '5rem' : '2.5rem'};
   transition-property: font-size;
   transition-duration: 0.4s;
+  @media screen and (max-width: 1024px){
+    font-size: ${(props)=>props.titleSize ==='big' ? '3rem' : '2.5rem'};
+  }
 `
 
 function App() {
@@ -55,14 +58,6 @@ function App() {
     }
   }
 
-  function switchTheme(){
-    if(currentTheme === darkTheme){
-      setTheme(lightTheme);
-    } else {
-      setTheme(darkTheme);
-    }
-  }
-
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle/>
@@ -70,7 +65,6 @@ function App() {
       <Title titleSize={titleSize}>
         Trackmania Stats
       </Title>
-      {/* <div style={{color: 'red'}} onClick={switchTheme}></div> */}
       <ThemeSwitch handleClick={toggle}/>
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
