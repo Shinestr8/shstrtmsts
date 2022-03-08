@@ -2,6 +2,12 @@ import '../../Trackmania/trackmania.css';
 import styled from "styled-components";
 import { useState } from 'react';
 
+const StyledDiv = styled.div`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+`
+
 const StyledSwitch = styled.div`
     background-color: ${(props) => props.checked ? "#2196F3": "#CCCCCC"};
     width: 3.2rem;
@@ -38,11 +44,11 @@ export function ThemeSwitch(props){
     }
 
     return(
-        <div>
+        <StyledDiv>
             <StyledSwitch onClick={handleClick} checked={checked}>
                 <Round checked={checked}>
                 </Round>
             </StyledSwitch>
-        </div>
+        </StyledDiv>
     )
 }
