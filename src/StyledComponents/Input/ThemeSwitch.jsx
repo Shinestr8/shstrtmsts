@@ -11,7 +11,7 @@ const StyledDiv = styled.div`
 `
 
 const StyledSwitch = styled.div`
-    background-color: ${(props) => props.checked ? "#2196F3": "#CCCCCC"};
+    background-color: ${(props) => props.checked ? props.theme.button.active_bg: props.theme.button.disabled_bg};
     width: 3.2rem;
     height: 2rem;
     border-radius: 34px;
