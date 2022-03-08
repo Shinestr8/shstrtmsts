@@ -1,9 +1,14 @@
 import '../../Trackmania/trackmania.css';
 import styled from "styled-components";
+
+import {faMoon } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useState } from 'react';
 
 const StyledDiv = styled.div`
     position: absolute;
+    display:flex;
     top: 1rem;
     right: 1rem;
 `
@@ -33,6 +38,14 @@ const Round = styled.div`
     transition-duration:0.3s;   
 `
 
+const StyledIcon = styled(FontAwesomeIcon)`
+    margin-left: 0.5rem;
+    color: ${(props) => props.checked ? "yellow" : "lightgrey"};
+    @media screen and (max-width: 1024px){
+        display: none;
+    }
+`
+
 
 export function ThemeSwitch(props){
 
@@ -49,6 +62,7 @@ export function ThemeSwitch(props){
                 <Round checked={checked}>
                 </Round>
             </StyledSwitch>
+            <StyledIcon checked={checked} icon={faMoon} size="2x"/>
         </StyledDiv>
     )
 }
