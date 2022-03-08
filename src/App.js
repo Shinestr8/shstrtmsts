@@ -46,8 +46,8 @@ function App() {
     setTitleSize(newClass)
   }
 
-  function toggle(e){
-    let checked = e.target.checked;
+  function toggle(checked){
+    
     if(checked){
       setTheme(lightTheme);
     } else {
@@ -71,7 +71,7 @@ function App() {
         Trackmania Stats
       </Title>
       {/* <div style={{color: 'red'}} onClick={switchTheme}></div> */}
-      <ThemeSwitch handleChange={toggle}/>
+      <ThemeSwitch handleClick={toggle}/>
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="*" element={<Error404/>}/>
