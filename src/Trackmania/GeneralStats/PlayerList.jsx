@@ -26,6 +26,10 @@ const PlayerTable = styled.table`
         cursor: pointer;
         text-decoration: underline;
     }
+
+    @media screen and (max-width: 1024px){
+        padding: 0.1rem;
+    }
 `
 
 
