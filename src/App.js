@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import './App.css';
 import { Trackmania } from './Trackmania/Trackmania';
 import {Route, Routes, HashRouter } from 'react-router-dom';
@@ -43,21 +43,40 @@ const Title = styled.div`
 
 function App() {
   const [titleSize, setTitleSize] = useState('big');
-  const [currentTheme, setTheme] = useState(lightTheme)
+  const [currentTheme, setTheme] = useState(lightTheme);
 
   function changeTitleSize(newClass){
-    setTitleSize(newClass)
+    setTitleSize(newClass);
   }
 
-  function toggle(checked){
-    
-    if(checked){
-      setTheme(lightTheme);
+
+  useLayoutEffect(()=>{
+    let theme = localStorage.getItem('theme');
+    if(theme === null){
+      return;
     } else {
-      setTheme(darkTheme);
+      if(theme === 'dark'){
+        setTheme(darkTheme);
+      } else if (theme === 'light'){
+        setTheme(lightTheme);
+      }
     }
+  }, [])
+
+  function toggle(){
+    let theme = null;
+    if(currentTheme === darkTheme){
+      theme = lightTheme;
+      localStorage.setItem('theme', 'light');
+    } else {
+      theme = darkTheme;
+      localStorage.setItem('theme', 'dark');
+    }
+    setTheme(theme)
   }
 
+
+  console.log(currentTheme === darkTheme)
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle/>
@@ -65,7 +84,7 @@ function App() {
       <Title titleSize={titleSize}>
         Trackmania Stats
       </Title>
-      <ThemeSwitch handleClick={toggle}/>
+      <ThemeSwitch handleClick={toggle} checked={currentTheme===darkTheme}/>
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="*" element={<Error404/>}/>

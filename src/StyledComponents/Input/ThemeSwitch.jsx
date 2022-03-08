@@ -49,20 +49,20 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 export function ThemeSwitch(props){
 
-    const [checked, setChecked] = useState(false);
+    // const [checked, setChecked] = useState(false);
 
     function handleClick(){
-        setChecked(!checked);
-        props.handleClick(checked);
+        // setChecked(!checked);
+        props.handleClick();
     }
 
     return(
         <StyledDiv>
-            <StyledSwitch onClick={handleClick} checked={checked}>
-                <Round checked={checked}>
+            <StyledSwitch onClick={handleClick} checked={props.checked}>
+                <Round checked={props.checked}>
                 </Round>
             </StyledSwitch>
-            <StyledIcon checked={checked} icon={faMoon} size="2x"/>
+            <StyledIcon checked={props.checked} icon={faMoon} size="2x"/>
         </StyledDiv>
     )
 }
