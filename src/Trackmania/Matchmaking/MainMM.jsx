@@ -39,7 +39,7 @@ export function MainMM(props){
             </Rank>
 
             <Details>
-                <div>Rank: {formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
+                <div>Rank: {data.info.rank}{formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
                 <div>Total Players: {formatNumber(data.total)}</div>
                 <div>MMR: {formatNumber(data.info.progression)} points</div>
                 {data.info.division_next && (
