@@ -1,12 +1,17 @@
 export function formatRank(rank){
+    if(rank === 1){
+        return 'first'
+    }
     let lastDigit = rank.toString().slice(-1);
     let suffix = 'th';
     if(lastDigit === '1'){
-        suffix = 'st';
-    } else if(lastDigit === '2'){
-        suffix= 'nd';
-    } else if (lastDigit === '3'){
-        suffix = 'rd'
+        return 'st';
     }
-    return rank + suffix
+    if(lastDigit === '2'){
+        return 'nd';
+    }
+    if (lastDigit === '3'){
+        return 'rd'
+    }
+    return suffix
 }

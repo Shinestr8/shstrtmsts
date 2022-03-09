@@ -1,4 +1,5 @@
 //external
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 //functions
@@ -27,6 +28,7 @@ const Rank = styled.div`
 export function PlayerRank(props){
     const data = props.data;
     const regions = props.regions;
+    const {t} = useTranslation('suffix');
 
     return(
         <Rank>
@@ -45,7 +47,7 @@ export function PlayerRank(props){
                                 </td>
                                 <td>{region.name}</td>
                                 <td style={{paddingLeft: '1rem'}}>
-                                    {formatRank(data.trophies.zonepositions[index])}
+                                     {data.trophies.zonepositions[index]}{t(formatRank(data.trophies.zonepositions[index]))}
                                 </td>
                             </tr>
 
