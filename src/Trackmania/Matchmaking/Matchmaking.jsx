@@ -1,17 +1,20 @@
+//external
 import { useState, useRef, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+//components
 import { MainMM } from "./MainMM";
 import { Royal } from "./Royal";
-
-import { useParams, useNavigate } from "react-router-dom";
-
-import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
-
-import { remoteServer } from "../../config";
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 import { ErrorMessage } from "../../StyledComponents/General/Error";
 import { ContentBody } from "../../StyledComponents/Page/ContentBody";
 import { PlayerName } from "../../StyledComponents/General/PlayerName";
 import { Section, SectionTitle } from "../../StyledComponents/General/Section";
+import { UpdateButton } from "../../Component/UpdateButton/UpdateButton";
+
+//variables
+import { remoteServer } from "../../config";
 
 export function Matchmaking(){
     const [showUpdate, setShowUpdate] = useState(false);
@@ -21,6 +24,7 @@ export function Matchmaking(){
     const playerNameParam = useParams().player;
     const prevPlayer = useRef();
     const navigate = useNavigate();
+    const {t} = useTranslation("matchmaking")
 
     function forceUpdate(){
         //keep the original url for interaction with the local storage
@@ -111,7 +115,7 @@ export function Matchmaking(){
     if(!load && !data.matchmaking[0] && !data.matchmaking[1]){
         return(
             <ContentBody>
-                <ErrorMessage>This user has never played matchmaking, super sorry alexander</ErrorMessage>
+                <ErrorMessage>{t("No data")}</ErrorMessage>
             </ContentBody>   
         )
     }
@@ -138,14 +142,14 @@ export function Matchmaking(){
             )}
             {data && data.matchmaking[0] && (
                 <Section>
-                    <SectionTitle>3v3</SectionTitle>
+                    <SectionTitle>{t("3v3 section title")}</SectionTitle>
                     <MainMM data={data.matchmaking[0]}/>
                 </Section>
             )}
             
             {data && data.matchmaking[1] && (
                 <Section>
-                    <SectionTitle>Royal</SectionTitle>
+                    <SectionTitle>{t("Royal section title")}</SectionTitle>
                     <Royal data={data.matchmaking[1]}/>
                 </Section>
             )}

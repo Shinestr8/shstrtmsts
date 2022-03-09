@@ -1,8 +1,18 @@
+//external
+import { useTranslation } from "react-i18next";
+
+//Components
+import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
+
+//functions
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
-import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
+
 export function Royal(props){
     const data = props.data;
+
+    const {t} = useTranslation("matchmaking");
+
     const ranks = [
         'Unranked', 
         'Bronze', 
@@ -28,11 +38,11 @@ export function Royal(props){
             </Rank>
 
             <Details>
-                <div>Rank: {data.info.rank}{formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
-                <div>Total Players: {formatNumber(data.total)}</div>
-                <div>Wins: {formatNumber(data.info.progression)}</div>
+                <div>{t("Rank", {rank: data.info.rank + formatRank(data.info.rank), top: computePercentage(data.info.rank, data.total) })}</div>
+                <div>{t("Total players", {totalplayers: formatNumber(data.total)})}</div>
+                <div>{t("Wins", {wins: formatNumber(data.info.progression)})}</div>
                 {data.info.division_next && (
-                    <div>next rank ({ranks[data.info.division.position]}) in {data.info.division_next.minwins - data.info.progression} Wins</div>
+                    <div>{t("Next rank", {rank: ranks[data.info.division.position], points: data.info.division_next.minwins - data.info.progression})} </div>
                 )}
                 
             </Details>

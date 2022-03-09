@@ -1,10 +1,20 @@
+//external
+import { useTranslation } from "react-i18next";
+
+//Components
+import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
+
+//functions
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
 
-import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
+
 
 export function MainMM(props){
     const data = props.data;
+
+    const {t} = useTranslation("matchmaking")
+
     const ranks = [
         'Unranked', 
         'Bronze I', 
@@ -39,11 +49,11 @@ export function MainMM(props){
             </Rank>
 
             <Details>
-                <div>Rank: {data.info.rank}{formatRank(data.info.rank)} (top {computePercentage(data.info.rank, data.total)}%)</div>
-                <div>Total Players: {formatNumber(data.total)}</div>
-                <div>MMR: {formatNumber(data.info.progression)} points</div>
+                <div>{t("Rank", {rank: data.info.rank + formatRank(data.info.rank), top: computePercentage(data.info.rank, data.total) })}</div>
+                <div>{t("Total players", {totalplayers: formatNumber(data.total)})}</div>
+                <div>{t("MMR", {points: formatNumber(data.info.progression)})}</div>
                 {data.info.division_next && (
-                    <div>next rank ({ranks[data.info.division.position +1]}) in {data.info.division_next.minpoints - data.info.progression} points</div>
+                    <div>{t("Next rank", {rank: ranks[data.info.division.position +1], points: data.info.division_next.minpoints - data.info.progression})} </div>
                 )}
                 
             </Details>
