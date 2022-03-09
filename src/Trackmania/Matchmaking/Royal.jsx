@@ -11,7 +11,7 @@ import { formatRank } from "../../functions/formatRank";
 export function Royal(props){
     const data = props.data;
 
-    const {t} = useTranslation("matchmaking");
+    const {t} = useTranslation(["matchmaking", "suffix"]);
 
     const ranks = [
         'Unranked', 
@@ -38,7 +38,7 @@ export function Royal(props){
             </Rank>
 
             <Details>
-                <div>{t("Rank", {rank: data.info.rank + formatRank(data.info.rank), top: computePercentage(data.info.rank, data.total) })}</div>
+                <div>{t("Rank", {rank: data.info.rank + t("suffix:" + formatRank(data.info.rank)), top: computePercentage(data.info.rank, data.total) })}</div>
                 <div>{t("Total players", {totalplayers: formatNumber(data.total)})}</div>
                 <div>{t("Wins", {wins: formatNumber(data.info.progression)})}</div>
                 {data.info.division_next && (

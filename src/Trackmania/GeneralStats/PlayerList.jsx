@@ -53,7 +53,7 @@ function findPlayerCountryCode(zone){
 
 function Player(props){
     const data = props.data;
-
+    const {t} = useTranslation("suffix");
     function handleClick(){
         props.onClick(data.player.name)
     }
@@ -75,12 +75,12 @@ function Player(props){
             </td>
             <td>
                 {data.matchmaking[0] !== undefined && (
-                    <span>{data.matchmaking[0].rank}{formatRank(data.matchmaking[0].rank)}</span>
+                    <span>{data.matchmaking[0].rank}{t(formatRank(data.matchmaking[0].rank))}</span>
                 )}
             </td>
             <td>
                 {data.matchmaking[1] !== undefined && (
-                    <span>{data.matchmaking[0].rank}{formatRank(data.matchmaking[1].rank)}</span>
+                    <span>{data.matchmaking[0].rank}{t(formatRank(data.matchmaking[1].rank))}</span>
                 )}
                 
             </td>

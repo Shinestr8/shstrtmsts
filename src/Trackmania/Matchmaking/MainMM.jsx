@@ -7,13 +7,14 @@ import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMa
 //functions
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
+import { useMemo } from "react";
 
 
 
 export function MainMM(props){
     const data = props.data;
 
-    const {t} = useTranslation("matchmaking")
+    const {t} = useTranslation(["matchmaking", "suffix"])
 
     const ranks = [
         'Unranked', 
@@ -32,6 +33,12 @@ export function MainMM(props){
         'TrackMaster'
     ];
 
+    const rank = useMemo(function(){
+        let number = data.info.rank;
+        let suffix = t("suffix:" + formatRank(data.info.rank));
+        return number + suffix
+    }, [data.info.rank,t])
+
     function computePercentage(rank, total){
         return parseFloat(100*rank/total).toPrecision(1);
     }
@@ -49,7 +56,7 @@ export function MainMM(props){
             </Rank>
 
             <Details>
-                <div>{t("Rank", {rank: data.info.rank + formatRank(data.info.rank), top: computePercentage(data.info.rank, data.total) })}</div>
+                <div>{t("Rank", {rank: rank, top: computePercentage(data.info.rank, data.total) })}</div>
                 <div>{t("Total players", {totalplayers: formatNumber(data.total)})}</div>
                 <div>{t("MMR", {points: formatNumber(data.info.progression)})}</div>
                 {data.info.division_next && (
