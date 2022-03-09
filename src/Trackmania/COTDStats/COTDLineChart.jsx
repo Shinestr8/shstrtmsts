@@ -1,14 +1,16 @@
 //external
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 //components
 import {Section, SectionTitle} from '../../StyledComponents/General/Section';
 
 export function COTDLineChart(props){
+    const {t} = useTranslation('cotd');
     return(
         <div style={{"marginTop": '1em', "marginBottom": '1em'}}>
             <Section>
-                <SectionTitle>Evolution of Div and DivRank</SectionTitle>
+                <SectionTitle>{t("div and div rank linechart title")}</SectionTitle>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                     width={500}
@@ -48,7 +50,7 @@ export function COTDLineChart(props){
             </Section>
             
             <Section>
-                <SectionTitle>Evolution of top percentage</SectionTitle>
+                <SectionTitle>{t("top percentage linechart title")}</SectionTitle>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                         width={500}
@@ -86,7 +88,7 @@ export function COTDLineChart(props){
             </Section>
             
             <Section>
-                <SectionTitle>Amount of Players</SectionTitle>
+                <SectionTitle>{t("total player linechart title")}</SectionTitle>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                         width={500}

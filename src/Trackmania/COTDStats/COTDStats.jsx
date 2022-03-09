@@ -1,6 +1,7 @@
 //external
 import React, { useEffect, useState, useRef } from "react"
 import { useParams} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 //components
 import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
@@ -25,6 +26,7 @@ export function COTDStats(props){
     const prevPlayer = useRef();
     const playerNameParam = useParams().player;
 
+    const {t} = useTranslation("cotd");
 
     function forceUpdate(){
         setLoad(true);
@@ -183,7 +185,7 @@ export function COTDStats(props){
                     <LoadingIcon/>
                 )}
                 {!data && !loading && (
-                    <ErrorMessage>No data to display for this player</ErrorMessage>
+                    <ErrorMessage>{t("No data")}</ErrorMessage>
                 )}
                 {data && data.message && (
                     <ErrorMessage>{data.message}</ErrorMessage>
@@ -202,15 +204,15 @@ export function COTDStats(props){
                         {data !== null && (
                             <Cells>
                                 <div>
-                                    <CellTitle>Total played</CellTitle> 
+                                    <CellTitle>{t("Total Cup")}</CellTitle> 
                                     <CellData>{data.total}</CellData>
                                 </div>
                                 <div>
-                                    <CellTitle> Average div: </CellTitle>
+                                    <CellTitle> {t("Average div")} </CellTitle>
                                     <CellData>{(Math.round(data.stats.avgdiv * 100) / 100).toFixed(2)}</CellData>
                                 </div>
                                 <div>
-                                    <CellTitle> Best pos: </CellTitle>
+                                    <CellTitle> {t("Best pos")} </CellTitle>
                                     <CellData>{data.stats.bestoverall.bestrank}</CellData>
                                 </div>
                             </Cells>
