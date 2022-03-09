@@ -1,6 +1,7 @@
 //external
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 //components
 import { GeneralPlayerInfo } from "./GeneralPlayerInfo";
@@ -27,6 +28,10 @@ export function GeneralStats(){
     let playerNameParam = useParams().player;
     const prevPlayer = useRef();
     const navigate = useNavigate();
+
+    // eslint-disable-next-line no-unused-vars
+    const {t, i18n} = useTranslation('generalInfo');
+
 
     function findPlayerRegions(zone){
         let zoneName = zone.name;
@@ -154,17 +159,17 @@ export function GeneralStats(){
                             </PlayerName>
                             
                             <Section>
-                                <SectionTitle>General</SectionTitle>
+                                <SectionTitle>{t("General")}</SectionTitle>
                                 <GeneralPlayerInfo data={data} regions={regions}/>
                             </Section>
 
                             <Section>
-                                <SectionTitle>Rank</SectionTitle>
+                                <SectionTitle>{t('Rank')}</SectionTitle>
                                 <PlayerRank data={data} regions={regions}/>
                             </Section>
 
                             <Section>
-                                <SectionTitle>Trophy Distribution</SectionTitle>
+                                <SectionTitle>{t("Trophy Distribution")}</SectionTitle>
                                 <TrophyDistribution data={data}/>
                             </Section>
                             

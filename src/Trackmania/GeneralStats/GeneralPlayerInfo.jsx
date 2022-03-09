@@ -1,5 +1,6 @@
 //external
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 //functions
 import { formatNumber } from "../../functions/formatNumber";
@@ -28,7 +29,8 @@ export function GeneralPlayerInfo(props){
     const data = props.data;
     const regions = props.regions
 
-
+    // eslint-disable-next-line no-unused-vars
+     const {t, i18n} = useTranslation('generalInfo');
     
     return(
             <PlayerInfo>
@@ -37,7 +39,7 @@ export function GeneralPlayerInfo(props){
                         src={process.env.PUBLIC_URL + "/img/flag/4x3/" + (regions[regions.length -3].flag).toLowerCase() + ".svg"}
                     />
                 <TrophyCount>
-                    Trophies: {formatNumber(data.trophies.points)}
+                    {t("Trophies")}: {formatNumber(data.trophies.points)}
                 </TrophyCount>
                 
             </PlayerInfo>
