@@ -1,5 +1,5 @@
 //libraries
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, Suspense } from 'react';
 import styled,{ ThemeProvider} from 'styled-components';
 import {Route, Routes, HashRouter } from 'react-router-dom';
 
@@ -14,8 +14,12 @@ import { ThemeSwitch } from './StyledComponents/Input/ThemeSwitch';
 
 //variable
 import { lightTheme, darkTheme } from './theme';
+import { useTranslation } from 'react-i18next';
 
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
+
+
+
 
 
 const Page  = styled.div`
@@ -50,6 +54,9 @@ function App() {
     setTitleSize(newClass);
   }
 
+  // eslint-disable-next-line no-unused-vars
+  const {t, i18n} = useTranslation('title');
+
 
   useLayoutEffect(()=>{
     let theme = localStorage.getItem('theme');
@@ -79,11 +86,13 @@ function App() {
 
   console.log(currentTheme === darkTheme)
   return (
-    <ThemeProvider theme={currentTheme}>
+
+      <ThemeProvider theme={currentTheme}>
       <GlobalStyle/>
+      <Suspense fallback={<div>Loading...</div>}>
       <Page>
       <Title titleSize={titleSize}>
-        Trackmania Stats
+        {t('title')}
       </Title>
       <ThemeSwitch handleClick={toggle} checked={currentTheme===darkTheme}/>
       <HashRouter basename={process.env.PUBLIC_URL}>
@@ -105,7 +114,10 @@ function App() {
         
     </HashRouter>
     </Page>
+        </Suspense>
     </ThemeProvider>
+
+    
     
   );
 }
