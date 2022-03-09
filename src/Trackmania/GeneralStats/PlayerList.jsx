@@ -1,7 +1,7 @@
 //external
 import React from "react";
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 //function
 import { formatRank } from "../../functions/formatRank";
 
@@ -53,6 +53,7 @@ function findPlayerCountryCode(zone){
 
 function Player(props){
     const data = props.data;
+
     function handleClick(){
         props.onClick(data.player.name)
     }
@@ -92,6 +93,10 @@ function Player(props){
 export function PlayerList(props){
     const players = props.data;
 
+    // eslint-disable-next-line no-unused-vars
+    const {t, i18n} = useTranslation('playerlist');
+
+
     function handleClick(player){
         props.onClick(player)
     }
@@ -102,9 +107,9 @@ export function PlayerList(props){
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Player</th>
-                        <th>Matchmaking rank</th>
-                        <th>Royal rank</th>
+                        <th>{t('Player')}</th>
+                        <th>{t('Matchmaking')}</th>
+                        <th>{t('Royal')}</th>
                     </tr>
                 </thead>
                 <tbody>

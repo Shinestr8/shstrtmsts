@@ -4,7 +4,7 @@ import { useNavigate, Outlet, useParams, useLocation } from "react-router-dom";
 import styled from "styled-components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import { useTranslation } from "react-i18next";
 
 //components
 import { MenuList } from "./MenuList";
@@ -56,6 +56,9 @@ export function Trackmania(props){
     function selectMenu(newMenu){
         setMenu(newMenu);
     }
+
+    // eslint-disable-next-line no-unused-vars
+    const {t, i18n} = useTranslation('trackmania');
 
     useEffect(()=> {
         if(location !== prevLoc){
@@ -163,7 +166,7 @@ export function Trackmania(props){
 
 
     const {width} = useWindowDimensions();
-    let buttonText = <span><FontAwesomeIcon icon={faMagnifyingGlass}/> Search Player</span>
+    let buttonText = <span><FontAwesomeIcon icon={faMagnifyingGlass}/> {t('Submit')}</span>
     if(width < 1024){
         buttonText = <FontAwesomeIcon icon={faMagnifyingGlass}/>
     } 
@@ -177,7 +180,7 @@ export function Trackmania(props){
             >
                 <StyledTextInput
                     type="text" 
-                    placeholder="Search a player" 
+                    placeholder={t('Search player')} 
                     value={textInput} 
                     onChange={updateTextInput}
                 />
@@ -203,7 +206,8 @@ export function Trackmania(props){
 
                     {playerList && (
                         <div>
-                            <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div>
+                            <div>{t('No exact match')} <strong>{player}</strong> {t('one of the following')}</div>
+                            {/* <div>No exact match for player <strong>{player}</strong>, is it one of the following ?</div> */}
                             <PlayerList data={playerList} onClick={playerSelect}/>
                         </div>
                     )}
