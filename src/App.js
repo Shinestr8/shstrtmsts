@@ -83,8 +83,6 @@ function App() {
     setTheme(theme)
   }
 
-
-  console.log(currentTheme === darkTheme)
   return (
 
       <ThemeProvider theme={currentTheme}>
