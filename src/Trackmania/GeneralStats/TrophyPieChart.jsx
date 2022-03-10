@@ -1,11 +1,11 @@
 //external
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, memo} from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, LabelList, Line} from 'recharts';
 
 //functions
 import useWindowDimensions from '../../WindowDimensions';
 
-export function TrophyPieChart(props){
+export const TrophyPieChart = memo(function TrophyPieChartComp(props){
     const data = props.data;
     const [array, setArray] = useState(null);
     const prevArrayRef = useRef();
@@ -78,6 +78,7 @@ export function TrophyPieChart(props){
         <ResponsiveContainer height={width > 1024 ? 400 : 300}>
               <PieChart>
                 <Pie 
+                  // isAnimationActive={false}
                   data={array} 
                   dataKey="value" 
                   nameKey="name"
@@ -94,4 +95,4 @@ export function TrophyPieChart(props){
               </PieChart>
         </ResponsiveContainer>
     );
-}
+});
