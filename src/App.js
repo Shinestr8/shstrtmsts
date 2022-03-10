@@ -1,5 +1,5 @@
 //libraries
-import { useLayoutEffect, useState, Suspense } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import styled,{ ThemeProvider} from 'styled-components';
 import {Route, Routes, HashRouter } from 'react-router-dom';
 
@@ -11,10 +11,14 @@ import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
 import { GlobalStyle } from './StyledComponents/GlobalStyle';
 import { ThemeSwitch } from './StyledComponents/Input/ThemeSwitch';
+import { Test } from './Test/test';
 
 //variable
 import { lightTheme, darkTheme } from './theme';
 import { useTranslation } from 'react-i18next';
+
+//put font into css instead of styled component as it makes it lag in development build
+import './font.css';
 
 const page_background = process.env.PUBLIC_URL + '/img/background/page_background.png'
 
@@ -87,7 +91,7 @@ function App() {
 
       <ThemeProvider theme={currentTheme}>
       <GlobalStyle/>
-      <Suspense fallback={<div>Loading...</div>}>
+      
       <Page>
       <Title titleSize={titleSize}>
         {t('title')}
@@ -112,7 +116,6 @@ function App() {
         
     </HashRouter>
     </Page>
-        </Suspense>
     </ThemeProvider>
 
     

@@ -11,10 +11,10 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${(props)=>props.theme.background};
     }
 
-    @font-face {
+    /* @font-face {
         font-family: "Lobster";
         src: local("Lobster"),
         url(${lobster}) format("truetype");
-  }
+  } */
 `
     
