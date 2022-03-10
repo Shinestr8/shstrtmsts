@@ -7,6 +7,8 @@ import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMa
 //functions
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
+import { computePercentage } from "../../functions/computePercentage";
+
 
 export function Royal(props){
     const data = props.data;
@@ -22,9 +24,6 @@ export function Royal(props){
         'Royal Master'
     ];
 
-    function computePercentage(rank, total){
-        return parseFloat(100*rank/total).toPrecision(1);
-    }
 
     return(
         <MatchmakingStats>

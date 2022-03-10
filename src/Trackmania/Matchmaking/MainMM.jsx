@@ -1,5 +1,6 @@
 //external
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 //Components
 import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMatchmaking";
@@ -7,7 +8,7 @@ import { MatchmakingStats, RankImage, Details, RankText, Rank } from "./StyledMa
 //functions
 import { formatNumber } from "../../functions/formatNumber";
 import { formatRank } from "../../functions/formatRank";
-import { useMemo } from "react";
+import { computePercentage } from "../../functions/computePercentage";
 
 
 
@@ -39,9 +40,6 @@ export function MainMM(props){
         return number + suffix
     }, [data.info.rank,t])
 
-    function computePercentage(rank, total){
-        return parseFloat(100*rank/total).toPrecision(1);
-    }
 
 
     return(
