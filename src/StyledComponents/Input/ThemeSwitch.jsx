@@ -4,10 +4,9 @@ import {faMoon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StyledDiv = styled.div`
-    position: absolute;
     display:flex;
-    top: 1rem;
-    right: 1rem;
+    align-self: flex-end;
+    padding: 1rem;
 `
 
 const StyledSwitch = styled.div`

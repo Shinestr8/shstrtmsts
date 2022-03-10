@@ -11,7 +11,7 @@ import { Matchmaking } from './Trackmania/Matchmaking/Matchmaking';
 import { Error404 } from './Component/UpdateButton/404';
 import { GlobalStyle } from './StyledComponents/GlobalStyle';
 import { ThemeSwitch } from './StyledComponents/Input/ThemeSwitch';
-import { Test } from './Test/test';
+import { Test } from './Test/Test';
 
 //variable
 import { lightTheme, darkTheme } from './theme';
@@ -24,6 +24,12 @@ const page_background = process.env.PUBLIC_URL + '/img/background/page_backgroun
 
 
 
+const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
 
 
 const Page  = styled.div`
@@ -36,7 +42,6 @@ const Page  = styled.div`
 const Title = styled.div`
   min-height: 10%;
   text-align: center;
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -93,10 +98,15 @@ function App() {
       <GlobalStyle/>
       
       <Page>
-      <Title titleSize={titleSize}>
-        {t('title')}
-      </Title>
-      <ThemeSwitch handleClick={toggle} checked={currentTheme===darkTheme}/>
+      <Header>
+        <ThemeSwitch handleClick={toggle} checked={currentTheme===darkTheme}/>
+        <Title titleSize={titleSize}>
+          {t('title')}
+        </Title>
+        
+        
+      </Header>
+      
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="*" element={<Error404/>}/>
