@@ -1,14 +1,20 @@
 //external
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useTranslation } from 'react-i18next';
-
+import styled from "styled-components";
 //components
 import {Section, SectionTitle} from '../../StyledComponents/General/Section';
+
+const StyledDiv = styled.div`
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: ${(props)=>props.theme.font_dark};
+`
 
 export function COTDLineChart(props){
     const {t} = useTranslation('cotd');
     return(
-        <div style={{"marginTop": '1em', "marginBottom": '1em'}}>
+        <StyledDiv>
             <Section>
                 <SectionTitle>{t("div and div rank linechart title")}</SectionTitle>
                 <ResponsiveContainer width="99%" height={400}>
@@ -126,7 +132,7 @@ export function COTDLineChart(props){
 
             </Section>
             
-        </div>
+        </StyledDiv>
         
     )
 }

@@ -5,6 +5,8 @@ export const darkTheme = {
     border: '#D3D3D3',
     font_secondary: '#FFFFFF',
     font_primary: '#FFFFFF',
+    font_dark: '#000000',
+    font_light: '#FFFFFF',
     main: '#161D31',
     menu:{
         main: '#000000',
@@ -34,6 +36,8 @@ export const lightTheme = {
     border: '#D3D3D3',
     font_secondary: '#FFFFFF',
     font_primary: '#000000',
+    font_dark: '#000000',
+    font_light: '#FFFFFF',
     main: '#FFFFFF',
     menu:{
         main: '#161D31',
