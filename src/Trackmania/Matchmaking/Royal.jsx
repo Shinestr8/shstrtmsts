@@ -41,7 +41,7 @@ export function Royal(props){
                 <div>{t("Total players", {totalplayers: formatNumber(data.total)})}</div>
                 <div>{t("Wins", {wins: formatNumber(data.info.progression)})}</div>
                 {data.info.division_next && (
-                    <div>{t("Next rank", {rank: ranks[data.info.division.position], points: data.info.division_next.minwins - data.info.progression})} </div>
+                    <div>{t("Next rank Royal", {rank: ranks[data.info.division.position], points: data.info.division_next.minwins - data.info.progression})} </div>
                 )}
                 
             </Details>

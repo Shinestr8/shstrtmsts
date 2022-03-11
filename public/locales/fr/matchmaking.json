@@ -6,5 +6,6 @@
     "Total players": "Joueur totaux: {{totalplayers}}",
     "MMR": "MMR: {{points}} points",
     "Wins": "Victoires: {{wins}}",
-    "Next rank": "Prochain rang: {{rank}} dans {{points}} points"
+    "Next rank MM": "Prochain rang: {{rank}} dans {{points}} points",
+    "Next rank Royal": "Prochain rang: {{rank}} dans {{points}} victoires"
 }
