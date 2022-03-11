@@ -80,7 +80,7 @@ function Player(props){
             </td>
             <td>
                 {data.matchmaking[1] !== undefined && (
-                    <span>{data.matchmaking[0].rank}{t(formatRank(data.matchmaking[1].rank))}</span>
+                    <span>{data.matchmaking[1].rank}{t(formatRank(data.matchmaking[1].rank))}</span>
                 )}
                 
             </td>
