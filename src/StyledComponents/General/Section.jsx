@@ -10,6 +10,7 @@ export const Section = styled.div`
 `
 
 export const SectionTitle = styled.h2`
-    margin: 1rem 0rem 1rem 1rem;
+    margin: 2rem 0rem 2rem 1rem;
+    text-decoration: underline;
     color: ${(props) => props.theme.font_primary};
 `

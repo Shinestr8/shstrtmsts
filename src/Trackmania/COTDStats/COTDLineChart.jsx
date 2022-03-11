@@ -11,12 +11,18 @@ const StyledDiv = styled.div`
     color: ${(props)=>props.theme.font_dark};
 `
 
+const Graph = styled.div`
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+`
+
 export function COTDLineChart(props){
     const {t} = useTranslation('cotd');
     return(
         <StyledDiv>
             <Section>
                 <SectionTitle>{t("div and div rank linechart title")}</SectionTitle>
+                <Graph>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                     width={500}
@@ -52,11 +58,14 @@ export function COTDLineChart(props){
                             strokeWidth={4}
                         />
                     </LineChart>    
-                </ResponsiveContainer>
+                </ResponsiveContainer>  
+                </Graph>
+                
             </Section>
             
             <Section>
                 <SectionTitle>{t("top percentage linechart title")}</SectionTitle>
+                <Graph>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                         width={500}
@@ -90,11 +99,14 @@ export function COTDLineChart(props){
                         />
                     </LineChart>    
                 </ResponsiveContainer>
+                </Graph>
+                
 
             </Section>
             
             <Section>
                 <SectionTitle>{t("total player linechart title")}</SectionTitle>
+                <Graph>
                 <ResponsiveContainer width="99%" height={400}>
                     <LineChart
                         width={500}
@@ -129,6 +141,8 @@ export function COTDLineChart(props){
                     </LineChart>    
                 </ResponsiveContainer>
 
+                </Graph>
+                
 
             </Section>
             
