@@ -6,5 +6,6 @@
     "Total players": "Total Players: {{totalplayers}}",
     "MMR": "MMR: {{points}} points",
     "Wins": "Wins: {{wins}}",
-    "Next rank": "Next rank: {{rank}} in {{points}} points"
+    "Next rank MM": "Next rank: {{rank}} in {{points}} points",
+    "Next rank Royal": "Next rank: {{rank}} in {{points}} wins"
 }
