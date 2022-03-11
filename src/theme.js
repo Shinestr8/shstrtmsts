@@ -15,6 +15,10 @@ export const darkTheme = {
         font_light: '#FFFFFF',
         font_dark: '#000000'
     },
+    table:{
+        odd:'#808080',
+        even:'#202124'
+    },
     infobox:{
         background: '#153426',
         font: '#58CD9F'
@@ -45,6 +49,10 @@ export const lightTheme = {
         selected: '#007BFF',
         font_light: '#FFFFFF',
         font_dark: '#000000'
+    },
+    table:{
+        odd:'#cccccc',
+        even:''
     },
     infobox:{
         background: '#153426',

@@ -20,7 +20,7 @@ const PlayerTable = styled.table`
     }
 
     >tbody tr:nth-child(2n+1) {
-        background-color: #ccc;
+        background-color: ${(props)=>props.theme.table.odd};
     }
 
     >tbody tr:hover{
