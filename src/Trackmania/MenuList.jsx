@@ -63,6 +63,7 @@ function Menu(props){
             name = {name}
             location = {loc}
             onClick={handleClick} 
+            tabIndex="0"
             /* style={({ isActive }) => {
                 return {
                   backgroundColor: isActive ? "#007bff" : "",
