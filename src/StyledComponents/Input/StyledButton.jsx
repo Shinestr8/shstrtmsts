@@ -11,6 +11,11 @@ export const StyledButton = styled.button`
     border-bottom-right-radius: 5px;
     font-size: inherit;
 
+    &:focus{
+        outline: #5d9dd5 solid 1px;
+        box-shadow: 0 0 8px #5e9ed6;
+    }
+    
     &:disabled{
         background-color: ${props=>props.theme.button.disabled_bg};
         color: ${props=>props.theme.button.disabled_color};;
