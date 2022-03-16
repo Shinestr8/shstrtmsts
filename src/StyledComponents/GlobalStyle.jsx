@@ -11,6 +11,12 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${(props)=>props.theme.background};
     }
 
+    tr:focus{
+        border: none;
+        outline: 2px solid #333;
+        outline-offset: 2px;
+    }
+
     /* @font-face {
         font-family: "Lobster";
         src: local("Lobster"),
