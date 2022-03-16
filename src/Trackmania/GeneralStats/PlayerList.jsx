@@ -55,11 +55,17 @@ function Player(props){
     const data = props.data;
     const {t} = useTranslation("suffix");
     function handleClick(){
-        props.onClick(data.player.name)
+        props.onClick(data.player.name);
+    }
+
+    function handleKey(e){
+        if(e.key === "Enter"){
+            props.onClick(data.player.name);
+        }
     }
 
     return(
-        <tr onClick={handleClick}>
+        <tr tabIndex="0" onClick={handleClick} onKeyDown={handleKey}>
             <td>
             {data.player.zone !== undefined && (
                 <Flag
