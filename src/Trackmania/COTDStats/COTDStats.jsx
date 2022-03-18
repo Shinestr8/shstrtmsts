@@ -60,8 +60,9 @@ export function COTDStats(props){
     function buildChartData(rawData){
         let lineChartData = [];
         for(let i = 0; i < rawData.length; ++i){
+            //dont take type 2 into account
             if(rawData[i].name.includes("#1")){
-                let date = new Date(rawData[i].timestamp)
+                let date = new Date(rawData[i].timestamp);  
                 let formattedDate = date.getDate() + '/' + (date.getMonth() +1) + '/' + (date.getFullYear());
                 lineChartData.push({
                     'name': rawData[i].id, 
@@ -74,7 +75,7 @@ export function COTDStats(props){
             }
             //case where data is too old and doesnt contain the cotd type (main, rerun)
             if(!rawData[i].name.includes('#')){
-                let date = new Date(rawData[i].timestamp)
+                let date = new Date(rawData[i].timestamp);
                 let formattedDate = date.getDate() + '/' + (date.getMonth() +1) + '/' + (date.getFullYear());
                 lineChartData.push({
                     'name': rawData[i].id, 
@@ -86,7 +87,7 @@ export function COTDStats(props){
                 })
             }
         }
-        
+        console.log(lineChartData)
         setChartData(lineChartData.reverse());
         return
     }
@@ -177,6 +178,7 @@ export function COTDStats(props){
         return () => isSubscribed = false;
     }, [playerNameParam]);
     
+    console.log(chartData);
 
     return(
         <ContentBody>
@@ -219,7 +221,7 @@ export function COTDStats(props){
                     )}
                     </InfoBox>
                     <div>
-                        {chartData !== null && (
+                        {chartData !== null && chartData.length!==0 && (
                             <COTDLineChart data={chartData}/>
                         )}
                      </div>
