@@ -33,9 +33,9 @@ export function COTDStats(props){
         setData(null);
         setChartData(null);
         const url  = (`${remoteServer}/COTDStats?accountID=${accountid}`).toLowerCase();
-        if(localStorage.getItem(url) !== null){
-            localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
-        }
+        // if(localStorage.getItem(url) !== null){
+        //     localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+        // }
             let isSubscribed = true;
             fetch(url + '&forceupdate=true')  
             .then(function(result){
@@ -48,7 +48,7 @@ export function COTDStats(props){
                     setData(result);
                     buildChartData(result.cotds);            
                     setLoad(false);        
-                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                    // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
                 }
             })
             .catch(function(error){
@@ -94,13 +94,13 @@ export function COTDStats(props){
 
     function findPlayerID(player){
         const url  = (`${remoteServer}/findTrokmoniPlayer?player=${player}`).toLowerCase();
-        if(localStorage.getItem(url) !== null){
-            let cached = JSON.parse(localStorage.getItem(url));
-            setDisplayname(cached.data.displayname);
-            setAccountid(cached.data.accountid);
-            return cached.data.accountid;
+        // if(localStorage.getItem(url) !== null){
+        //     let cached = JSON.parse(localStorage.getItem(url));
+        //     setDisplayname(cached.data.displayname);
+        //     setAccountid(cached.data.accountid);
+        //     return cached.data.accountid;
 
-        } else {
+        // } else {
             fetch(url)
             .then(function(result){
                 return result.json();
@@ -108,11 +108,11 @@ export function COTDStats(props){
             .then(function(result){
                 setDisplayname(result.displayname);
                 setAccountid(result.accountid);
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
 
                 return result.accountid;
             })
-        }
+        // }
     }
 
 
@@ -126,25 +126,25 @@ export function COTDStats(props){
             let id = findPlayerID(playerNameParam);
 
             const url  = (`${remoteServer}/COTDStats?accountID=${id}`).toLowerCase();
-            if(localStorage.getItem(url) !== null){
-                let response = JSON.parse(localStorage.getItem(url)).data;
+            // if(localStorage.getItem(url) !== null){
+            //     let response = JSON.parse(localStorage.getItem(url)).data;
                 
-                let timestamp = new Date(JSON.parse(localStorage.getItem(url)).timestamp).getTime();
-                let now = new Date().getTime();
-                if(timestamp + 24*60*60*1000 < now){
-                    localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
-                } else {
-                    if(!response){
-                        setData(null);
-                        setLoad(false);
-                        return;
-                    }
-                    setData(response)
-                    buildChartData(response.cotds);
-                    setLoad(false);
-                    return
-                }
-            }
+            //     let timestamp = new Date(JSON.parse(localStorage.getItem(url)).timestamp).getTime();
+            //     let now = new Date().getTime();
+            //     if(timestamp + 24*60*60*1000 < now){
+            //         localStorage.removeItem(url); // remove the current url from localStorage if it is more than 24 hours old (24*60*60*1000 ms)
+            //     } else {
+            //         if(!response){
+            //             setData(null);
+            //             setLoad(false);
+            //             return;
+            //         }
+            //         setData(response)
+            //         buildChartData(response.cotds);
+            //         setLoad(false);
+            //         return
+            //     }
+            // }
                 
                 fetch(url)  
                 .then(function(result){
@@ -163,7 +163,7 @@ export function COTDStats(props){
                         setData(result);
                         buildChartData(result.cotds);            
                         setLoad(false);        
-                        localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
+                        // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result}));
                     }
                 })
                 .catch(function(error){

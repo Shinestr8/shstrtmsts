@@ -108,21 +108,21 @@ export function Trackmania(props){
         setPlayerList(null);
 
         //First, check the local storage for the requested url
-        if(localStorage.getItem(url) !== null){ //
-            let cached = JSON.parse(localStorage.getItem(url));
-            let timestamp = new Date(cached.timestamp).getTime();
-            let now = new Date().getTime();
-            if(timestamp + 12*60*60*1000 < now){
-                localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
-            } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
-                setData(cached.data);
-                navigate(`player/${cached.data.displayname}/${loc}`);
-                setLoading(false);
-                return;
-            }
+        // if(localStorage.getItem(url) !== null){ //
+        //     let cached = JSON.parse(localStorage.getItem(url));
+        //     let timestamp = new Date(cached.timestamp).getTime();
+        //     let now = new Date().getTime();
+        //     if(timestamp + 12*60*60*1000 < now){
+        //         localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
+        //     } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
+        //         setData(cached.data);
+        //         navigate(`player/${cached.data.displayname}/${loc}`);
+        //         setLoading(false);
+        //         return;
+        //     }
 
-            //If nothing is found in the localstorage for the requested player, send a fetch request to the backend server
-        }
+        //     //If nothing is found in the localstorage for the requested player, send a fetch request to the backend server
+        // }
         fetch(url)
         .then(function(result){
             return result.json();
@@ -141,7 +141,7 @@ export function Trackmania(props){
             if(!result.displayname){
                 navigate('/');
             }
-            localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+            // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
         })
         .catch(function(error){
             setData({message: 'An error occured, server might be offline'}); //set message in case catch is called

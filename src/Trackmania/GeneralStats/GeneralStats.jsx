@@ -53,9 +53,9 @@ export function GeneralStats(){
         setRegions(null);
 
         //if the item exists, remove it as it will be updated
-        if(localStorage.getItem(url) !== null){ 
-            localStorage.removeItem(url); 
-        }
+        // if(localStorage.getItem(url) !== null){ 
+        //     localStorage.removeItem(url); 
+        // }
         
         //whatever happens, fetch the original url with argument forceupdate = true
         let isSubscribed = true;
@@ -70,7 +70,7 @@ export function GeneralStats(){
                 setData(result);
                 findPlayerRegions(result.trophies.zone);
                 setLoad(false);
-                localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+                // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
             }
             
         })
@@ -90,19 +90,19 @@ export function GeneralStats(){
             setRegions(null);
             const url  = (`${remoteServer}/findTrokmoniPlayer?player=${playerNameParam}`).toLowerCase();
 
-            if(localStorage.getItem(url) !== null){ 
-                let cached = JSON.parse(localStorage.getItem(url));
-                let timestamp = new Date(cached.timestamp).getTime();
-                let now = new Date().getTime();
-                if(timestamp + 12*60*60*1000 < now){
-                    localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
-                } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
-                    setData(cached.data);
-                    findPlayerRegions(cached.data.trophies.zone);
-                    setLoad(false);
-                    return;
-                }
-            }
+            // if(localStorage.getItem(url) !== null){ 
+            //     let cached = JSON.parse(localStorage.getItem(url));
+            //     let timestamp = new Date(cached.timestamp).getTime();
+            //     let now = new Date().getTime();
+            //     if(timestamp + 12*60*60*1000 < now){
+            //         localStorage.removeItem(url); //ditch the stored value if it is more than 12 hours old
+            //     } else {                          //Otherwise, if the player is found and data is less than 12 hours old, set data in the state
+            //         setData(cached.data);
+            //         findPlayerRegions(cached.data.trophies.zone);
+            //         setLoad(false);
+            //         return;
+            //     }
+            // }
             let isSubscribed = true;
             fetch(url)
             .then(function(result){
@@ -126,7 +126,7 @@ export function GeneralStats(){
                     if(!result.displayname){
                         navigate('/');
                     }
-                    localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
+                    // localStorage.setItem(url, JSON.stringify({timestamp: new Date(), data: result})); //set the result to the locaslstorage
                 }
             })
             .catch(function(error){
