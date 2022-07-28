@@ -22,6 +22,7 @@ import { remoteServer } from "../config";
 
 //functions
 import useWindowDimensions from "../WindowDimensions";
+import { createContext } from "react";
 
 
 const StyledForm = styled.form`
@@ -36,13 +37,14 @@ const StyledForm = styled.form`
     transition-property: height, margin-top;
     transition-duration: 0.6s;
 `
-
+export const PlayerContext = createContext();
 
 export function Trackmania(props){
 
     let [textInput, setTextInput] = useState("");
     let [player, setPlayer] = useState("");
     let [data, setData] = useState(null);
+    const [COTD, setCOTD]= useState(null);
     let [loading, setLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
     let [menu, setMenu] = useState('General');
@@ -60,16 +62,16 @@ export function Trackmania(props){
     // eslint-disable-next-line no-unused-vars
     const {t, i18n} = useTranslation('trackmania');
 
-    useEffect(()=> {
-        if(location !== prevLoc){
-            if(location !== '/' || player || ParamPlayer){
-                props.changeTitle('small');
-            } else {
-                props.changeTitle('big')
-            }
-            setPrevLoc(location);
-        } 
-    }, [ParamPlayer, player, location, prevLoc, props])
+    // useEffect(()=> {
+    //     if(location !== prevLoc){
+    //         if(location !== '/' || player || ParamPlayer){
+    //             props.changeTitle('small');
+    //         } else {
+    //             props.changeTitle('big')
+    //         }
+    //         setPrevLoc(location);
+    //     } 
+    // }, [ParamPlayer, player, location, prevLoc, props])
 
     //function called on click of a player in player list
     function playerSelect(player){
@@ -86,7 +88,53 @@ export function Trackmania(props){
 
     //function called to update the general info and ignore the 12 hours cache life
     
+    useEffect(()=>{
+        console.log(ParamPlayer);
+        if(ParamPlayer === undefined){
+            return;
+        }
 
+        console.log("dings")
+
+        fetchPlayerData();
+
+        async function fetchPlayerData(){
+            let url  = (`${remoteServer}/findTrokmoniPlayer?player=${ParamPlayer}`).toLowerCase();
+
+            setLoading(true); 
+            setData(null);
+            setPlayerList(null);
+
+            try{
+                let result = await fetch(url);
+                result = await result.json();
+                if(result.length){ //If the length of result is defined, we're in the case of a list of player
+                    // navigate('/');
+                    setPlayerList(result);
+                    setLoading(false);
+                    return; //exit the function
+                }
+                //otherwise, set the data state with fetched data. It can be player details or a message
+                setData(result);
+                setLoading(false);
+                // navigate(`player/${result.displayname}/${loc}`);
+                // if(!result.displayname){
+                //     navigate('/');
+                // }
+                url  = (`${remoteServer}/COTDStats?accountID=${result.accountid}`).toLowerCase();
+                result = await fetch(url);
+                result = await result.json()
+                setCOTD(result);
+            } catch(error){
+                setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
+                setLoading(false);
+                // navigate('/');
+                console.log(error);
+            }
+        
+        }
+
+    }, [ParamPlayer, location, navigate])
 
     //function that finds a player by its name by fetching or checking localstorage
     //only takes player name as argumnt
@@ -149,9 +197,6 @@ export function Trackmania(props){
             navigate('/');
             console.log(error);
         })
-    
-
-    
     }
 
     //function called on button click.
@@ -174,7 +219,7 @@ export function Trackmania(props){
     const menus = ['General', 'COTD', 'Matchmaking'];
 
     return(
-        <div>
+        <PlayerContext.Provider value={{generalData: data, cotdData: COTD}}>
             <StyledForm player = {player||ParamPlayer}
                 className={player || ParamPlayer ? "input-group-small" : "input-group-big"}
             >
@@ -228,6 +273,6 @@ export function Trackmania(props){
                 <Outlet/>
             </Content>
                 
-        </div> 
+        </PlayerContext.Provider> 
     )
 }
