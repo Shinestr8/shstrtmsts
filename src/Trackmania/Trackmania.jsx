@@ -32,6 +32,7 @@ const StyledForm = styled.form`
     padding-top: 3rem;
     padding-bottom: 3rem;
     height: ${(props) => props.player ? "3rem" : "5rem"};
+    /* background-color:${(props) => props.player ? "blue" : "red"};; */
     margin-top: ${(props)=> props.player ?  "0" : "25vh"};
     font-size: ${(props)=> props.player ? "1rem" : "1.5rem"};
     transition-property: height, margin-top;
@@ -219,7 +220,10 @@ export function Trackmania(props){
     const menus = ['General', 'COTD', 'Matchmaking'];
 
     return(
-        <PlayerContext.Provider value={{generalData: data, cotdData: COTD}}>
+        <PlayerContext.Provider style={{display:"block", border: "1px solid lime"}} value={{generalData: data, cotdData: COTD}}>
+            <div>
+
+            
             <StyledForm player = {player||ParamPlayer}
                 className={player || ParamPlayer ? "input-group-small" : "input-group-big"}
             >
@@ -273,6 +277,7 @@ export function Trackmania(props){
                 <Outlet/>
             </Content>
                 
+            </div>
         </PlayerContext.Provider> 
     )
 }
