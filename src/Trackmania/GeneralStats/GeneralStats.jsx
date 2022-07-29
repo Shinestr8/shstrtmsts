@@ -38,7 +38,7 @@ export function GeneralStats(){
     }
 
     useEffect(()=>{
-        if(context.generalData){
+        if(context && context.generalData && context.generalData.trophies){
             findPlayerRegions(context.generalData.trophies.zone)
         }
     }, [context])

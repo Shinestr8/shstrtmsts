@@ -18,6 +18,7 @@ export function COTDStats(props){
     
     const [chartData, setChartData] = useState(null);
 
+    const [loading, setLoading] = useState(true);
     const data = useContext(PlayerContext).cotdData;
     const generalData = useContext(PlayerContext).generalData;
     // console.log(displayname)    
@@ -60,19 +61,27 @@ export function COTDStats(props){
     }
 
     useEffect(()=>{
-        if(data){
+        if(data && data.cotds){
             buildChartData(data.cotds)
         }
     }, [data])
+
+    useEffect(()=>{
+        if(data && generalData){
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, [data, generalData])
     
 
     return(
         <ContentBody>
             <div>
-                {!data && (
+                {loading && (
                     <LoadingIcon/>
                 )}
-                {!data && (
+                {!data &&!loading && (
                     <ErrorMessage>{t("No data")}</ErrorMessage>
                 )}
                 {data && data.message && (
