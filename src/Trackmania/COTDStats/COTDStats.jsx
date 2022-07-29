@@ -14,15 +14,12 @@ import {CellData, Cells, CellTitle, InfoBox } from "./StyledCOTD";
 import { useContext } from "react";
 import { PlayerContext } from "../Trackmania";
 
-export function COTDStats(props){
+export function COTDStats(){
     
     const [chartData, setChartData] = useState(null);
-
-    // const [loading, setLoading] = useState(true);
     const data = useContext(PlayerContext).cotdData;
     const generalData = useContext(PlayerContext).generalData;
     const loading = useContext(PlayerContext).loading;
-    // console.log(displayname)    
 
 
     const {t} = useTranslation("cotd");
@@ -67,15 +64,7 @@ export function COTDStats(props){
         }
     }, [data])
 
-    // useEffect(()=>{
-    //     if(data && generalData){
-    //         setLoading(false);
-    //     } else {
-    //         setLoading(true);
-    //     }
-    // }, [data, generalData])
     
-
     return(
         <ContentBody>
             <div>

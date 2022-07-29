@@ -11,7 +11,6 @@ import { MenuList } from "./MenuList";
 import { PlayerList } from "./GeneralStats/PlayerList";
 import { StyledTextInput } from "../StyledComponents/Input/StyledTextInput";
 import { StyledButton } from "../StyledComponents/Input/StyledButton";
-import { LoadingIcon } from "../Component/UpdateButton/LoadingIcon";
 import { ContentHeader } from "../StyledComponents/Page/ContentHeader";
 import { ContentBody } from "../StyledComponents/Page/ContentBody";
 import { Content } from "../StyledComponents/Page/Content";
@@ -192,10 +191,6 @@ export function Trackmania(props){
                             <PlayerList data={playerList} onClick={navigateToPlayer}/>
                         </div>
                     )}
-
-                    {/* {loading && (
-                        <LoadingIcon/>
-                    )} */}
             
                     {data && data.message &&(
                         <ErrorMessage>{data.message}</ErrorMessage>
