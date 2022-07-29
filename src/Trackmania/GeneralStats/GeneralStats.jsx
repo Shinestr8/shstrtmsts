@@ -47,7 +47,7 @@ export function GeneralStats(){
 
     return(
         <ContentBody>
-            {context.loading && (
+            {context.loading.general && (
                 <LoadingIcon/>
             )}
             {context.generalData && context.generalData.message &&(

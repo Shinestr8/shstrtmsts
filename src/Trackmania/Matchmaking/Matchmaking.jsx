@@ -18,7 +18,7 @@ export function Matchmaking(){
     const {t} = useTranslation("matchmaking")
 
     const data = useContext(PlayerContext).generalData;
-    const loading = useContext(PlayerContext).loading;
+    const loading = useContext(PlayerContext).loading.general;
 
     if(data && !data.matchmaking[0] && !data.matchmaking[1]){
         return(

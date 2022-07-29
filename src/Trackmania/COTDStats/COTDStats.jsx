@@ -19,7 +19,7 @@ export function COTDStats(){
     const [chartData, setChartData] = useState(null);
     const data = useContext(PlayerContext).cotdData;
     const generalData = useContext(PlayerContext).generalData;
-    const loading = useContext(PlayerContext).loading;
+    const loading = useContext(PlayerContext).loading.cotd;
 
 
     const {t} = useTranslation("cotd");

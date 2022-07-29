@@ -44,7 +44,8 @@ export function Trackmania(props){
     let [player, setPlayer] = useState("");
     let [data, setData] = useState(null);
     const [COTD, setCOTD]= useState(null);
-    let [loading, setLoading] = useState(false);
+    let [isGeneralLoading, setIsGeneralLoading] = useState(false);
+    const [isCotdLoading, setIsCotdLoading] = useState(false);
     let [playerList, setPlayerList] = useState(null);
     let [menu, setMenu] = useState('General');
     let ParamPlayer = useParams().player;
@@ -82,7 +83,8 @@ export function Trackmania(props){
             let url  = (`${remoteServer}/findTrokmoniPlayer?player=${ParamPlayer}`).toLowerCase();
 
             //reset the state before fetching data from the server
-            setLoading(true); 
+            setIsGeneralLoading(true);
+            setIsCotdLoading(true); 
             setData(null);
             setCOTD(null);
             setPlayerList(null);
@@ -98,13 +100,15 @@ export function Trackmania(props){
                 //if result.lenght is defined, result is a player list
                 if(isSubscribed && result && result.length){ 
                     setPlayerList(result);
-                    setLoading(false);
+                    setIsCotdLoading(false);
+                    setIsGeneralLoading(false);
                     navigate('/'); //if result is a playerlist, reset navigation to root
                     return;
 
 
                 } else if(isSubscribed){
                     setData(result);
+                    setIsGeneralLoading(false);
                 }
                 
                 if(isSubscribed){
@@ -112,12 +116,13 @@ export function Trackmania(props){
                     result = await fetch(url);
                     result = await result.json()
                     setCOTD(result);
-                    setLoading(false);
+                    setIsCotdLoading(false);
                 }
             
             } catch(error){
                 setData({message: 'An error occured, server might be offline'}); //set message in case catch is called
-                setLoading(false);
+                setIsCotdLoading(false);
+                setIsGeneralLoading(false);
             }
         
         }
@@ -135,7 +140,6 @@ export function Trackmania(props){
     function handleSubmit(e){
         e.preventDefault();
         props.changeTitle('small');
-        setLoading(true);
         setPlayer(textInput);
         navigateToPlayer(textInput);
     }
@@ -151,7 +155,7 @@ export function Trackmania(props){
     const menus = ['General', 'COTD', 'Matchmaking'];
 
     return(
-        <PlayerContext.Provider style={{display:"block", border: "1px solid lime"}} value={{generalData: data, cotdData: COTD, loading: loading}}>
+        <PlayerContext.Provider style={{display:"block", border: "1px solid lime"}} value={{generalData: data, cotdData: COTD, loading: {general: isGeneralLoading, cotd: isCotdLoading}}}>
             <div>
 
             
@@ -181,7 +185,7 @@ export function Trackmania(props){
                 </ContentHeader>
                 
                 
-                {(loading || playerList || (data && data.message)) && (
+                {(playerList || (data && data.message)) && (
                     <ContentBody>
 
                     {playerList && (
