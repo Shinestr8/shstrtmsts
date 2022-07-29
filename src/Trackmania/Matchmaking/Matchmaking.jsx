@@ -18,6 +18,7 @@ export function Matchmaking(){
     const {t} = useTranslation("matchmaking")
 
     const data = useContext(PlayerContext).generalData;
+    const loading = useContext(PlayerContext).loading;
 
     if(data && !data.matchmaking[0] && !data.matchmaking[1]){
         return(
@@ -40,7 +41,7 @@ export function Matchmaking(){
             <PlayerName>
                 {data && data.displayname} 
             </PlayerName>
-            {!data &&(
+            {loading &&(
                 <LoadingIcon/>
             )}
             {data && data.matchmaking[0] && (

@@ -18,9 +18,10 @@ export function COTDStats(props){
     
     const [chartData, setChartData] = useState(null);
 
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const data = useContext(PlayerContext).cotdData;
     const generalData = useContext(PlayerContext).generalData;
+    const loading = useContext(PlayerContext).loading;
     // console.log(displayname)    
 
 
@@ -66,13 +67,13 @@ export function COTDStats(props){
         }
     }, [data])
 
-    useEffect(()=>{
-        if(data && generalData){
-            setLoading(false);
-        } else {
-            setLoading(true);
-        }
-    }, [data, generalData])
+    // useEffect(()=>{
+    //     if(data && generalData){
+    //         setLoading(false);
+    //     } else {
+    //         setLoading(true);
+    //     }
+    // }, [data, generalData])
     
 
     return(

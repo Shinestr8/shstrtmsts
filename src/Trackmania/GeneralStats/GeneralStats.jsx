@@ -14,6 +14,7 @@ import {Section, SectionTitle} from '../../StyledComponents/General/Section'
 //variables
 import { useContext } from "react";
 import { PlayerContext } from "../Trackmania";
+import { LoadingIcon } from "../../Component/UpdateButton/LoadingIcon";
 
 export function GeneralStats(){
 
@@ -46,7 +47,9 @@ export function GeneralStats(){
 
     return(
         <ContentBody>
-                
+            {context.loading && (
+                <LoadingIcon/>
+            )}
             {context.generalData && context.generalData.message &&(
                 <ErrorMessage>{context.generalData.message}</ErrorMessage>
             )}

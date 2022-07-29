@@ -106,7 +106,6 @@ export function Trackmania(props){
 
                 } else if(isSubscribed){
                     setData(result);
-                    setLoading(false);
                 }
                 
                 if(isSubscribed){
@@ -114,6 +113,7 @@ export function Trackmania(props){
                     result = await fetch(url);
                     result = await result.json()
                     setCOTD(result);
+                    setLoading(false);
                 }
             
             } catch(error){
@@ -152,7 +152,7 @@ export function Trackmania(props){
     const menus = ['General', 'COTD', 'Matchmaking'];
 
     return(
-        <PlayerContext.Provider style={{display:"block", border: "1px solid lime"}} value={{generalData: data, cotdData: COTD}}>
+        <PlayerContext.Provider style={{display:"block", border: "1px solid lime"}} value={{generalData: data, cotdData: COTD, loading: loading}}>
             <div>
 
             
@@ -193,9 +193,9 @@ export function Trackmania(props){
                         </div>
                     )}
 
-                    {loading && (
+                    {/* {loading && (
                         <LoadingIcon/>
-                    )}
+                    )} */}
             
                     {data && data.message &&(
                         <ErrorMessage>{data.message}</ErrorMessage>
