@@ -176,7 +176,7 @@ export function Trackmania(props){
             
             <Content>
                 <ContentHeader>
-                    {ParamPlayer && !(data && data.message) && (
+                    {ParamPlayer && (data) && (
                         <MenuList playername={(data && data.displayname) || ParamPlayer} menus={menus} handleClick={selectMenu} selected={menu}/>
                     )}
                 </ContentHeader>
